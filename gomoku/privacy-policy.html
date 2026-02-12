@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy for Gomoku Game App">
+    <title>Privacy Policy - Gomoku</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .language-switch button {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #667eea;
+        }
+
+        .language-switch button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .language-switch button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto 40px;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header .icon {
+            font-size: 1.2em;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            padding-left: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        p, li {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .contact a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid white;
+            padding-bottom: 2px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 80px 10px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .language-switch {
+                top: 10px;
+                right: 10px;
+            }
+
+            .language-switch button {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switch">
+        <button onclick="switchLanguage('en')" id="btn-en" class="active">English</button>
+        <button onclick="switchLanguage('vi')" id="btn-vi">Tiếng Việt</button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1><span class="icon">🎮</span> Gomoku Privacy Policy <span class="icon">🔒</span></h1>
+            <p>Last Updated: February 11, 2026</p>
+        </div>
+
+        <!-- English Version -->
+        <div id="content-en" class="content active">
+            <div class="highlight">
+                <strong>TL;DR:</strong> Gomoku is a completely offline game. We do not collect, store, or share any of your personal data. Your privacy is fully protected.
+            </div>
+
+            <h2>1. Introduction</h2>
+            <p>
+                Welcome to Gomoku! This Privacy Policy explains how we handle your information when you use our game application. 
+                We are committed to protecting your privacy and being transparent about our practices.
+            </p>
+
+            <h2>2. Information We Collect</h2>
+            <h3>Personal Information</h3>
+            <p>
+                <strong>We do NOT collect any personal information.</strong> Gomoku does not require:
+            </p>
+            <ul>
+                <li>Name, email address, or phone number</li>
+                <li>Account creation or login</li>
+                <li>Location data</li>
+                <li>Contact list access</li>
+                <li>Camera or microphone access</li>
+            </ul>
+
+            <h3>Local Data Storage</h3>
+            <p>
+                The game stores only the following data <strong>locally on your device</strong>:
+            </p>
+            <ul>
+                <li><strong>Game Preferences:</strong> Your chosen language (English or Vietnamese)</li>
+                <li><strong>Theme Settings:</strong> Your selected theme (Light or Dark mode)</li>
+            </ul>
+            <p>
+                This data never leaves your device and is not accessible to us or any third party.
+            </p>
+
+            <h2>3. How We Use Information</h2>
+            <p>
+                Since we don't collect any data, we don't use, analyze, or process any personal information. 
+                The locally stored preferences are used solely to provide you with a personalized gaming experience.
+            </p>
+
+            <h2>4. Data Sharing</h2>
+            <p>
+                <strong>We do NOT share, sell, or rent your information to anyone.</strong> There is no data transmission from the app to external servers.
+            </p>
+
+            <h2>5. Third-Party Services</h2>
+            <p>
+                Gomoku does not integrate with any third-party services, analytics tools, or advertising networks. 
+                The game is completely standalone and offline.
+            </p>
+
+            <h2>6. Children's Privacy</h2>
+            <p>
+                Gomoku is safe for users of all ages, including children under 13. Since we don't collect any data, 
+                there are no privacy concerns for children using this app.
+            </p>
+
+            <h2>7. Security</h2>
+            <p>
+                Your game preferences are stored securely on your device using standard platform security measures. 
+                Since no data is transmitted over the internet, there are no network-related security risks.
+            </p>
+
+            <h2>8. Your Rights</h2>
+            <p>
+                You have complete control over your local data:
+            </p>
+            <ul>
+                <li><strong>Access:</strong> You can view your settings anytime in the app</li>
+                <li><strong>Modify:</strong> Change your language and theme preferences at will</li>
+                <li><strong>Delete:</strong> Uninstalling the app removes all locally stored data</li>
+            </ul>
+
+            <h2>9. Changes to This Policy</h2>
+            <p>
+                We may update this Privacy Policy from time to time. Any changes will be reflected on this page with 
+                an updated "Last Updated" date. Continued use of the app after changes constitutes acceptance of the new policy.
+            </p>
+
+            <h2>10. International Users</h2>
+            <p>
+                Gomoku can be used anywhere in the world. Since no data is collected or transmitted, there are no 
+                international data transfer concerns or GDPR compliance issues.
+            </p>
+
+            <div class="contact">
+                <h3>📧 Contact Us</h3>
+                <p>
+                    If you have any questions or concerns about this Privacy Policy, please contact us at:
+                </p>
+                <p>
+                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                </p>
+            </div>
+
+            <div class="footer">
+                <p>© 2026 Gomoku. All rights reserved.</p>
+                <p>Made with ❤️ for game lovers everywhere</p>
+            </div>
+        </div>
+
+        <!-- Vietnamese Version -->
+        <div id="content-vi" class="content">
+            <div class="highlight">
+                <strong>Tóm tắt:</strong> Gomoku là game hoàn toàn offline. Chúng tôi KHÔNG thu thập, lưu trữ, hoặc chia sẻ bất kỳ dữ liệu cá nhân nào của bạn. Quyền riêng tư của bạn được bảo vệ tuyệt đối.
+            </div>
+
+            <h2>1. Giới Thiệu</h2>
+            <p>
+                Chào mừng đến với Gomoku! Chính sách bảo mật này giải thích cách chúng tôi xử lý thông tin của bạn khi bạn sử dụng ứng dụng game. 
+                Chúng tôi cam kết bảo vệ quyền riêng tư và minh bạch về các hoạt động của mình.
+            </p>
+
+            <h2>2. Thông Tin Chúng Tôi Thu Thập</h2>
+            <h3>Thông Tin Cá Nhân</h3>
+            <p>
+                <strong>Chúng tôi KHÔNG thu thập bất kỳ thông tin cá nhân nào.</strong> Gomoku không yêu cầu:
+            </p>
+            <ul>
+                <li>Tên, email, hoặc số điện thoại</li>
+                <li>Tạo tài khoản hoặc đăng nhập</li>
+                <li>Dữ liệu vị trí</li>
+                <li>Truy cập danh bạ</li>
+                <li>Truy cập camera hoặc microphone</li>
+            </ul>
+
+            <h3>Lưu Trữ Dữ Liệu Cục Bộ</h3>
+            <p>
+                Game chỉ lưu trữ các dữ liệu sau <strong>cục bộ trên thiết bị của bạn</strong>:
+            </p>
+            <ul>
+                <li><strong>Tùy Chọn Game:</strong> Ngôn ngữ bạn chọn (Tiếng Anh hoặc Tiếng Việt)</li>
+                <li><strong>Cài Đặt Giao Diện:</strong> Theme bạn chọn (Sáng hoặc Tối)</li>
+            </ul>
+            <p>
+                Dữ liệu này không bao giờ rời khỏi thiết bị của bạn và không thể truy cập bởi chúng tôi hoặc bên thứ ba.
+            </p>
+
+            <h2>3. Cách Chúng Tôi Sử Dụng Thông Tin</h2>
+            <p>
+                Vì chúng tôi không thu thập bất kỳ dữ liệu nào, chúng tôi không sử dụng, phân tích, hoặc xử lý thông tin cá nhân. 
+                Các tùy chọn được lưu cục bộ chỉ để cung cấp trải nghiệm chơi game cá nhân hóa cho bạn.
+            </p>
+
+            <h2>4. Chia Sẻ Dữ Liệu</h2>
+            <p>
+                <strong>Chúng tôi KHÔNG chia sẻ, bán, hoặc cho thuê thông tin của bạn cho bất kỳ ai.</strong> Không có truyền dữ liệu từ ứng dụng đến máy chủ bên ngoài.
+            </p>
+
+            <h2>5. Dịch Vụ Bên Thứ Ba</h2>
+            <p>
+                Gomoku không tích hợp với bất kỳ dịch vụ bên thứ ba nào, công cụ phân tích, hoặc mạng quảng cáo. 
+                Game hoàn toàn độc lập và offline.
+            </p>
+
+            <h2>6. Quyền Riêng Tư Trẻ Em</h2>
+            <p>
+                Gomoku an toàn cho người dùng mọi lứa tuổi, bao gồm trẻ em dưới 13 tuổi. Vì chúng tôi không thu thập bất kỳ dữ liệu nào, 
+                không có lo ngại về quyền riêng tư cho trẻ em sử dụng ứng dụng này.
+            </p>
+
+            <h2>7. Bảo Mật</h2>
+            <p>
+                Tùy chọn game của bạn được lưu trữ an toàn trên thiết bị sử dụng các biện pháp bảo mật tiêu chuẩn của nền tảng. 
+                Vì không có dữ liệu được truyền qua internet, không có rủi ro bảo mật liên quan đến mạng.
+            </p>
+
+            <h2>8. Quyền Của Bạn</h2>
+            <p>
+                Bạn có toàn quyền kiểm soát dữ liệu cục bộ của mình:
+            </p>
+            <ul>
+                <li><strong>Truy cập:</strong> Bạn có thể xem cài đặt bất cứ lúc nào trong ứng dụng</li>
+                <li><strong>Sửa đổi:</strong> Thay đổi ngôn ngữ và giao diện theo ý muốn</li>
+                <li><strong>Xóa:</strong> Gỡ cài đặt ứng dụng sẽ xóa toàn bộ dữ liệu được lưu cục bộ</li>
+            </ul>
+
+            <h2>9. Thay Đổi Chính Sách</h2>
+            <p>
+                Chúng tôi có thể cập nhật Chính sách bảo mật này theo thời gian. Mọi thay đổi sẽ được phản ánh trên trang này với 
+                ngày "Cập nhật lần cuối" được cập nhật. Việc tiếp tục sử dụng ứng dụng sau khi có thay đổi đồng nghĩa với việc chấp nhận chính sách mới.
+            </p>
+
+            <h2>10. Người Dùng Quốc Tế</h2>
+            <p>
+                Gomoku có thể được sử dụng ở bất cứ đâu trên thế giới. Vì không có dữ liệu được thu thập hoặc truyền đi, không có 
+                lo ngại về chuyển dữ liệu quốc tế hoặc vấn đề tuân thủ GDPR.
+            </p>
+
+            <div class="contact">
+                <h3>📧 Liên Hệ</h3>
+                <p>
+                    Nếu bạn có bất kỳ câu hỏi hoặc thắc mắc nào về Chính sách bảo mật này, vui lòng liên hệ:
+                </p>
+                <p>
+                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                </p>
+            </div>
+
+            <div class="footer">
+                <p>© 2026 Gomoku. Bản quyền thuộc về chúng tôi.</p>
+                <p>Được tạo với ❤️ cho những người yêu game khắp nơi</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Hide all content
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show selected language
+            document.getElementById('content-' + lang).classList.add('active');
+            
+            // Update button states
+            document.querySelectorAll('.language-switch button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('btn-' + lang).classList.add('active');
+            
+            // Update page title
+            document.title = lang === 'en' ? 'Privacy Policy - Gomoku' : 'Chính Sách Bảo Mật - Gomoku';
+        }
+    </script>
+</body>
+</html>
