@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>X-Wing Sudoku Technique Explained Simply, With Example | namlabs</title>
+<meta name="description" content="The X-Wing Sudoku technique explained simply: two rows where a digit fits in the same two columns let you clear that digit from both columns. With a worked example.">
+<link rel="canonical" href="https://namlabs.dev/sudoku/techniques/x-wing.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/x-wing.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/x-wing.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/x-wing.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/x-wing.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="X-Wing Sudoku Technique Explained Simply, With Example | namlabs">
+<meta property="og:description" content="The X-Wing Sudoku technique explained simply: two rows where a digit fits in the same two columns let you clear that digit from both columns. With a worked example.">
+<meta property="og:url" content="https://namlabs.dev/sudoku/techniques/x-wing.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "X-Wing",
+      "description": "The X-Wing Sudoku technique explained simply: two rows where a digit fits in the same two columns let you clear that digit from both columns. With a worked example.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://namlabs.dev/sudoku/techniques/x-wing.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sudoku techniques",
+          "item": "https://namlabs.dev/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "X-Wing",
+          "item": "https://namlabs.dev/sudoku/techniques/x-wing.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/#games">Games</a>
+      <a class="hide-sm" href="/sudoku/techniques/">Sudoku guide</a>
+      <span class="langs"><a href="/sudoku/techniques/x-wing.html" hreflang="en" lang="en" aria-current="page" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/x-wing.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/x-wing.html" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">namlabs</a> › <a href="/sudoku/">Sudoku</a> › <a href="/sudoku/techniques/">Sudoku techniques</a> › <span>X-Wing</span></nav>
+    <h1 class="rise">X-Wing</h1>
+    <p class="lead rise d1">X-Wing is the first advanced technique most players learn. It looks at one digit across two rows at once, and it is easier to spot than its name suggests.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>What is an X-Wing?</h2>
+<p>Pick a digit. Suppose that in two different rows, it can only go in the same two columns. The four cells form a rectangle. In the first row, the digit is in one of the two columns; in the second row, it must be in the other one (the same column cannot hold it twice). Either way, both columns get their copy of the digit from these two rows. So no other cell in those two columns can hold it.</p>
+
+<h2>Example</h2>
+<figure class="fig"><div class="board" role="img" aria-label="Sudoku grid. Digit 7 can only go in columns 3 and 7 in both rows 2 and 6, so 7 is removed from the other cells of columns 3 and 7."><div></div><div></div><div class="br"><span class="cand1 x">7</span></div><div></div><div></div><div class="br"></div><div><span class="cand1 x">7</span></div><div></div><div></div><div class="area"></div><div class="area">3</div><div class="area key br"><span class="cand1 k">7</span></div><div class="area">1</div><div class="area"></div><div class="area br">9</div><div class="area key"><span class="cand1 k">7</span></div><div class="area">4</div><div class="area"></div><div class="bb"></div><div class="bb"></div><div class="br bb"><span class="cand1 x">7</span></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"><span class="cand1 x">7</span></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"><span class="cand1 x">7</span></div><div></div><div></div><div class="br"></div><div><span class="cand1 x">7</span></div><div></div><div></div><div></div><div></div><div class="br"><span class="cand1 x">7</span></div><div></div><div></div><div class="br"></div><div><span class="cand1 x">7</span></div><div></div><div></div><div class="area bb"></div><div class="area bb">8</div><div class="area key br bb"><span class="cand1 k">7</span></div><div class="area bb">2</div><div class="area bb"></div><div class="area br bb">6</div><div class="area key bb"><span class="cand1 k">7</span></div><div class="area bb">5</div><div class="area bb"></div><div class="src">7</div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div class="src">7</div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="src">7</div></div><figcaption>An X-Wing on 7 in rows 2 and 6 clears columns 3 and 7.</figcaption></figure>
+<p>Look at digit 7. Row 2 has five empty cells, but columns 1, 5 and 9 already have a 7 lower down (R7C1, R8C5, R9C9). So in row 2, 7 can only go in <strong>R2C3 or R2C7</strong>. Row 6 is the same: only <strong>R6C3 or R6C7</strong>.</p>
+<p>If row 2's 7 is in column 3, row 6's 7 must be in column 7, and the other way round. Both ways, columns 3 and 7 each get their 7 from rows 2 and 6. Erase 7 from every other cell in those columns: R1C3, R3C3, R4C3, R5C3 and the same rows in column 7.</p>
+
+<h2>How to find an X-Wing</h2>
+<ol>
+<li>Pick a digit that appears often on the board.</li>
+<li>Find rows where that digit has exactly two possible cells.</li>
+<li>Look for two such rows whose cells are in the same two columns.</li>
+<li>Erase the digit from the rest of those two columns.</li>
+</ol>
+<p>It works the other way too: two columns where the digit fits in the same two rows let you clear those rows.</p>
+
+<div class="note"><strong>Tip:</strong> only try X-Wing once singles and pairs have run out. On expert puzzles, check each digit in turn; the pattern usually stands out once you write the candidates for that one digit.</div>
+
+<h2>Where it fits</h2>
+<p>X-Wing builds on <a href="/sudoku/techniques/pointing-pairs.html">pointing pairs</a> and is the gateway to bigger patterns such as Swordfish (three rows and three columns). Our Sudoku app's hints point out X-Wings when they are the next move on expert puzzles.</p>
+
+<nav class="pager"><a class="prev" href="/sudoku/techniques/pointing-pairs.html"><small>Previous</small>Pointing pairs</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Practise on your phone</h2><p>Our free Sudoku app has hints that point out the technique you can use next, with the cells highlighted. It plays offline.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/sudoku/">Sudoku</a>
+      <a href="/sky-hop/">Sky Hop</a>
+      <a href="/sudoku/how-to-play.html">How to play Sudoku</a>
+      <a href="/sudoku/techniques/">Sudoku techniques</a>
+      <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a href="/sudoku/privacy-policy.html">Privacy policy</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>裸のシングル（Naked Single）：最初に覚えるナンプレの解き方 | namlabs</title>
+<meta name="description" content="裸のシングルは、入る数字が1つしか残っていないマスのこと。見つけ方を実際の盤面の例題で解説します。">
+<link rel="canonical" href="https://namlabs.dev/ja/sudoku/techniques/naked-single.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/naked-single.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/naked-single.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/naked-single.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/naked-single.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="裸のシングル（Naked Single）：最初に覚えるナンプレの解き方 | namlabs">
+<meta property="og:description" content="裸のシングルは、入る数字が1つしか残っていないマスのこと。見つけ方を実際の盤面の例題で解説します。">
+<meta property="og:url" content="https://namlabs.dev/ja/sudoku/techniques/naked-single.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "裸のシングル（Naked Single）",
+      "description": "裸のシングルは、入る数字が1つしか残っていないマスのこと。見つけ方を実際の盤面の例題で解説します。",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "ja",
+      "mainEntityOfPage": "https://namlabs.dev/ja/sudoku/techniques/naked-single.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/ja/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/ja/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ナンプレの解き方",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "裸のシングル",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/naked-single.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/ja/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="メニュー">
+      <a href="/ja/#games">ゲーム</a>
+      <a class="hide-sm" href="/ja/sudoku/techniques/">ナンプレ攻略</a>
+      <span class="langs"><a href="/sudoku/techniques/naked-single.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/naked-single.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/naked-single.html" hreflang="ja" lang="ja" aria-current="page" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="パンくずリスト"><a href="/ja/">namlabs</a> › <a href="/ja/sudoku/">Sudoku</a> › <a href="/ja/sudoku/techniques/">ナンプレの解き方</a> › <span>裸のシングル</span></nav>
+    <h1 class="rise">裸のシングル（Naked Single）</h1>
+    <p class="lead rise d1">ナンプレでいちばんシンプルな手。入る数字が1つしかないマスを見つけて、入れて、また探す。</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>裸のシングルとは</h2>
+<p>空いているマスには20個の<strong>関係マス</strong>があります。同じ行・同じ列・同じブロックのマスです。関係マスにある数字は、そのマスには入りません。関係マスに8種類の数字がそろっていれば、残る数字は1つだけ。そのマスが<strong>裸のシングル</strong>です。答えが丸見えになっています。</p>
+
+<h2>例題</h2>
+<figure class="fig"><div class="board" role="img" aria-label="ナンプレの盤面。中央の R5C5 は行に1・2・3、列に4・5・6、ブロックに7・8が見えるので、9に決まります。"><div></div><div></div><div class="br"></div><div></div><div class="area src">4</div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div class="area src">5</div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="area bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div class="area src">7</div><div class="area"></div><div class="area br"></div><div></div><div></div><div></div><div class="area src">1</div><div class="area src">2</div><div class="area br"></div><div class="area"></div><div class="area key new">9</div><div class="area br"></div><div class="area"></div><div class="area src">3</div><div class="area"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="area bb"></div><div class="area bb"></div><div class="area src br bb">8</div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div class="area"></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div class="area"></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div class="area src">6</div><div class="br"></div><div></div><div></div><div></div></div><figcaption>R5C5 には9以外のすべての数字が見えている。</figcaption></figure>
+<p>中央のマス R5C5 を見てみましょう。同じ行には1、2、3。同じ列には4、5、6。同じブロックには7と8。合わせて8種類なので、残る候補は <strong>9</strong> だけです。</p>
+
+<h2>裸のシングルの見つけ方</h2>
+<ol>
+<li>数字が多い場所（ほぼ埋まった行・列・ブロック）の空きマスを選びます。</li>
+<li>1〜9を順に、そのマスの行・列・ブロックにすでにあるか確かめます。</li>
+<li>3つのどこにもない数字がちょうど1つなら、それを入れます。</li>
+</ol>
+<p>メモを使っていれば、もっと簡単です。候補が1つだけ残ったマスが裸のシングルです。だからこそ、数字を入れるたびに関係マスのメモを消しておきましょう。</p>
+
+<div class="note"><strong>コツ：</strong>ほぼ埋まった行とほぼ埋まった列が交わるマスがねらい目です。関係マスだけでほとんどの数字がそろっています。</div>
+
+<h2>どんなときに使う？</h2>
+<p>裸のシングルと<a href="/ja/sudoku/techniques/hidden-single.html">隠れたシングル</a>だけで、やさしい問題はほとんど解けます。どちらも見つからなくなったら、メモと<a href="/ja/sudoku/techniques/naked-pairs.html">裸のペア</a>の出番です。</p>
+
+<nav class="pager"><a class="next" href="/ja/sudoku/techniques/hidden-single.html"><small>次へ</small>隠れたシングル</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>スマホで練習しよう</h2><p>無料アプリ「Sudoku」のヒントは、いま使えるテクニックをマスを光らせて教えてくれます。オフラインでも遊べます。</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=ja"><svg><use href="#play"/></svg><span><small>入手する</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/ja/sudoku/">Sudoku</a>
+      <a href="/ja/sky-hop/">Sky Hop</a>
+      <a href="/ja/sudoku/how-to-play.html">ナンプレの遊び方</a>
+      <a href="/ja/sudoku/techniques/">ナンプレの解き方</a>
+      <a href="mailto:hoainamit91@gmail.com">お問い合わせ</a>
+      <a href="/sudoku/privacy-policy.html">プライバシーポリシー</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

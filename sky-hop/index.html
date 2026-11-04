@@ -1,25 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sky Hop - Flying Math Game</title>
-    <meta name="description" content="Sky Hop is a one-tap flying game and a brain-training math game in one. Tap to fly, dodge the pillars and solve quick mental math sums mid-air.">
-    <link rel="canonical" href="https://namlabs.dev/sky-hop/">
-    <meta name="robots" content="index, follow">
-    <link rel="icon" href="icon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#7c3aed">
-    <meta name="color-scheme" content="light dark">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="namlabs">
-    <meta property="og:title" content="Sky Hop - Flying Math Game">
-    <meta property="og:description" content="Sky Hop is a one-tap flying game and a brain-training math game in one. Tap to fly, dodge the pillars and solve quick mental math sums mid-air.">
-    <meta property="og:url" content="https://namlabs.dev/sky-hop/">
-    <meta property="og:image" content="https://namlabs.dev/og-image.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <script type="application/ld+json">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sky Hop – Flying Math Game for Android</title>
+<meta name="description" content="Sky Hop is a one-tap flying game and a brain-training math game in one. Tap to fly, dodge the pillars and solve quick mental math sums mid-air.">
+<link rel="canonical" href="https://namlabs.dev/sky-hop/">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sky-hop/">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sky-hop/">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sky-hop/">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sky-hop/">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Sky Hop – Flying Math Game for Android">
+<meta property="og:description" content="Sky Hop is a one-tap flying game and a brain-training math game in one. Tap to fly, dodge the pillars and solve quick mental math sums mid-air.">
+<meta property="og:url" content="https://namlabs.dev/sky-hop/">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "MobileApplication",
@@ -27,127 +33,74 @@
   "operatingSystem": "Android",
   "applicationCategory": "GameApplication",
   "genre": "Arcade",
-  "description": "A one-tap flying game where you solve quick mental math sums mid-air.",
+  "description": "Sky Hop is a one-tap flying game and a brain-training math game in one. Tap to fly, dodge the pillars and solve quick mental math sums mid-air.",
+  "inLanguage": "en",
   "url": "https://namlabs.dev/sky-hop/",
-  "image": "https://namlabs.dev/sky-hop/icon.png",
+  "image": "https://namlabs.dev/img/sky-hop/icon-256.webp",
   "installUrl": "https://play.google.com/store/apps/details?id=com.namlabs.sky_hop",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://namlabs.dev/#org", "@type": "Organization", "name": "namlabs", "url": "https://namlabs.dev/" }
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@id": "https://namlabs.dev/#org",
+    "@type": "Organization",
+    "name": "namlabs",
+    "url": "https://namlabs.dev/"
+  }
 }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
-    <link rel="stylesheet" href="/assets/site.css">
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body style="--game:#4338ca;--game-2:#db2777">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Menu">
       <a href="/#games">Games</a>
-      <a class="hide-sm" href="/sudoku/how-to-play.html">Sudoku guide</a>
-      <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a class="hide-sm" href="/sudoku/techniques/">Sudoku guide</a>
+      <span class="langs"><a href="/sky-hop/" hreflang="en" lang="en" aria-current="page" aria-label="English" title="English">EN</a><a href="/vi/sky-hop/" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sky-hop/" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
     </nav>
   </div>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="wrap">
-      <div>
-        <div class="app-head rise">
-          <img src="/img/sky-hop/icon-256.webp" alt="Sky Hop app icon" width="84" height="84">
-          <div class="meta"><b>namlabs</b><br>Arcade · Free · Offline</div>
-        </div>
-        <h1 class="rise d1">Fly fast. <span class="grad">Think faster.</span></h1>
-        <p class="lead rise d2">Sky Hop is a one-tap flying game and a math game in one. Tap to fly, dodge the pillars and steer through the gap with the right answer.</p>
-        <div class="btn-row rise d2">
-          <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sky_hop">
-            <svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span>
-          </a>
-        </div>
-        <div class="facts"><span>One-tap controls</span><span>+ − × math gates</span><span>Plays offline</span></div>
-      </div>
-      <div class="fan rise d1" aria-hidden="true">
-        <img src="/img/sky-hop/shot-2.webp" alt="" width="540" height="960">
-        <img src="/img/sky-hop/shot-1.webp" alt="" width="540" height="960">
-        <img src="/img/sky-hop/shot-4.webp" alt="" width="540" height="960">
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="sec-head"><h2>See it in action</h2><p>Swipe through the screens.</p></div>
-      <div class="shots">
-        <img src="/img/sky-hop/shot-1.webp" alt="Fly through the gap with the right answer" loading="lazy" width="540" height="960">
-        <img src="/img/sky-hop/shot-2.webp" alt="5 skies to explore as you fly farther" loading="lazy" width="540" height="960">
-        <img src="/img/sky-hop/shot-3.webp" alt="Collect medals from Bronze to Platinum" loading="lazy" width="540" height="960">
-        <img src="/img/sky-hop/shot-4.webp" alt="Sums get harder the farther you go" loading="lazy" width="540" height="960">
-        <img src="/img/sky-hop/shot-5.webp" alt="Beat your own best" loading="lazy" width="540" height="960">
-        <img src="/img/sky-hop/shot-6.webp" alt="Play in English, Vietnamese or Japanese" loading="lazy" width="540" height="960">
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="sec-head"><h2>How to play</h2></div>
-      <div class="steps">
-        <div class="step"><h3>Tap to fly</h3><p>Tap anywhere to flap. Fly through the gaps and don't hit the ground.</p></div>
-        <div class="step"><h3>Solve the sum</h3><p>A sum appears at the top of the screen when a math gate is coming.</p></div>
-        <div class="step"><h3>Pick the right gap</h3><p>Fly through the gap with the right answer for +3 points. The wrong one ends the run!</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="sec-head"><h2>Features</h2></div>
-      <div class="tiles">
-        <div class="tile"><div class="ico">🧠</div><h3>Think while you fly</h3><p>Train mental arithmetic, focus and quick decisions with a little bit of pressure.</p></div>
-        <div class="tile"><div class="ico">➕</div><h3>Sums that grow with you</h3><p>Easy additions first, then subtraction and multiplication with bigger numbers.</p></div>
-        <div class="tile"><div class="ico">💡</div><h3>Learn from every miss</h3><p>The game-over screen shows the correct answer, so every mistake teaches you something.</p></div>
-        <div class="tile"><div class="ico">📶</div><h3>Plays offline</h3><p>Short rounds, perfect for a quick brain break. English, Vietnamese and Japanese.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="sec-head"><h2>Earn medals</h2><p>How far can you fly?</p></div>
-      <div class="pills">
-        <span class="pill"><b style="color:#b45309">●</b>Bronze · 10</span>
-        <span class="pill"><b style="color:#94a3b8">●</b>Silver · 25</span>
-        <span class="pill"><b style="color:#eab308">●</b>Gold · 50</span>
-        <span class="pill"><b style="color:#67e8f9">●</b>Platinum · 100</span>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="cta">
-        <img class="app-icon" src="/img/sky-hop/icon-256.webp" alt="" width="76" height="76">
-        <h2>How far can you fly?</h2>
-        <p>Free to play. Contains ads.</p>
-        <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sky_hop">
-            <svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span>
-          </a></div>
-      </div>
-    </div>
-  </section>
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="app-head rise"><img src="/img/sky-hop/icon-256.webp" alt="Sky Hop app icon" width="84" height="84"><div class="meta"><b>namlabs</b><br>Arcade · Free · Offline</div></div>
+    <h1 class="rise d1">Fly fast. <span class="grad">Think faster.</span></h1>
+    <p class="lead rise d2">Sky Hop is a one-tap flying game and a math game in one. Tap to fly, dodge the pillars and steer through the gap with the right answer.</p>
+    <div class="btn-row rise d2"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sky_hop"><svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span></a></div>
+    <div class="facts"><span>One-tap controls</span><span>+ − × math gates</span><span>Plays offline</span></div>
+  </div>
+  <div class="fan rise d1" aria-hidden="true"><img src="/img/sky-hop/shot-2.webp" alt="" width="540" height="960"><img src="/img/sky-hop/shot-1.webp" alt="" width="540" height="960"><img src="/img/sky-hop/shot-4.webp" alt="" width="540" height="960"></div>
+</div></section>
+<section><div class="wrap"><div class="sec-head"><h2>See it in action</h2><p>Swipe through the screens.</p></div><div class="shots"><img src="/img/sky-hop/shot-1.webp" alt="Fly through the gap with the right answer" loading="lazy" width="540" height="960"><img src="/img/sky-hop/shot-2.webp" alt="5 skies to explore as you fly farther" loading="lazy" width="540" height="960"><img src="/img/sky-hop/shot-3.webp" alt="Collect medals from Bronze to Platinum" loading="lazy" width="540" height="960"><img src="/img/sky-hop/shot-4.webp" alt="Sums get harder the farther you go" loading="lazy" width="540" height="960"><img src="/img/sky-hop/shot-5.webp" alt="Beat your own best" loading="lazy" width="540" height="960"><img src="/img/sky-hop/shot-6.webp" alt="Play in English, Vietnamese or Japanese" loading="lazy" width="540" height="960"></div></div></section>
+<section><div class="wrap"><div class="sec-head"><h2>How to play</h2></div><div class="steps"><div class="step"><h3>Tap to fly</h3><p>Tap anywhere to flap. Fly through the gaps and don't hit the ground.</p></div><div class="step"><h3>Solve the sum</h3><p>A sum appears at the top of the screen when a math gate is coming.</p></div><div class="step"><h3>Pick the right gap</h3><p>Fly through the gap with the right answer for +3 points. The wrong one ends the run!</p></div></div></div></section>
+<section><div class="wrap"><div class="sec-head"><h2>Features</h2></div><div class="tiles"><div class="tile"><div class="ico">🧠</div><h3>Think while you fly</h3><p>Train mental arithmetic, focus and quick decisions with a little bit of pressure.</p></div><div class="tile"><div class="ico">➕</div><h3>Sums that grow with you</h3><p>Easy additions first, then subtraction and multiplication with bigger numbers.</p></div><div class="tile"><div class="ico">💡</div><h3>Learn from every miss</h3><p>The game-over screen shows the correct answer, so every mistake teaches you something.</p></div><div class="tile"><div class="ico">📶</div><h3>Plays offline</h3><p>Short rounds, perfect for a quick brain break. English, Vietnamese and Japanese.</p></div></div></div></section>
+<section><div class="wrap"><div class="sec-head"><h2>Earn medals</h2><p>How far can you fly?</p></div><div class="pills"><span class="pill"><b style="color:#b45309">●</b>Bronze · 10</span><span class="pill"><b style="color:#94a3b8">●</b>Silver · 25</span><span class="pill"><b style="color:#eab308">●</b>Gold · 50</span><span class="pill"><b style="color:#67e8f9">●</b>Platinum · 100</span></div></div></section>
+<section><div class="wrap"><div class="cta">
+  <img class="app-icon" src="/img/sky-hop/icon-256.webp" alt="" width="76" height="76">
+  <h2>How far can you fly?</h2><p>Free to play. Contains ads.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sky_hop"><svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span></a></div>
+</div></div></section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 namlabs · Sky Hop</span>
+    <span>© 2026 namlabs</span>
     <nav>
-      <a href="/">All games</a>
-      <a href="/sky-hop/privacy-policy.html">Privacy Policy</a>
+      <a href="/sudoku/">Sudoku</a>
+      <a href="/sky-hop/">Sky Hop</a>
+      <a href="/sudoku/how-to-play.html">How to play Sudoku</a>
+      <a href="/sudoku/techniques/">Sudoku techniques</a>
       <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a href="/sky-hop/privacy-policy.html">Privacy policy</a>
     </nav>
   </div>
 </footer>

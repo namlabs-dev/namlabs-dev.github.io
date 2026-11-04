@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hidden Single in Sudoku: How to Find It, With Examples | namlabs</title>
+<meta name="description" content="A hidden single is a digit that can go in only one cell of a row, column or box. Learn how to find hidden singles by scanning, with a worked example.">
+<link rel="canonical" href="https://namlabs.dev/sudoku/techniques/hidden-single.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/hidden-single.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/hidden-single.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/hidden-single.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/hidden-single.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Hidden Single in Sudoku: How to Find It, With Examples | namlabs">
+<meta property="og:description" content="A hidden single is a digit that can go in only one cell of a row, column or box. Learn how to find hidden singles by scanning, with a worked example.">
+<meta property="og:url" content="https://namlabs.dev/sudoku/techniques/hidden-single.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Hidden single",
+      "description": "A hidden single is a digit that can go in only one cell of a row, column or box. Learn how to find hidden singles by scanning, with a worked example.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://namlabs.dev/sudoku/techniques/hidden-single.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sudoku techniques",
+          "item": "https://namlabs.dev/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Hidden single",
+          "item": "https://namlabs.dev/sudoku/techniques/hidden-single.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/#games">Games</a>
+      <a class="hide-sm" href="/sudoku/techniques/">Sudoku guide</a>
+      <span class="langs"><a href="/sudoku/techniques/hidden-single.html" hreflang="en" lang="en" aria-current="page" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/hidden-single.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/hidden-single.html" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">namlabs</a> › <a href="/sudoku/">Sudoku</a> › <a href="/sudoku/techniques/">Sudoku techniques</a> › <span>Hidden single</span></nav>
+    <h1 class="rise">Hidden single</h1>
+    <p class="lead rise d1">Instead of asking "which digit fits this cell?", ask "where can this digit go in this box?". If the answer is one place, you have a hidden single.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>What is a hidden single?</h2>
+<p>Every row, column and box needs each digit from 1 to 9 once. If a digit can go in only one cell of a house, it must go there, even when that cell still has several candidates of its own. The single is <strong>hidden</strong> among the other candidates, which is why you find it by looking at a house, not at a cell.</p>
+
+<h2>Example</h2>
+<figure class="fig"><div class="board" role="img" aria-label="Sudoku grid. In the top-left box, the 5s in R2C6, R3C8 and R7C2 rule out every empty cell except R1C3, so 5 goes in R1C3."><div class="area">8</div><div class="area no"></div><div class="area key br new">5</div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="area no"></div><div class="area no"></div><div class="area no br"></div><div></div><div></div><div class="src br">5</div><div></div><div></div><div></div><div class="area no bb"></div><div class="area no bb"></div><div class="area no br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="src bb">5</div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div class="src">5</div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>In the top-left box, 5 fits only in R1C3.</figcaption></figure>
+<p>Where can 5 go in the top-left box? Row 2 already has a 5 (in R2C6), so no cell of row 2 in this box can take it. Row 3 has a 5 in R3C8, which rules out row 3. Column 2 has a 5 in R7C2, which rules out R1C2, and R1C1 is filled. Only <strong>R1C3</strong> is left, so the 5 goes there.</p>
+<p>Looked at on its own, R1C3 could still be any digit except 8. You would not find this 5 by looking at the cell alone.</p>
+
+<h2>How to find hidden singles</h2>
+<ol>
+<li>Pick a digit, ideally one that already appears many times on the board.</li>
+<li>Pick a box that does not have it yet.</li>
+<li>Rule out every cell that is filled or that shares a row or column with that digit.</li>
+<li>If only one cell is left, place the digit. Then try the next box.</li>
+</ol>
+<p>This is the <strong>scanning</strong> most players do without naming it. The same check works for rows and columns.</p>
+
+<div class="note"><strong>Tip:</strong> after you place a digit, scan for the same digit again straight away. Each new digit rules out more cells in the boxes nearby.</div>
+
+<h2>Where it fits</h2>
+<p>Hidden singles are the most common move in easy and medium puzzles. Pair them with <a href="/sudoku/techniques/naked-single.html">naked singles</a>; when both run out, move on to <a href="/sudoku/techniques/naked-pairs.html">naked pairs</a>.</p>
+
+<nav class="pager"><a class="prev" href="/sudoku/techniques/naked-single.html"><small>Previous</small>Naked single</a><a class="next" href="/sudoku/techniques/naked-pairs.html"><small>Next</small>Naked pairs</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Practise on your phone</h2><p>Our free Sudoku app has hints that point out the technique you can use next, with the cells highlighted. It plays offline.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/sudoku/">Sudoku</a>
+      <a href="/sky-hop/">Sky Hop</a>
+      <a href="/sudoku/how-to-play.html">How to play Sudoku</a>
+      <a href="/sudoku/techniques/">Sudoku techniques</a>
+      <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a href="/sudoku/privacy-policy.html">Privacy policy</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

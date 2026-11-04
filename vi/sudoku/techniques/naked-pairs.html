@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cặp lộ (Naked Pair) trong Sudoku: loại ứng viên khỏi một nhà | namlabs</title>
+<meta name="description" content="Cặp lộ là hai ô trong cùng một nhà có cùng hai ứng viên. Học cách dùng cặp lộ để loại ứng viên và mở ra nước đi tiếp theo, kèm ví dụ.">
+<link rel="canonical" href="https://namlabs.dev/vi/sudoku/techniques/naked-pairs.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/naked-pairs.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/naked-pairs.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/naked-pairs.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/naked-pairs.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Cặp lộ (Naked Pair) trong Sudoku: loại ứng viên khỏi một nhà | namlabs">
+<meta property="og:description" content="Cặp lộ là hai ô trong cùng một nhà có cùng hai ứng viên. Học cách dùng cặp lộ để loại ứng viên và mở ra nước đi tiếp theo, kèm ví dụ.">
+<meta property="og:url" content="https://namlabs.dev/vi/sudoku/techniques/naked-pairs.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Cặp lộ (Naked Pair)",
+      "description": "Cặp lộ là hai ô trong cùng một nhà có cùng hai ứng viên. Học cách dùng cặp lộ để loại ứng viên và mở ra nước đi tiếp theo, kèm ví dụ.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "vi",
+      "mainEntityOfPage": "https://namlabs.dev/vi/sudoku/techniques/naked-pairs.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/vi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Kỹ thuật giải Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Cặp lộ",
+          "item": "https://namlabs.dev/vi/sudoku/techniques/naked-pairs.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/vi/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/vi/#games">Trò chơi</a>
+      <a class="hide-sm" href="/vi/sudoku/techniques/">Hướng dẫn Sudoku</a>
+      <span class="langs"><a href="/sudoku/techniques/naked-pairs.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/naked-pairs.html" hreflang="vi" lang="vi" aria-current="page" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/naked-pairs.html" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Đường dẫn"><a href="/vi/">namlabs</a> › <a href="/vi/sudoku/">Sudoku</a> › <a href="/vi/sudoku/techniques/">Kỹ thuật giải Sudoku</a> › <span>Cặp lộ</span></nav>
+    <h1 class="rise">Cặp lộ (Naked Pair)</h1>
+    <p class="lead rise d1">Khi hai ô trong một hàng, cột hoặc khối có cùng đúng hai ứng viên, hai số đó đã có chủ. Mọi ô khác trong nhà đều có thể bỏ chúng.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>Cặp lộ là gì?</h2>
+<p>Giả sử hai ô trong cùng một nhà đều chỉ có thể là 3 hoặc 8. Một ô sẽ là 3, ô kia là 8; ta chỉ chưa biết ô nào là số nào. Dù thế nào, không ô nào khác trong nhà đó có thể là 3 hay 8. Xóa hai ứng viên này khỏi phần còn lại của nhà thường để lộ ra một ô đơn.</p>
+
+<h2>Ví dụ</h2>
+<figure class="fig"><div class="board" role="img" aria-label="Bảng Sudoku. Ở hàng 1, H1C1 và H1C2 chỉ có thể là 3 hoặc 8, nên 3 và 8 bị xóa khỏi H1C5 và H1C7."><div class="area key"><span class="cands"><i></i><i></i><i class="k">3</i><i></i><i></i><i></i><i></i><i class="k">8</i><i></i></span></div><div class="area key"><span class="cands"><i></i><i></i><i class="k">3</i><i></i><i></i><i></i><i></i><i class="k">8</i><i></i></span></div><div class="area br">1</div><div class="area">2</div><div class="area"><span class="cands"><i></i><i></i><i class="x">3</i><i></i><i></i><i>6</i><i></i><i class="x">8</i><i></i></span></div><div class="area br">4</div><div class="area"><span class="cands"><i></i><i></i><i class="x">3</i><i></i><i></i><i>6</i><i></i><i class="x">8</i><i>9</i></span></div><div class="area">5</div><div class="area">7</div><div>6</div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb">9</div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb">9</div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>H1C1 và H1C2 giữ 3 và 8, nên phần còn lại của hàng 1 không thể có.</figcaption></figure>
+<p>Hàng 1 còn thiếu 3, 6, 8 và 9. H1C1 và H1C2 đều thấy số 6 ở H2C1 và số 9 ở H3C2, nên mỗi ô chỉ có thể là <strong>3 hoặc 8</strong>: một cặp lộ.</p>
+<p>Vậy có thể xóa 3 và 8 khỏi các ô trống khác của hàng 1. H1C5 từ {3, 6, 8} chỉ còn <strong>6</strong>, thành ô đơn lộ. H1C7 từ {3, 6, 8, 9} còn {6, 9}, và khi H1C5 đã điền thì nó là 9.</p>
+
+<h2>Cách tìm cặp lộ</h2>
+<ol>
+<li>Ghi ứng viên cho một nhà còn bốn hoặc năm ô trống.</li>
+<li>Tìm hai ô mỗi ô có đúng hai ứng viên, và là cùng hai số.</li>
+<li>Xóa hai số đó khỏi mọi ô khác trong nhà.</li>
+<li>Nếu cặp này cũng nằm trong cùng một khối, xóa luôn khỏi phần còn lại của khối.</li>
+</ol>
+
+<h2>Bộ ba lộ</h2>
+<p>Ý tưởng tương tự áp dụng cho ba ô và ba số. Nếu ba ô trong một nhà chỉ chứa ứng viên trong {2, 5, 7}, ba số đó thuộc về ba ô này, kể cả khi mỗi ô chỉ có hai trong số đó, như {2, 5}, {5, 7} và {2, 7}.</p>
+
+<div class="note"><strong>Mẹo:</strong> cặp lộ chỉ hiện ra khi ghi chú của bạn đầy đủ và cập nhật. Thiếu một ứng viên có thể tạo ra cặp giả, nên hãy kiểm tra lại trước khi xóa.</div>
+
+<h2>Khi nào dùng</h2>
+<p>Cặp lộ đến sau <a href="/vi/sudoku/techniques/naked-single.html">ô đơn</a> và là kỹ thuật đầu tiên cần ghi chú. Tiếp theo, hãy học <a href="/vi/sudoku/techniques/pointing-pairs.html">cặp chỉ hướng</a>, cũng loại ứng viên nhưng giữa các nhà với nhau.</p>
+
+<nav class="pager"><a class="prev" href="/vi/sudoku/techniques/hidden-single.html"><small>Bài trước</small>Ô đơn ẩn</a><a class="next" href="/vi/sudoku/techniques/pointing-pairs.html"><small>Bài tiếp</small>Cặp chỉ hướng</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Luyện tập trên điện thoại</h2><p>Ứng dụng Sudoku miễn phí của chúng tôi có gợi ý chỉ ra kỹ thuật dùng được ngay lúc đó, kèm các ô được tô sáng. Chơi được khi không có mạng.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=vi"><svg><use href="#play"/></svg><span><small>Tải trên</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/vi/sudoku/">Sudoku</a>
+      <a href="/vi/sky-hop/">Sky Hop</a>
+      <a href="/vi/sudoku/how-to-play.html">Cách chơi Sudoku</a>
+      <a href="/vi/sudoku/techniques/">Kỹ thuật giải Sudoku</a>
+      <a href="mailto:hoainamit91@gmail.com">Liên hệ</a>
+      <a href="/sudoku/privacy-policy.html">Chính sách quyền riêng tư</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

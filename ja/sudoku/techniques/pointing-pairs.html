@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ポインティングペア：ナンプレのブロックと行の除外を例題で解説 | namlabs</title>
+<meta name="description" content="ポインティングペア：ブロックの中で数字が1つの行（列）にしか入らないとき、その行（列）のほかのマスから数字を消せます。例題つきで解説。">
+<link rel="canonical" href="https://namlabs.dev/ja/sudoku/techniques/pointing-pairs.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/pointing-pairs.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/pointing-pairs.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/pointing-pairs.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/pointing-pairs.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="ポインティングペア：ナンプレのブロックと行の除外を例題で解説 | namlabs">
+<meta property="og:description" content="ポインティングペア：ブロックの中で数字が1つの行（列）にしか入らないとき、その行（列）のほかのマスから数字を消せます。例題つきで解説。">
+<meta property="og:url" content="https://namlabs.dev/ja/sudoku/techniques/pointing-pairs.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "ポインティングペア（Pointing Pair）",
+      "description": "ポインティングペア：ブロックの中で数字が1つの行（列）にしか入らないとき、その行（列）のほかのマスから数字を消せます。例題つきで解説。",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "ja",
+      "mainEntityOfPage": "https://namlabs.dev/ja/sudoku/techniques/pointing-pairs.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/ja/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/ja/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ナンプレの解き方",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "ポインティングペア",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/pointing-pairs.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/ja/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="メニュー">
+      <a href="/ja/#games">ゲーム</a>
+      <a class="hide-sm" href="/ja/sudoku/techniques/">ナンプレ攻略</a>
+      <span class="langs"><a href="/sudoku/techniques/pointing-pairs.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/pointing-pairs.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/pointing-pairs.html" hreflang="ja" lang="ja" aria-current="page" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="パンくずリスト"><a href="/ja/">namlabs</a> › <a href="/ja/sudoku/">Sudoku</a> › <a href="/ja/sudoku/techniques/">ナンプレの解き方</a> › <span>ポインティングペア</span></nav>
+    <h1 class="rise">ポインティングペア（Pointing Pair）</h1>
+    <p class="lead rise d1">ブロックの中である数字が入るマスが一直線に並んでいたら、その数字はブロック内のその線に決まり、線のほかの部分からは消せます。</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>ポインティングペアとは</h2>
+<p>どのブロックにも各数字が1つずつ入ります。あるブロックで、ある数字が入れるマスが2つだけで、しかも同じ行にあるとします。どちらに入っても、その数字はこのブロックのその行にあります。だから、その行のブロックの外のマスにはその数字は入りません。ペアが行の方向を「指して（ポイントして）」、行から候補を消すのです。</p>
+
+<h2>例題</h2>
+<figure class="fig"><div class="board" role="img" aria-label="ナンプレの盤面。左上のブロックで4は R2C2 か R2C3 にしか入らないので、2行目のほかのマスから4を消します。"><div class="area"></div><div class="area">8</div><div class="area br">1</div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="area">6</div><div class="area key"><span class="cand1 k">4</span></div><div class="area key br"><span class="cand1 k">4</span></div><div><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div class="br"><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div class="area bb"></div><div class="area bb">2</div><div class="area br bb">7</div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div class="src">4</div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>ブロックの4は2行目にあるので、2行目のほかのマスから4が消える。</figcaption></figure>
+<p>左上のブロックで、4はどこに入るでしょう？ 5マスはすでに埋まっています。R1C1 と R3C1 は1列目にあり、1列目には R7C1 に4があります。残るのは <strong>R2C2 と R2C3</strong>、どちらも2行目です。</p>
+<p>つまりこのブロックの4は2行目にあり、2行目にほかの4は入りません。R2C4〜R2C9 から4を消しましょう。これだけでは数字は決まりませんが、近くのマスがシングルになることがよくあります。</p>
+
+<h2>ポインティングペアの見つけ方</h2>
+<ol>
+<li>ブロックと、そのブロックにまだない数字を選びます。</li>
+<li>その数字が入れるマスをブロック内で書き出します。</li>
+<li>すべて同じ行（または列）なら、ブロックの外のその行（または列）から数字を消します。</li>
+</ol>
+<p>3マスが一直線に並ぶ場合（ポインティングトリプル）も同じです。逆の形は<strong>ボックス・ライン除外</strong>と呼ばれます。ある行で数字が1つのブロックの中にしか入らないなら、そのブロックのほかのマスから数字を消せます。</p>
+
+<div class="note"><strong>コツ：</strong><a href="/ja/sudoku/techniques/hidden-single.html">隠れたシングル</a>を探してスキャンしたとき、候補が2〜3マス一直線に残ったら、それがポインティングペアです。数字が決まらなくてもメモしておきましょう。</div>
+
+<h2>どんなときに使う？</h2>
+<p>ポインティングペアと<a href="/ja/sudoku/techniques/naked-pairs.html">裸のペア</a>は、むずかしい問題の中心となる手です。これらで進まなくなったら、複数のハウスにまたがるパターン、まずは <a href="/ja/sudoku/techniques/x-wing.html">X-Wing</a> を探しましょう。</p>
+
+<nav class="pager"><a class="prev" href="/ja/sudoku/techniques/naked-pairs.html"><small>前へ</small>裸のペア</a><a class="next" href="/ja/sudoku/techniques/x-wing.html"><small>次へ</small>X-Wing</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>スマホで練習しよう</h2><p>無料アプリ「Sudoku」のヒントは、いま使えるテクニックをマスを光らせて教えてくれます。オフラインでも遊べます。</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=ja"><svg><use href="#play"/></svg><span><small>入手する</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/ja/sudoku/">Sudoku</a>
+      <a href="/ja/sky-hop/">Sky Hop</a>
+      <a href="/ja/sudoku/how-to-play.html">ナンプレの遊び方</a>
+      <a href="/ja/sudoku/techniques/">ナンプレの解き方</a>
+      <a href="mailto:hoainamit91@gmail.com">お問い合わせ</a>
+      <a href="/sudoku/privacy-policy.html">プライバシーポリシー</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

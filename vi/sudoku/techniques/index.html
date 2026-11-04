@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kỹ thuật giải Sudoku từ cơ bản đến nâng cao | namlabs</title>
+<meta name="description" content="Học các kỹ thuật giải gần như mọi đề Sudoku: ô đơn lộ, ô đơn ẩn, cặp lộ, cặp chỉ hướng và X-Wing, mỗi kỹ thuật có ví dụ minh họa.">
+<link rel="canonical" href="https://namlabs.dev/vi/sudoku/techniques/">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Kỹ thuật giải Sudoku từ cơ bản đến nâng cao | namlabs">
+<meta property="og:description" content="Học các kỹ thuật giải gần như mọi đề Sudoku: ô đơn lộ, ô đơn ẩn, cặp lộ, cặp chỉ hướng và X-Wing, mỗi kỹ thuật có ví dụ minh họa.">
+<meta property="og:url" content="https://namlabs.dev/vi/sudoku/techniques/">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Kỹ thuật giải Sudoku",
+      "description": "Học các kỹ thuật giải gần như mọi đề Sudoku: ô đơn lộ, ô đơn ẩn, cặp lộ, cặp chỉ hướng và X-Wing, mỗi kỹ thuật có ví dụ minh họa.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "vi",
+      "mainEntityOfPage": "https://namlabs.dev/vi/sudoku/techniques/",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/vi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Kỹ thuật giải Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/techniques/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/vi/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/vi/#games">Trò chơi</a>
+      <a class="hide-sm" href="/vi/sudoku/techniques/">Hướng dẫn Sudoku</a>
+      <span class="langs"><a href="/sudoku/techniques/" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/" hreflang="vi" lang="vi" aria-current="page" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Đường dẫn"><a href="/vi/">namlabs</a> › <a href="/vi/sudoku/">Sudoku</a> › <span>Kỹ thuật giải Sudoku</span></nav>
+    <h1 class="rise">Kỹ thuật giải Sudoku</h1>
+    <p class="lead rise d1">Mọi đề Sudoku đều giải được bằng suy luận. Học năm kỹ thuật này theo thứ tự, bạn sẽ đi từ đề dễ đầu tiên đến các bảng chuyên gia.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<p>Mỗi bài trình bày một nước đi trên bảng thật. Ta gọi tên ô theo hàng và cột: <strong>H5C5</strong> là hàng 5, cột 5, tính từ góc trên bên trái. Trong hình, vùng tô màu là nhà đang xét, ô có viền là ô của nước đi, còn số nhỏ là ứng viên. Ứng viên bị gạch là ứng viên được loại bỏ.</p>
+<p>Nếu bạn chưa biết luật chơi, hãy đọc <a href="/vi/sudoku/how-to-play.html">cách chơi Sudoku</a> trước.</p><h2>Tất cả kỹ thuật</h2><div class="techs"><a class="tech" href="/vi/sudoku/techniques/naked-single.html"><span class="lvl lvl-easy">Cơ bản</span><h3>Ô đơn lộ</h3><p>Ô mà các ô liên quan đã dùng hết tám số khác nhau.</p></a><a class="tech" href="/vi/sudoku/techniques/hidden-single.html"><span class="lvl lvl-easy">Cơ bản</span><h3>Ô đơn ẩn</h3><p>Số chỉ vừa đúng một ô trong hàng, cột hoặc khối.</p></a><a class="tech" href="/vi/sudoku/techniques/naked-pairs.html"><span class="lvl lvl-medium">Trung cấp</span><h3>Cặp lộ</h3><p>Hai ô, hai ứng viên: xóa chúng khỏi phần còn lại của nhà.</p></a><a class="tech" href="/vi/sudoku/techniques/pointing-pairs.html"><span class="lvl lvl-medium">Trung cấp</span><h3>Cặp chỉ hướng</h3><p>Các chỗ duy nhất của một số trong khối cùng nằm trên một đường.</p></a><a class="tech" href="/vi/sudoku/techniques/x-wing.html"><span class="lvl lvl-hard">Nâng cao</span><h3>X-Wing</h3><p>Hai hàng, hai cột, một số: hình chữ nhật dọn sạch hai cột.</p></a></div>
+
+
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Luyện tập trên điện thoại</h2><p>Ứng dụng Sudoku miễn phí của chúng tôi có gợi ý chỉ ra kỹ thuật dùng được ngay lúc đó, kèm các ô được tô sáng. Chơi được khi không có mạng.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=vi"><svg><use href="#play"/></svg><span><small>Tải trên</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/vi/sudoku/">Sudoku</a>
+      <a href="/vi/sky-hop/">Sky Hop</a>
+      <a href="/vi/sudoku/how-to-play.html">Cách chơi Sudoku</a>
+      <a href="/vi/sudoku/techniques/">Kỹ thuật giải Sudoku</a>
+      <a href="mailto:hoainamit91@gmail.com">Liên hệ</a>
+      <a href="/sudoku/privacy-policy.html">Chính sách quyền riêng tư</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

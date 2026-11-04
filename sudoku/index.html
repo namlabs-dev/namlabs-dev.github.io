@@ -1,26 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudoku - Classic Number Puzzle Game</title>
-    <meta name="description" content="Sudoku is the classic number puzzle game. Play classic 9x9 Sudoku offline with 4 difficulty levels, hints that teach solving techniques and pencil marks like on paper. Free to play with ads.">
-    <link rel="canonical" href="https://namlabs.dev/sudoku/">
-    <meta name="robots" content="index, follow">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#7c3aed">
-    <meta name="color-scheme" content="light dark">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="namlabs">
-    <meta property="og:title" content="Sudoku - Classic Number Puzzle Game">
-    <meta property="og:description" content="Sudoku is the classic number puzzle game. Play classic 9x9 Sudoku offline with 4 difficulty levels, hints that teach solving techniques and pencil marks like on paper. Free to play with ads.">
-    <meta property="og:url" content="https://namlabs.dev/sudoku/">
-    <meta property="og:image" content="https://namlabs.dev/og-image.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <script type="application/ld+json">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sudoku – Free Classic Number Puzzle for Android</title>
+<meta name="description" content="Play classic 9×9 Sudoku offline: 300 levels, a daily challenge, 4 difficulty levels and hints that teach real solving techniques. Free on Google Play.">
+<link rel="canonical" href="https://namlabs.dev/sudoku/">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Sudoku – Free Classic Number Puzzle for Android">
+<meta property="og:description" content="Play classic 9×9 Sudoku offline: 300 levels, a daily challenge, 4 difficulty levels and hints that teach real solving techniques. Free on Google Play.">
+<meta property="og:url" content="https://namlabs.dev/sudoku/">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "MobileApplication",
@@ -28,132 +33,75 @@
   "operatingSystem": "Android",
   "applicationCategory": "GameApplication",
   "genre": "Puzzle",
-  "description": "Classic 9x9 Sudoku with 4 difficulty levels, hints that teach solving techniques and pencil marks. Plays offline.",
+  "description": "Play classic 9×9 Sudoku offline: 300 levels, a daily challenge, 4 difficulty levels and hints that teach real solving techniques. Free on Google Play.",
+  "inLanguage": "en",
   "url": "https://namlabs.dev/sudoku/",
-  "image": "https://namlabs.dev/icon-512.png",
+  "image": "https://namlabs.dev/img/sudoku/icon-256.webp",
   "installUrl": "https://play.google.com/store/apps/details?id=com.namlabs.sudoku",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://namlabs.dev/#org", "@type": "Organization", "name": "namlabs", "url": "https://namlabs.dev/" }
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@id": "https://namlabs.dev/#org",
+    "@type": "Organization",
+    "name": "namlabs",
+    "url": "https://namlabs.dev/"
+  }
 }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
-    <link rel="stylesheet" href="/assets/site.css">
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body style="--game:#8a2be2;--game-2:#6366f1">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Menu">
       <a href="/#games">Games</a>
-      <a class="hide-sm" href="/sudoku/how-to-play.html">Sudoku guide</a>
-      <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a class="hide-sm" href="/sudoku/techniques/">Sudoku guide</a>
+      <span class="langs"><a href="/sudoku/" hreflang="en" lang="en" aria-current="page" aria-label="English" title="English">EN</a><a href="/vi/sudoku/" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
     </nav>
   </div>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="wrap">
-      <div>
-        <div class="app-head rise">
-          <img src="/img/sudoku/icon-256.webp" alt="Sudoku app icon" width="84" height="84">
-          <div class="meta"><b>namlabs</b><br>Puzzle · Free · Offline</div>
-        </div>
-        <h1 class="rise d1">Sudoku, <span class="grad">clean and clear</span>.</h1>
-        <p class="lead rise d2">Classic 9×9 Sudoku with 300 handcrafted levels, a fresh daily challenge and hints that teach you the technique instead of just giving the answer.</p>
-        <div class="btn-row rise d2">
-          <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku">
-            <svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span>
-          </a>
-          <a class="btn btn-ghost" href="/sudoku/how-to-play.html">How to play →</a>
-        </div>
-        <div class="facts"><span>300 levels</span><span>Daily challenge</span><span>Plays offline</span></div>
-      </div>
-      <div class="fan rise d1" aria-hidden="true">
-        <img src="/img/sudoku/shot-2.webp" alt="" width="540" height="960">
-        <img src="/img/sudoku/shot-1.webp" alt="" width="540" height="960">
-        <img src="/img/sudoku/shot-3.webp" alt="" width="540" height="960">
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="sec-head"><h2>See it in action</h2><p>Swipe through the screens.</p></div>
-      <div class="shots">
-        <img src="/img/sudoku/shot-1.webp" alt="Classic Sudoku, clean and clear" loading="lazy" width="540" height="960">
-        <img src="/img/sudoku/shot-2.webp" alt="300 levels to conquer" loading="lazy" width="540" height="960">
-        <img src="/img/sudoku/shot-3.webp" alt="Hints that teach the technique" loading="lazy" width="540" height="960">
-        <img src="/img/sudoku/shot-4.webp" alt="Lock a digit, fill in a flash" loading="lazy" width="540" height="960">
-        <img src="/img/sudoku/shot-5.webp" alt="Auto-fill the last few cells" loading="lazy" width="540" height="960">
-        <img src="/img/sudoku/shot-6.webp" alt="Celebrate every win" loading="lazy" width="540" height="960">
-        <img src="/img/sudoku/shot-7.webp" alt="Easy-on-the-eyes dark mode" loading="lazy" width="540" height="960">
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="sec-head"><h2>Why you'll love it</h2></div>
-      <div class="tiles">
-        <div class="tile"><div class="ico">🏆</div><h3>300 levels</h3><p>Climb from gentle warm-ups to expert grids and earn up to 3 stars on each one.</p></div>
-        <div class="tile"><div class="ico">📅</div><h3>Daily challenge</h3><p>A fresh puzzle every day, the same for every player. Keep your streak alive.</p></div>
-        <div class="tile"><div class="ico">💡</div><h3>Hints that teach</h3><p>See the technique you can use right now (singles, pairs, X-Wing and more) with the cells highlighted.</p></div>
-        <div class="tile"><div class="ico">⚡</div><h3>Fast, smart input</h3><p>Lock a digit and tap to fill, auto-fill the last cells, pencil marks and unlimited undo.</p></div>
-        <div class="tile"><div class="ico">🌙</div><h3>Easy on the eyes</h3><p>Big clear numbers, adjustable text size and a proper dark mode.</p></div>
-        <div class="tile"><div class="ico">📶</div><h3>Plays offline</h3><p>No internet needed. English, Vietnamese and Japanese, on phones and tablets.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="sec-head"><h2>How to play</h2><p>New to Sudoku? <a href="/sudoku/how-to-play.html">Read the full beginner guide →</a></p></div>
-      <div class="steps">
-        <div class="step"><h3>Fill the grid</h3><p>Place digits 1–9 in the empty cells of the 9×9 board.</p></div>
-        <div class="step"><h3>One per row</h3><p>Each row holds every digit from 1 to 9 exactly once.</p></div>
-        <div class="step"><h3>One per column</h3><p>Each column holds every digit from 1 to 9 exactly once.</p></div>
-        <div class="step"><h3>One per box</h3><p>Each 3×3 box holds every digit from 1 to 9 exactly once.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="sec-head"><h2>Four difficulty levels</h2><p>From your very first Sudoku to a real brain workout.</p></div>
-      <div class="pills">
-        <span class="pill"><b style="color:#10b981">●</b>Easy</span>
-        <span class="pill"><b style="color:#f59e0b">●</b>Medium</span>
-        <span class="pill"><b style="color:#f43f5e">●</b>Hard</span>
-        <span class="pill"><b style="color:#8b5cf6">●</b>Expert</span>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="cta">
-        <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
-        <h2>Ready for today's puzzle?</h2>
-        <p>Free to play with ads. A one-time purchase removes all ads.</p>
-        <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku">
-            <svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span>
-          </a></div>
-      </div>
-    </div>
-  </section>
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="app-head rise"><img src="/img/sudoku/icon-256.webp" alt="Sudoku app icon" width="84" height="84"><div class="meta"><b>namlabs</b><br>Puzzle · Free · Offline</div></div>
+    <h1 class="rise d1">Sudoku, <span class="grad">clean and clear</span>.</h1>
+    <p class="lead rise d2">Classic 9×9 Sudoku with 300 handcrafted levels, a fresh daily challenge and hints that teach you the technique instead of just giving the answer.</p>
+    <div class="btn-row rise d2"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span></a><a class="btn btn-ghost" href="/sudoku/how-to-play.html">How to play →</a></div>
+    <div class="facts"><span>300 levels</span><span>Daily challenge</span><span>Plays offline</span></div>
+  </div>
+  <div class="fan rise d1" aria-hidden="true"><img src="/img/sudoku/shot-2.webp" alt="" width="540" height="960"><img src="/img/sudoku/shot-1.webp" alt="" width="540" height="960"><img src="/img/sudoku/shot-3.webp" alt="" width="540" height="960"></div>
+</div></section>
+<section><div class="wrap"><div class="sec-head"><h2>See it in action</h2><p>Swipe through the screens.</p></div><div class="shots"><img src="/img/sudoku/shot-1.webp" alt="Classic Sudoku, clean and clear" loading="lazy" width="540" height="960"><img src="/img/sudoku/shot-2.webp" alt="300 levels to conquer" loading="lazy" width="540" height="960"><img src="/img/sudoku/shot-3.webp" alt="Hints that teach the technique" loading="lazy" width="540" height="960"><img src="/img/sudoku/shot-4.webp" alt="Lock a digit, fill in a flash" loading="lazy" width="540" height="960"><img src="/img/sudoku/shot-5.webp" alt="Auto-fill the last few cells" loading="lazy" width="540" height="960"><img src="/img/sudoku/shot-6.webp" alt="Celebrate every win" loading="lazy" width="540" height="960"><img src="/img/sudoku/shot-7.webp" alt="Easy-on-the-eyes dark mode" loading="lazy" width="540" height="960"></div></div></section>
+<section><div class="wrap"><div class="sec-head"><h2>Why you'll love it</h2></div><div class="tiles"><div class="tile"><div class="ico">🏆</div><h3>300 levels</h3><p>Climb from gentle warm-ups to expert grids and earn up to 3 stars on each one.</p></div><div class="tile"><div class="ico">📅</div><h3>Daily challenge</h3><p>A fresh puzzle every day, the same for every player. Keep your streak alive.</p></div><div class="tile"><div class="ico">💡</div><h3>Hints that teach</h3><p>See the technique you can use right now (singles, pairs, X-Wing and more) with the cells highlighted.</p></div><div class="tile"><div class="ico">⚡</div><h3>Fast, smart input</h3><p>Lock a digit and tap to fill, auto-fill the last cells, pencil marks and unlimited undo.</p></div><div class="tile"><div class="ico">🌙</div><h3>Easy on the eyes</h3><p>Big clear numbers, adjustable text size and a proper dark mode.</p></div><div class="tile"><div class="ico">📶</div><h3>Plays offline</h3><p>No internet needed. English, Vietnamese and Japanese, on phones and tablets.</p></div></div></div></section>
+<section><div class="wrap"><div class="sec-head"><h2>How to play</h2><p>New to Sudoku? <a href="/sudoku/how-to-play.html">Read the full beginner guide →</a></p></div><div class="steps"><div class="step"><h3>Fill the grid</h3><p>Place digits 1–9 in the empty cells of the 9×9 board.</p></div><div class="step"><h3>One per row</h3><p>Each row holds every digit from 1 to 9 exactly once.</p></div><div class="step"><h3>One per column</h3><p>Each column holds every digit from 1 to 9 exactly once.</p></div><div class="step"><h3>One per box</h3><p>Each 3×3 box holds every digit from 1 to 9 exactly once.</p></div></div></div></section>
+<section><div class="wrap"><div class="sec-head"><h2>Learn the techniques</h2><p>The same moves the in-game hints teach, with worked examples. <a href="/sudoku/techniques/">All techniques →</a></p></div><div class="techs"><a class="tech" href="/sudoku/techniques/naked-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Naked single</h3><p>A cell whose peers already use eight different digits.</p></a><a class="tech" href="/sudoku/techniques/hidden-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Hidden single</h3><p>A digit that fits in only one cell of a row, column or box.</p></a><a class="tech" href="/sudoku/techniques/naked-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Naked pairs</h3><p>Two cells, two candidates: clear them from the rest of the house.</p></a><a class="tech" href="/sudoku/techniques/pointing-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Pointing pairs</h3><p>A box's only spots for a digit point along one row or column.</p></a><a class="tech" href="/sudoku/techniques/x-wing.html"><span class="lvl lvl-hard">Advanced</span><h3>X-Wing</h3><p>Two rows, two columns, one digit: a rectangle that clears columns.</p></a></div></div></section>
+<section><div class="wrap"><div class="sec-head"><h2>Four difficulty levels</h2><p>From your very first Sudoku to a real brain workout.</p></div><div class="pills"><span class="pill"><b style="color:#10b981">●</b>Easy</span><span class="pill"><b style="color:#f59e0b">●</b>Medium</span><span class="pill"><b style="color:#f43f5e">●</b>Hard</span><span class="pill"><b style="color:#8b5cf6">●</b>Expert</span></div></div></section>
+<section><div class="wrap"><div class="cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Ready for today's puzzle?</h2><p>Free to play with ads. A one-time purchase removes all ads.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span></a></div>
+</div></div></section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 namlabs · Sudoku</span>
+    <span>© 2026 namlabs</span>
     <nav>
-      <a href="/">All games</a>
-      <a href="/sudoku/privacy-policy.html">Privacy Policy</a>
+      <a href="/sudoku/">Sudoku</a>
+      <a href="/sky-hop/">Sky Hop</a>
+      <a href="/sudoku/how-to-play.html">How to play Sudoku</a>
+      <a href="/sudoku/techniques/">Sudoku techniques</a>
       <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a href="/sudoku/privacy-policy.html">Privacy policy</a>
     </nav>
   </div>
 </footer>

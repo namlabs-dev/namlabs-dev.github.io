@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pointing Pairs in Sudoku: Box–Line Elimination Explained | namlabs</title>
+<meta name="description" content="Pointing pairs: when a digit in a Sudoku box can only go in one row or column, erase it from the rest of that line. Explained with a worked example.">
+<link rel="canonical" href="https://namlabs.dev/sudoku/techniques/pointing-pairs.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/pointing-pairs.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/pointing-pairs.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/pointing-pairs.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/pointing-pairs.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Pointing Pairs in Sudoku: Box–Line Elimination Explained | namlabs">
+<meta property="og:description" content="Pointing pairs: when a digit in a Sudoku box can only go in one row or column, erase it from the rest of that line. Explained with a worked example.">
+<meta property="og:url" content="https://namlabs.dev/sudoku/techniques/pointing-pairs.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Pointing pairs",
+      "description": "Pointing pairs: when a digit in a Sudoku box can only go in one row or column, erase it from the rest of that line. Explained with a worked example.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://namlabs.dev/sudoku/techniques/pointing-pairs.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sudoku techniques",
+          "item": "https://namlabs.dev/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Pointing pairs",
+          "item": "https://namlabs.dev/sudoku/techniques/pointing-pairs.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/#games">Games</a>
+      <a class="hide-sm" href="/sudoku/techniques/">Sudoku guide</a>
+      <span class="langs"><a href="/sudoku/techniques/pointing-pairs.html" hreflang="en" lang="en" aria-current="page" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/pointing-pairs.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/pointing-pairs.html" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">namlabs</a> › <a href="/sudoku/">Sudoku</a> › <a href="/sudoku/techniques/">Sudoku techniques</a> › <span>Pointing pairs</span></nav>
+    <h1 class="rise">Pointing pairs</h1>
+    <p class="lead rise d1">If a box can only hold a digit in cells that line up, that digit is locked into the line inside the box, and the rest of the line can drop it.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>What is a pointing pair?</h2>
+<p>Every box needs each digit once. Suppose that, inside one box, a digit can only go in two cells and both lie on the same row. Whichever one it ends up in, the digit will be in that row inside this box. So the same row cannot hold the digit anywhere outside the box. The pair "points" along the row and clears it.</p>
+
+<h2>Example</h2>
+<figure class="fig"><div class="board" role="img" aria-label="Sudoku grid. In the top-left box, 4 can only go in R2C2 or R2C3, so 4 is removed from the rest of row 2."><div class="area"></div><div class="area">8</div><div class="area br">1</div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="area">6</div><div class="area key"><span class="cand1 k">4</span></div><div class="area key br"><span class="cand1 k">4</span></div><div><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div class="br"><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div class="area bb"></div><div class="area bb">2</div><div class="area br bb">7</div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div class="src">4</div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>The box's 4 is in row 2, so the rest of row 2 drops 4.</figcaption></figure>
+<p>Where can 4 go in the top-left box? Five of its cells are filled. R1C1 and R3C1 are in column 1, which already has a 4 in R7C1. That leaves <strong>R2C2 and R2C3</strong>, both in row 2.</p>
+<p>So the box's 4 sits in row 2, and row 2 cannot have another 4. Erase 4 from R2C4 to R2C9. That alone does not place a digit, but it often turns a nearby cell into a single.</p>
+
+<h2>How to find pointing pairs</h2>
+<ol>
+<li>Pick a box and a digit it does not have yet.</li>
+<li>List the cells where the digit can go in that box.</li>
+<li>If they all share a row (or a column), erase the digit from that row (or column) outside the box.</li>
+</ol>
+<p>It also works with three cells in a line (a pointing triple). The reverse is called <strong>box–line reduction</strong>: if a row can only hold a digit inside one box, erase it from the rest of that box.</p>
+
+<div class="note"><strong>Tip:</strong> when scanning a digit for <a href="/sudoku/techniques/hidden-single.html">hidden singles</a> leaves two or three cells in a line, you have a pointing pair. Write it down even if it does not place a digit yet.</div>
+
+<h2>Where it fits</h2>
+<p>Pointing pairs and <a href="/sudoku/techniques/naked-pairs.html">naked pairs</a> are the core of hard puzzles. When they stop working, look for patterns across several houses, starting with <a href="/sudoku/techniques/x-wing.html">X-Wing</a>.</p>
+
+<nav class="pager"><a class="prev" href="/sudoku/techniques/naked-pairs.html"><small>Previous</small>Naked pairs</a><a class="next" href="/sudoku/techniques/x-wing.html"><small>Next</small>X-Wing</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Practise on your phone</h2><p>Our free Sudoku app has hints that point out the technique you can use next, with the cells highlighted. It plays offline.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/sudoku/">Sudoku</a>
+      <a href="/sky-hop/">Sky Hop</a>
+      <a href="/sudoku/how-to-play.html">How to play Sudoku</a>
+      <a href="/sudoku/techniques/">Sudoku techniques</a>
+      <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a href="/sudoku/privacy-policy.html">Privacy policy</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

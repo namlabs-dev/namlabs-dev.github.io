@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ナンプレのルールと遊び方：初心者向けの解き方とコツ | namlabs</title>
+<meta name="description" content="ナンプレ（ナンバープレース）の遊び方を5分で。3つのルール、盤面の見方、メモの使い方、そして多くの問題が解ける基本テクニック（スキャン、シングル、ペア）を解説します。">
+<link rel="canonical" href="https://namlabs.dev/ja/sudoku/how-to-play.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/how-to-play.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/how-to-play.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/how-to-play.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/how-to-play.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="ナンプレのルールと遊び方：初心者向けの解き方とコツ | namlabs">
+<meta property="og:description" content="ナンプレ（ナンバープレース）の遊び方を5分で。3つのルール、盤面の見方、メモの使い方、そして多くの問題が解ける基本テクニック（スキャン、シングル、ペア）を解説します。">
+<meta property="og:url" content="https://namlabs.dev/ja/sudoku/how-to-play.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "ナンプレのルールと遊び方：初心者向けの解き方とコツ",
+      "description": "ナンプレ（ナンバープレース）の遊び方を5分で。3つのルール、盤面の見方、メモの使い方、そして多くの問題が解ける基本テクニック（スキャン、シングル、ペア）を解説します。",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "ja",
+      "mainEntityOfPage": "https://namlabs.dev/ja/sudoku/how-to-play.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/ja/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/ja/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "遊び方",
+          "item": "https://namlabs.dev/ja/sudoku/how-to-play.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ナンプレは計算が得意でないと解けませんか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "いいえ。ナンプレの1〜9は記号として使うだけで、足し算もかけ算もありません。文字や色でも遊べる論理パズルです。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ナンプレの答えはひとつだけですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "よくできた問題は答えがひとつだけで、当てずっぽうなしに論理だけで解けます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "1問解くのにどれくらいかかりますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "初心者なら、やさしい問題で10〜20分ほど。ふつうの問題は20〜40分、むずかしい問題は慣れるまで1時間かかることもあります。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "行き詰まったらどうすればいいですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ブロック・行・列のどれかひとつの空きマスすべてに候補をメモし、候補が1つだけのマスや、1マスにしか入らない数字を探しましょう。それでもだめならペアを探します。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/ja/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="メニュー">
+      <a href="/ja/#games">ゲーム</a>
+      <a class="hide-sm" href="/ja/sudoku/techniques/">ナンプレ攻略</a>
+      <span class="langs"><a href="/sudoku/how-to-play.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/how-to-play.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/how-to-play.html" hreflang="ja" lang="ja" aria-current="page" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="パンくずリスト"><a href="/ja/">namlabs</a> › <a href="/ja/sudoku/">Sudoku</a> › <span>遊び方</span></nav>
+    <h1 class="rise">ナンプレのルールと遊び方：初心者向けの解き方とコツ</h1>
+    <p class="lead rise d1">ナンプレはルールを覚えるのは1分、極めるのは一生。このガイドでは、ルール、よく使う用語、そして当てずっぽうなしで初級〜中級の問題がほとんど解けるテクニックを紹介します。</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>ナンプレのルール</h2>
+<p>ナンプレ（ナンバープレース）は、9×9のマスを3×3の<strong>ブロック</strong>9つに分けたパズルです。いくつかのマスには最初から数字が入っています（<strong>ヒント数字</strong>）。空いているマスすべてに1〜9の数字を入れて、次の条件を満たせばクリアです。</p>
+<ol>
+<li>どの<strong>行</strong>（横の列）にも1〜9が1つずつ入る</li>
+<li>どの<strong>列</strong>（縦の列）にも1〜9が1つずつ入る</li>
+<li>どの<strong>3×3ブロック</strong>にも1〜9が1つずつ入る</li>
+</ol>
+<p>ルールはこれだけ。計算はいりません。数字はただの9種類の記号です。よくできた問題は答えがひとつだけで、当てずっぽうなしに論理だけで解けます。</p>
+
+<h2>よく使う用語</h2>
+<ul>
+<li><strong>マス</strong>：81個ある四角のひとつ。マスは行と列で呼びます。R5C5 は5行目・5列目のマスです。</li>
+<li><strong>ハウス</strong>：行・列・ブロックのどれか。どのハウスにも1〜9が1つずつ入ります。</li>
+<li><strong>関係マス</strong>：あるマスと同じ行・列・ブロックにある20個のマス。あるマスに入れた数字は、その関係マスには入りません。</li>
+<li><strong>候補数字</strong>（メモ）：空いているマスにまだ入る可能性がある数字。</li>
+</ul>
+
+<h2>初心者向けテクニックを順番に</h2>
+
+<h3>1. スキャン</h3>
+<p>数字をひとつ選びます。たとえば5。盤面にあるすべての5について、その行と列に線を引くイメージをします。まだ5がないブロックで、線が通るマスと埋まっているマスを消していき、残りが1マスなら5はそこに入ります。1〜9の数字で順に繰り返しましょう。やさしい問題なら、スキャンだけでかなり進みます。</p>
+
+<h3>2. ハウスの最後の1マス</h3>
+<p>行・列・ブロックのどれかに空きが1マスだけなら、足りない数字はすぐにわかります。下の5行目で足りないのは4だけです。</p>
+<figure class="fig"><div class="board" role="img" aria-label="5行目は 7 2 9 1、空きマス、6 3 8 5。空きマスは4です。"><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="area">7</div><div class="area">2</div><div class="area br">9</div><div class="area">1</div><div class="area key new">4</div><div class="area br">6</div><div class="area">3</div><div class="area">8</div><div class="area">5</div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>5行目に足りないのは4だけ。</figcaption></figure>
+
+<h3>3. 裸のシングル</h3>
+<p>空いているマスをひとつ選び、関係マスにすでにある数字を数えます。8種類の数字がそろっていれば、残りの1つが唯一の候補。それがそのマスの答えです。<a href="/ja/sudoku/techniques/naked-single.html">裸のシングルを例題で見る →</a></p>
+
+<h3>4. 隠れたシングル</h3>
+<p>今度は逆に、ハウスと数字を選びます。その数字がハウスの中で1マスにしか入らない（ほかのマスは埋まっているか、同じ数字が関係マスにある）なら、そこに入ります。そのマス自体にほかの候補が残っていても同じです。<a href="/ja/sudoku/techniques/hidden-single.html">隠れたシングルを例題で見る →</a></p>
+
+<h3>5. メモ</h3>
+<p>スキャンで進まなくなったら、ブロックや行の空きマスに候補数字をメモします。数字を1つ入れるたびに、その関係マスのメモからその数字を消しましょう。メモを整理しておくと、隠れていた情報が目に見えるようになります。</p>
+
+<h3>6. 裸のペア</h3>
+<p>同じハウスの2つのマスが、どちらもまったく同じ2つの候補（たとえば {3, 8}）しか持たないなら、その2つの数字はこの2マスに入ります。ハウス内のほかのマスから3と8を消せます。<a href="/ja/sudoku/techniques/naked-pairs.html">裸のペアを例題で見る →</a></p>
+
+<h3>7. ポインティングペア</h3>
+<p>あるブロックの中で、ある数字が入るマスがすべて同じ行にあるなら、その数字はこのブロックのその行に入ります。ブロックの外にあるその行のマスから、その数字を消しましょう。列でも同じです。<a href="/ja/sudoku/techniques/pointing-pairs.html">ポインティングペアを例題で見る →</a></p>
+
+<div class="note"><strong>コツ：</strong>完成に近い数字やハウスから手をつけましょう。7つ埋まった行は空っぽの行より簡単に完成しますし、数字を1つ入れるたびに新しい手が見えてきます。</div>
+
+<h2>初心者がやりがちなミス</h2>
+<ul>
+<li><strong>当てずっぽうで入れる。</strong>よさそうに見えた推測が、20手後に盤面を崩すことがあります。自信がなければ別の手を探しましょう。</li>
+<li><strong>メモを更新し忘れる。</strong>古い候補が次の手を隠したり、まちがった手に導いたりします。</li>
+<li><strong>行しか見ない。</strong>ブロックや列にも同じくらい手が隠れています。3つとも見ましょう。</li>
+</ul>
+
+<h2>難易度について</h2>
+<p>やさしい問題はスキャンとシングルだけで解けます。ふつうの問題はメモが必要です。むずかしい問題ではペアやポインティングペアを使い、エキスパートの問題では <a href="/ja/sudoku/techniques/x-wing.html">X-Wing</a> のような上級パターンが必要になります。ヒントなしで解けるようになったら、次の難易度へ進みましょう。</p>
+<h2>よくある質問</h2><h3>ナンプレは計算が得意でないと解けませんか？</h3><p>いいえ。ナンプレの1〜9は記号として使うだけで、足し算もかけ算もありません。文字や色でも遊べる論理パズルです。</p><h3>ナンプレの答えはひとつだけですか？</h3><p>よくできた問題は答えがひとつだけで、当てずっぽうなしに論理だけで解けます。</p><h3>1問解くのにどれくらいかかりますか？</h3><p>初心者なら、やさしい問題で10〜20分ほど。ふつうの問題は20〜40分、むずかしい問題は慣れるまで1時間かかることもあります。</p><h3>行き詰まったらどうすればいいですか？</h3><p>ブロック・行・列のどれかひとつの空きマスすべてに候補をメモし、候補が1つだけのマスや、1マスにしか入らない数字を探しましょう。それでもだめならペアを探します。</p>
+<h2>次は：テクニックをひとつずつ</h2><p>各ガイドでは、実際の盤面を使ってひとつの手を例題つきで解説します。</p><div class="techs"><a class="tech" href="/ja/sudoku/techniques/naked-single.html"><span class="lvl lvl-easy">初級</span><h3>裸のシングル</h3><p>関係マスに8種類の数字がそろったマス。</p></a><a class="tech" href="/ja/sudoku/techniques/hidden-single.html"><span class="lvl lvl-easy">初級</span><h3>隠れたシングル</h3><p>行・列・ブロックの中で1マスにしか入らない数字。</p></a><a class="tech" href="/ja/sudoku/techniques/naked-pairs.html"><span class="lvl lvl-medium">中級</span><h3>裸のペア</h3><p>2マスに同じ2つの候補。ハウスのほかのマスから消せます。</p></a><a class="tech" href="/ja/sudoku/techniques/pointing-pairs.html"><span class="lvl lvl-medium">中級</span><h3>ポインティングペア</h3><p>ブロック内の候補が一直線に並んだら、その線から消せる。</p></a><a class="tech" href="/ja/sudoku/techniques/x-wing.html"><span class="lvl lvl-hard">上級</span><h3>X-Wing</h3><p>2行・2列・1つの数字。長方形で2つの列から候補を消す。</p></a></div>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>スマホで練習しよう</h2><p>無料アプリ「Sudoku」のヒントは、いま使えるテクニックをマスを光らせて教えてくれます。オフラインでも遊べます。</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=ja"><svg><use href="#play"/></svg><span><small>入手する</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/ja/sudoku/">Sudoku</a>
+      <a href="/ja/sky-hop/">Sky Hop</a>
+      <a href="/ja/sudoku/how-to-play.html">ナンプレの遊び方</a>
+      <a href="/ja/sudoku/techniques/">ナンプレの解き方</a>
+      <a href="mailto:hoainamit91@gmail.com">お問い合わせ</a>
+      <a href="/sudoku/privacy-policy.html">プライバシーポリシー</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

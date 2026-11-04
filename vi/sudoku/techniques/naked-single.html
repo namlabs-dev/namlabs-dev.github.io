@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ô đơn lộ (Naked Single): kỹ thuật Sudoku đầu tiên nên học | namlabs</title>
+<meta name="description" content="Ô đơn lộ là ô Sudoku chỉ còn đúng một số có thể điền. Học cách nhận ra nó, kèm ví dụ trên bảng thật.">
+<link rel="canonical" href="https://namlabs.dev/vi/sudoku/techniques/naked-single.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/naked-single.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/naked-single.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/naked-single.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/naked-single.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Ô đơn lộ (Naked Single): kỹ thuật Sudoku đầu tiên nên học | namlabs">
+<meta property="og:description" content="Ô đơn lộ là ô Sudoku chỉ còn đúng một số có thể điền. Học cách nhận ra nó, kèm ví dụ trên bảng thật.">
+<meta property="og:url" content="https://namlabs.dev/vi/sudoku/techniques/naked-single.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Ô đơn lộ (Naked Single)",
+      "description": "Ô đơn lộ là ô Sudoku chỉ còn đúng một số có thể điền. Học cách nhận ra nó, kèm ví dụ trên bảng thật.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "vi",
+      "mainEntityOfPage": "https://namlabs.dev/vi/sudoku/techniques/naked-single.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/vi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Kỹ thuật giải Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Ô đơn lộ",
+          "item": "https://namlabs.dev/vi/sudoku/techniques/naked-single.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/vi/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/vi/#games">Trò chơi</a>
+      <a class="hide-sm" href="/vi/sudoku/techniques/">Hướng dẫn Sudoku</a>
+      <span class="langs"><a href="/sudoku/techniques/naked-single.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/naked-single.html" hreflang="vi" lang="vi" aria-current="page" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/naked-single.html" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Đường dẫn"><a href="/vi/">namlabs</a> › <a href="/vi/sudoku/">Sudoku</a> › <a href="/vi/sudoku/techniques/">Kỹ thuật giải Sudoku</a> › <span>Ô đơn lộ</span></nav>
+    <h1 class="rise">Ô đơn lộ (Naked Single)</h1>
+    <p class="lead rise d1">Nước đi đơn giản nhất trong Sudoku: một ô chỉ còn một số khả dĩ. Tìm, điền, rồi lặp lại.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>Ô đơn lộ là gì?</h2>
+<p>Mỗi ô trống có 20 <strong>ô liên quan</strong>: các ô khác cùng hàng, cùng cột và cùng khối. Số đã có ở bất kỳ ô liên quan nào thì không thể điền vào ô đó. Khi các ô liên quan đã có đủ tám số khác nhau, chỉ còn lại một số. Ô đó là <strong>ô đơn lộ</strong>: đáp án nằm ngay trước mắt.</p>
+
+<h2>Ví dụ</h2>
+<figure class="fig"><div class="board" role="img" aria-label="Bảng Sudoku. Ô giữa H5C5 thấy 1, 2, 3 trong hàng, 4, 5, 6 trong cột và 7, 8 trong khối, nên phải là 9."><div></div><div></div><div class="br"></div><div></div><div class="area src">4</div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div class="area src">5</div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="area bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div class="area src">7</div><div class="area"></div><div class="area br"></div><div></div><div></div><div></div><div class="area src">1</div><div class="area src">2</div><div class="area br"></div><div class="area"></div><div class="area key new">9</div><div class="area br"></div><div class="area"></div><div class="area src">3</div><div class="area"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="area bb"></div><div class="area bb"></div><div class="area src br bb">8</div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div class="area"></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div class="area"></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div class="area src">6</div><div class="br"></div><div></div><div></div><div></div></div><figcaption>H5C5 thấy mọi số trừ 9.</figcaption></figure>
+<p>Xét ô H5C5 ở chính giữa. Hàng của nó đã có 1, 2 và 3. Cột có 4, 5 và 6. Khối có 7 và 8. Tổng cộng tám số khác nhau, nên ứng viên duy nhất còn lại là <strong>9</strong>.</p>
+
+<h2>Cách tìm ô đơn lộ</h2>
+<ol>
+<li>Chọn một ô trống ở vùng đông số: một hàng, cột hoặc khối gần đầy.</li>
+<li>Đi lần lượt từ 1 đến 9 và kiểm tra mỗi số đã có trong hàng, cột hoặc khối của ô chưa.</li>
+<li>Nếu chỉ đúng một số chưa xuất hiện ở cả ba, điền số đó.</li>
+</ol>
+<p>Khi có ghi chú, tìm ô đơn lộ còn dễ hơn: ô nào chỉ còn một ứng viên chính là ô đơn lộ. Vì vậy mỗi lần điền số, hãy xóa ứng viên tương ứng ở các ô liên quan.</p>
+
+<div class="note"><strong>Mẹo:</strong> giao điểm của một hàng gần đầy và một cột gần đầy là nơi đáng tìm nhất. Các ô liên quan của nó đã phủ gần hết các số.</div>
+
+<h2>Khi nào dùng</h2>
+<p>Ô đơn lộ cùng <a href="/vi/sudoku/techniques/hidden-single.html">ô đơn ẩn</a> tự giải được hầu hết đề dễ. Khi không tìm thấy cả hai, đã đến lúc dùng ghi chú và <a href="/vi/sudoku/techniques/naked-pairs.html">cặp lộ</a>.</p>
+
+<nav class="pager"><a class="next" href="/vi/sudoku/techniques/hidden-single.html"><small>Bài tiếp</small>Ô đơn ẩn</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Luyện tập trên điện thoại</h2><p>Ứng dụng Sudoku miễn phí của chúng tôi có gợi ý chỉ ra kỹ thuật dùng được ngay lúc đó, kèm các ô được tô sáng. Chơi được khi không có mạng.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=vi"><svg><use href="#play"/></svg><span><small>Tải trên</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/vi/sudoku/">Sudoku</a>
+      <a href="/vi/sky-hop/">Sky Hop</a>
+      <a href="/vi/sudoku/how-to-play.html">Cách chơi Sudoku</a>
+      <a href="/vi/sudoku/techniques/">Kỹ thuật giải Sudoku</a>
+      <a href="mailto:hoainamit91@gmail.com">Liên hệ</a>
+      <a href="/sudoku/privacy-policy.html">Chính sách quyền riêng tư</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

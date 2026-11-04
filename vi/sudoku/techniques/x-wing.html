@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kỹ thuật X-Wing trong Sudoku giải thích dễ hiểu, kèm ví dụ | namlabs</title>
+<meta name="description" content="Kỹ thuật X-Wing trong Sudoku giải thích dễ hiểu: hai hàng mà một số chỉ vừa cùng hai cột cho phép xóa số đó khỏi cả hai cột. Kèm ví dụ minh họa.">
+<link rel="canonical" href="https://namlabs.dev/vi/sudoku/techniques/x-wing.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/x-wing.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/x-wing.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/x-wing.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/x-wing.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Kỹ thuật X-Wing trong Sudoku giải thích dễ hiểu, kèm ví dụ | namlabs">
+<meta property="og:description" content="Kỹ thuật X-Wing trong Sudoku giải thích dễ hiểu: hai hàng mà một số chỉ vừa cùng hai cột cho phép xóa số đó khỏi cả hai cột. Kèm ví dụ minh họa.">
+<meta property="og:url" content="https://namlabs.dev/vi/sudoku/techniques/x-wing.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "X-Wing",
+      "description": "Kỹ thuật X-Wing trong Sudoku giải thích dễ hiểu: hai hàng mà một số chỉ vừa cùng hai cột cho phép xóa số đó khỏi cả hai cột. Kèm ví dụ minh họa.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "vi",
+      "mainEntityOfPage": "https://namlabs.dev/vi/sudoku/techniques/x-wing.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/vi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Kỹ thuật giải Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "X-Wing",
+          "item": "https://namlabs.dev/vi/sudoku/techniques/x-wing.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/vi/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/vi/#games">Trò chơi</a>
+      <a class="hide-sm" href="/vi/sudoku/techniques/">Hướng dẫn Sudoku</a>
+      <span class="langs"><a href="/sudoku/techniques/x-wing.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/x-wing.html" hreflang="vi" lang="vi" aria-current="page" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/x-wing.html" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Đường dẫn"><a href="/vi/">namlabs</a> › <a href="/vi/sudoku/">Sudoku</a> › <a href="/vi/sudoku/techniques/">Kỹ thuật giải Sudoku</a> › <span>X-Wing</span></nav>
+    <h1 class="rise">X-Wing</h1>
+    <p class="lead rise d1">X-Wing là kỹ thuật nâng cao đầu tiên mà hầu hết người chơi học. Nó xét một số trên hai hàng cùng lúc, và dễ nhận ra hơn cái tên của nó.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>X-Wing là gì?</h2>
+<p>Chọn một số. Giả sử trên hai hàng khác nhau, số đó chỉ có thể nằm ở cùng hai cột. Bốn ô này tạo thành một hình chữ nhật. Ở hàng thứ nhất, số đó nằm ở một trong hai cột; ở hàng thứ hai, nó phải nằm ở cột còn lại (một cột không thể chứa số đó hai lần). Dù thế nào, mỗi cột đều nhận số này từ hai hàng đó. Vì vậy không ô nào khác trong hai cột có thể chứa nó.</p>
+
+<h2>Ví dụ</h2>
+<figure class="fig"><div class="board" role="img" aria-label="Bảng Sudoku. Ở cả hàng 2 và hàng 6, số 7 chỉ có thể ở cột 3 và cột 7, nên 7 bị xóa khỏi các ô khác của cột 3 và cột 7."><div></div><div></div><div class="br"><span class="cand1 x">7</span></div><div></div><div></div><div class="br"></div><div><span class="cand1 x">7</span></div><div></div><div></div><div class="area"></div><div class="area">3</div><div class="area key br"><span class="cand1 k">7</span></div><div class="area">1</div><div class="area"></div><div class="area br">9</div><div class="area key"><span class="cand1 k">7</span></div><div class="area">4</div><div class="area"></div><div class="bb"></div><div class="bb"></div><div class="br bb"><span class="cand1 x">7</span></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"><span class="cand1 x">7</span></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"><span class="cand1 x">7</span></div><div></div><div></div><div class="br"></div><div><span class="cand1 x">7</span></div><div></div><div></div><div></div><div></div><div class="br"><span class="cand1 x">7</span></div><div></div><div></div><div class="br"></div><div><span class="cand1 x">7</span></div><div></div><div></div><div class="area bb"></div><div class="area bb">8</div><div class="area key br bb"><span class="cand1 k">7</span></div><div class="area bb">2</div><div class="area bb"></div><div class="area br bb">6</div><div class="area key bb"><span class="cand1 k">7</span></div><div class="area bb">5</div><div class="area bb"></div><div class="src">7</div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div class="src">7</div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="src">7</div></div><figcaption>X-Wing với số 7 trên hàng 2 và 6 dọn sạch cột 3 và 7.</figcaption></figure>
+<p>Xét số 7. Hàng 2 có năm ô trống, nhưng cột 1, 5 và 9 đã có số 7 ở phía dưới (H7C1, H8C5, H9C9). Vậy trên hàng 2, số 7 chỉ có thể ở <strong>H2C3 hoặc H2C7</strong>. Hàng 6 cũng vậy: chỉ <strong>H6C3 hoặc H6C7</strong>.</p>
+<p>Nếu số 7 của hàng 2 ở cột 3 thì số 7 của hàng 6 phải ở cột 7, và ngược lại. Cả hai cách, cột 3 và cột 7 đều nhận số 7 từ hàng 2 và hàng 6. Xóa 7 khỏi mọi ô khác trong hai cột đó: H1C3, H3C3, H4C3, H5C3 và các hàng tương ứng ở cột 7.</p>
+
+<h2>Cách tìm X-Wing</h2>
+<ol>
+<li>Chọn một số xuất hiện nhiều trên bảng.</li>
+<li>Tìm các hàng mà số đó chỉ có đúng hai ô khả dĩ.</li>
+<li>Tìm hai hàng như vậy có hai ô nằm cùng hai cột.</li>
+<li>Xóa số đó khỏi phần còn lại của hai cột.</li>
+</ol>
+<p>Chiều ngược lại cũng đúng: hai cột mà số đó chỉ vừa cùng hai hàng cho phép dọn sạch hai hàng ấy.</p>
+
+<div class="note"><strong>Mẹo:</strong> chỉ thử X-Wing khi ô đơn và các cặp đã hết tác dụng. Với đề chuyên gia, hãy xét lần lượt từng số; khi ghi ứng viên riêng cho một số, mẫu này thường hiện ra rất rõ.</div>
+
+<h2>Khi nào dùng</h2>
+<p>X-Wing phát triển từ <a href="/vi/sudoku/techniques/pointing-pairs.html">cặp chỉ hướng</a> và là cửa ngõ đến các mẫu lớn hơn như Swordfish (ba hàng, ba cột). Gợi ý trong ứng dụng Sudoku của chúng tôi sẽ chỉ ra X-Wing khi đó là nước đi tiếp theo ở đề chuyên gia.</p>
+
+<nav class="pager"><a class="prev" href="/vi/sudoku/techniques/pointing-pairs.html"><small>Bài trước</small>Cặp chỉ hướng</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Luyện tập trên điện thoại</h2><p>Ứng dụng Sudoku miễn phí của chúng tôi có gợi ý chỉ ra kỹ thuật dùng được ngay lúc đó, kèm các ô được tô sáng. Chơi được khi không có mạng.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=vi"><svg><use href="#play"/></svg><span><small>Tải trên</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/vi/sudoku/">Sudoku</a>
+      <a href="/vi/sky-hop/">Sky Hop</a>
+      <a href="/vi/sudoku/how-to-play.html">Cách chơi Sudoku</a>
+      <a href="/vi/sudoku/techniques/">Kỹ thuật giải Sudoku</a>
+      <a href="mailto:hoainamit91@gmail.com">Liên hệ</a>
+      <a href="/sudoku/privacy-policy.html">Chính sách quyền riêng tư</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

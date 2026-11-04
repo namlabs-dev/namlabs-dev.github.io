@@ -3,9 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>namlabs – Puzzle & Brain Games for Android</title>
+<title>namlabs – Puzzle &amp; Brain Games for Android</title>
 <meta name="description" content="namlabs makes simple, offline-friendly puzzle and brain-training games for Android, including Sudoku and Sky Hop.">
 <link rel="canonical" href="https://namlabs.dev/">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/">
 <meta name="robots" content="index, follow">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -15,7 +19,8 @@
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="namlabs">
-<meta property="og:title" content="namlabs – Puzzle & Brain Games for Android">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="namlabs – Puzzle &amp; Brain Games for Android">
 <meta property="og:description" content="namlabs makes simple, offline-friendly puzzle and brain-training games for Android, including Sudoku and Sky Hop.">
 <meta property="og:url" content="https://namlabs.dev/">
 <meta property="og:image" content="https://namlabs.dev/og-image.png">
@@ -37,7 +42,10 @@
       "@id": "https://namlabs.dev/#site",
       "name": "namlabs",
       "url": "https://namlabs.dev/",
-      "publisher": { "@id": "https://namlabs.dev/#org" }
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://namlabs.dev/#org"
+      }
     }
   ]
 }
@@ -49,159 +57,63 @@
 <link rel="preload" as="image" href="/img/sudoku/shot-1.webp">
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol>
-</svg>
-
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
-    <nav class="nav-links">
-      <a href="#games">Games</a>
-      <a class="hide-sm" href="/sudoku/how-to-play.html">Sudoku guide</a>
-      <a href="mailto:hoainamit91@gmail.com">Contact</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/#games">Games</a>
+      <a class="hide-sm" href="/sudoku/techniques/">Sudoku guide</a>
+      <span class="langs"><a href="/" hreflang="en" lang="en" aria-current="page" aria-label="English" title="English">EN</a><a href="/vi/" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
     </nav>
   </div>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="wrap">
-      <div>
-        <span class="eyebrow rise"><i></i>Free on Google Play</span>
-        <h1 class="rise d1">Small games that keep your <span class="grad">brain sharp</span>.</h1>
-        <p class="lead rise d2">namlabs makes clean, calm puzzle and brain-training games for Android. Quick to learn, hard to put down, and they all play offline.</p>
-        <div class="btn-row rise d2">
-          <a class="btn btn-play" href="#games">
-            <svg><use href="#play"/></svg>
-            <span><small>Browse</small>Our games</span>
-          </a>
-          <a class="btn btn-ghost" href="/sudoku/how-to-play.html">Learn Sudoku →</a>
-        </div>
-        <div class="facts"><span>Plays offline</span><span>Light &amp; dark mode</span><span>English · Tiếng Việt · 日本語</span></div>
-      </div>
-      <div class="fan rise d1" aria-hidden="true">
-        <img src="/img/sky-hop/shot-1.webp" alt="" width="540" height="960">
-        <img src="/img/sudoku/shot-1.webp" alt="" width="540" height="960">
-        <img src="/img/logic-puzzles/shot-1.webp" alt="" width="540" height="960">
-      </div>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow rise"><i></i>Free on Google Play</span>
+    <h1 class="rise d1">Small games that keep your <span class="grad">brain sharp</span>.</h1>
+    <p class="lead rise d2">namlabs makes clean, calm puzzle and brain-training games for Android. Quick to learn, hard to put down, and they all play offline.</p>
+    <div class="btn-row rise d2">
+      <a class="btn btn-play" href="#games"><svg><use href="#play"/></svg><span><small>Browse</small>Our games</span></a>
+      <a class="btn btn-ghost" href="/sudoku/how-to-play.html">Learn Sudoku →</a>
     </div>
-  </section>
-
-  <section id="games">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Our games</h2>
-        <p>Pick one, play a round, and come back tomorrow for more.</p>
-      </div>
-      <div class="games">
-
-        <article class="game" style="--c1:#8a2be2;--c2:#6366f1">
-          <div class="game-art" aria-hidden="true">
-            <img src="/img/sudoku/shot-2.webp" alt="" loading="lazy" width="540" height="960">
-            <img src="/img/sudoku/shot-1.webp" alt="" loading="lazy" width="540" height="960">
-            <img src="/img/sudoku/shot-3.webp" alt="" loading="lazy" width="540" height="960">
-          </div>
-          <div class="game-body">
-            <div class="game-title">
-              <img src="/img/sudoku/icon-128.webp" alt="Sudoku app icon" width="60" height="60">
-              <div><h3>Sudoku</h3><p>Classic number puzzle</p></div>
-            </div>
-            <p>300 handcrafted levels, a daily challenge and hints that teach you the technique instead of just giving the answer.</p>
-            <div class="tags"><span class="tag">300 levels</span><span class="tag">Daily challenge</span><span class="tag">4 difficulties</span></div>
-            <div class="game-actions">
-              <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><svg><use href="#play"/></svg>Google Play</a>
-              <a class="btn btn-ghost" href="/sudoku/">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="game" style="--c1:#2e2a84;--c2:#c2477a">
-          <div class="game-art" aria-hidden="true">
-            <img src="/img/sky-hop/shot-2.webp" alt="" loading="lazy" width="540" height="960">
-            <img src="/img/sky-hop/shot-1.webp" alt="" loading="lazy" width="540" height="960">
-            <img src="/img/sky-hop/shot-3.webp" alt="" loading="lazy" width="540" height="960">
-          </div>
-          <div class="game-body">
-            <div class="game-title">
-              <img src="/img/sky-hop/icon-128.webp" alt="Sky Hop app icon" width="60" height="60">
-              <div><h3>Sky Hop</h3><p>Flying math game</p></div>
-            </div>
-            <p>Tap to fly, dodge the pillars and steer through the gap with the right answer. Mental math practice that feels like play.</p>
-            <div class="tags"><span class="tag">One-tap</span><span class="tag">+ − ×</span><span class="tag">Medals</span></div>
-            <div class="game-actions">
-              <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sky_hop"><svg><use href="#play"/></svg>Google Play</a>
-              <a class="btn btn-ghost" href="/sky-hop/">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="game" style="--c1:#f97316;--c2:#ef4444">
-          <span class="badge-soon">Coming soon</span>
-          <div class="game-art" aria-hidden="true">
-            <img src="/img/logic-puzzles/shot-2.webp" alt="" loading="lazy" width="540" height="960">
-            <img src="/img/logic-puzzles/shot-1.webp" alt="" loading="lazy" width="540" height="960">
-            <img src="/img/logic-puzzles/shot-3.webp" alt="" loading="lazy" width="540" height="960">
-          </div>
-          <div class="game-body">
-            <div class="game-title">
-              <img src="/img/logic-puzzles/icon-128.webp" alt="Logic Puzzles app icon" width="60" height="60">
-              <div><h3>Logic Puzzles</h3><p>7 puzzles in one app</p></div>
-            </div>
-            <p>Star Place, Island Bridges, Tents, Loop Line and more, with a fresh set to solve every day.</p>
-            <div class="tags"><span class="tag">7 puzzle types</span><span class="tag">Daily streak</span></div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="sec-head"><h2>Why players like them</h2></div>
-      <div class="tiles">
-        <div class="tile"><div class="ico">📶</div><h3>No internet needed</h3><p>Every game plays fully offline, on the bus, on a plane or anywhere else.</p></div>
-        <div class="tile"><div class="ico">🧠</div><h3>Real brain training</h3><p>Logic, focus and mental math, a few minutes a day.</p></div>
-        <div class="tile"><div class="ico">🌙</div><h3>Easy on the eyes</h3><p>Clean layouts, big clear numbers and a proper dark mode.</p></div>
-        <div class="tile"><div class="ico">🌏</div><h3>Your language</h3><p>English, Vietnamese and Japanese, on phones and tablets.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <details class="more">
-        <summary>Privacy policies</summary>
-        <ul class="policies">
-          <li><a href="block-puzzle/privacy-policy.html">Block Puzzle</a></li>
-          <li><a href="bunny-steps/privacy-policy.html">Bunny Steps</a></li>
-          <li><a href="caro/privacy-policy.html">Caro</a></li>
-          <li><a href="color-link/privacy-policy.html">Color Link</a></li>
-          <li><a href="gomoku/privacy-policy.html">Gomoku</a></li>
-          <li><a href="island-bridges/privacy-policy.html">Island Bridges</a></li>
-          <li><a href="kakuro/privacy-policy.html">Kakuro</a></li>
-          <li><a href="lamp-logic/privacy-policy.html">Lamp Logic</a></li>
-          <li><a href="logic-puzzles/privacy-policy.html">Logic Puzzles</a></li>
-          <li><a href="loop-line/privacy-policy.html">Loop Line</a></li>
-          <li><a href="mine-logic/privacy-policy.html">Mine Logic</a></li>
-          <li><a href="number-cross/privacy-policy.html">Number Cross</a></li>
-          <li><a href="park-out/privacy-policy.html">Park Out</a></li>
-          <li><a href="pixel-logic/privacy-policy.html">Pixel Logic</a></li>
-          <li><a href="racing-lines/privacy-policy.html">Racing Lines</a></li>
-          <li><a href="sky-hop/privacy-policy.html">Sky Hop</a></li>
-          <li><a href="star-place/privacy-policy.html">Star Place</a></li>
-          <li><a href="sudoku/privacy-policy.html">Sudoku</a></li>
-          <li><a href="tangle-out/privacy-policy.html">Tangle Out</a></li>
-          <li><a href="tents-camp/privacy-policy.html">Tents Camp</a></li>
-          <li><a href="tile-trio/privacy-policy.html">Tile Trio</a></li>
-          <li><a href="water-sort/privacy-policy.html">Water Sort</a></li>
-          <li><a href="xiangqi/privacy-policy.html">Xiangqi</a></li>
-          <li><a href="youtube-tools/privacy-policy.html">NamTH Video Tools</a></li>
-        </ul>
-      </details>
-    </div>
-  </section>
+    <div class="facts"><span>Plays offline</span><span>Light &amp; dark mode</span><span>English · Tiếng Việt · 日本語</span></div>
+  </div>
+  <div class="fan rise d1" aria-hidden="true"><img src="/img/sky-hop/shot-1.webp" alt="" width="540" height="960"><img src="/img/sudoku/shot-1.webp" alt="" width="540" height="960"><img src="/img/logic-puzzles/shot-1.webp" alt="" width="540" height="960"></div>
+</div></section>
+<section id="games"><div class="wrap">
+  <div class="sec-head"><h2>Our games</h2><p>Pick one, play a round, and come back tomorrow for more.</p></div>
+  <div class="games"><article class="game" style="--c1:#8a2be2;--c2:#6366f1">
+  <div class="game-art" aria-hidden="true"><img src="/img/sudoku/shot-2.webp" alt="" loading="lazy" width="540" height="960"><img src="/img/sudoku/shot-1.webp" alt="" loading="lazy" width="540" height="960"><img src="/img/sudoku/shot-3.webp" alt="" loading="lazy" width="540" height="960"></div>
+  <div class="game-body">
+    <div class="game-title"><img src="/img/sudoku/icon-128.webp" alt="Sudoku app icon" width="60" height="60"><div><h3>Sudoku</h3><p>Classic number puzzle</p></div></div>
+    <p>300 handcrafted levels, a daily challenge and hints that teach you the technique instead of just giving the answer.</p>
+    <div class="tags"><span class="tag">300 levels</span><span class="tag">Daily challenge</span><span class="tag">4 difficulties</span></div>
+    <div class="game-actions"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><svg><use href="#play"/></svg>Google Play</a><a class="btn btn-ghost" href="/sudoku/">Details</a></div>
+  </div>
+</article><article class="game" style="--c1:#2e2a84;--c2:#c2477a">
+  <div class="game-art" aria-hidden="true"><img src="/img/sky-hop/shot-2.webp" alt="" loading="lazy" width="540" height="960"><img src="/img/sky-hop/shot-1.webp" alt="" loading="lazy" width="540" height="960"><img src="/img/sky-hop/shot-3.webp" alt="" loading="lazy" width="540" height="960"></div>
+  <div class="game-body">
+    <div class="game-title"><img src="/img/sky-hop/icon-128.webp" alt="Sky Hop app icon" width="60" height="60"><div><h3>Sky Hop</h3><p>Flying math game</p></div></div>
+    <p>Tap to fly, dodge the pillars and steer through the gap with the right answer. Mental math practice that feels like play.</p>
+    <div class="tags"><span class="tag">One-tap</span><span class="tag">+ − ×</span><span class="tag">Medals</span></div>
+    <div class="game-actions"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sky_hop"><svg><use href="#play"/></svg>Google Play</a><a class="btn btn-ghost" href="/sky-hop/">Details</a></div>
+  </div>
+</article><article class="game" style="--c1:#f97316;--c2:#ef4444"><span class="badge-soon">Coming soon</span>
+  <div class="game-art" aria-hidden="true"><img src="/img/logic-puzzles/shot-2.webp" alt="" loading="lazy" width="540" height="960"><img src="/img/logic-puzzles/shot-1.webp" alt="" loading="lazy" width="540" height="960"><img src="/img/logic-puzzles/shot-3.webp" alt="" loading="lazy" width="540" height="960"></div>
+  <div class="game-body">
+    <div class="game-title"><img src="/img/logic-puzzles/icon-128.webp" alt="Logic Puzzles app icon" width="60" height="60"><div><h3>Logic Puzzles</h3><p>7 puzzles in one app</p></div></div>
+    <p>Star Place, Island Bridges, Tents, Loop Line and more, with a fresh set to solve every day.</p>
+    <div class="tags"><span class="tag">7 puzzle types</span><span class="tag">Daily streak</span></div>
+    
+  </div>
+</article></div>
+</div></section>
+<section><div class="wrap"><div class="sec-head"><h2>Why players like them</h2></div><div class="tiles"><div class="tile"><div class="ico">📶</div><h3>No internet needed</h3><p>Every game plays fully offline, on the bus, on a plane or anywhere else.</p></div><div class="tile"><div class="ico">🧠</div><h3>Real brain training</h3><p>Logic, focus and mental math, a few minutes a day.</p></div><div class="tile"><div class="ico">🌙</div><h3>Easy on the eyes</h3><p>Clean layouts, big clear numbers and a proper dark mode.</p></div><div class="tile"><div class="ico">🌏</div><h3>Your language</h3><p>English, Vietnamese and Japanese, on phones and tablets.</p></div></div></div></section>
+<section><div class="wrap"><div class="sec-head"><h2>Get better at Sudoku</h2><p>Start with <a href="/sudoku/how-to-play.html">the rules and beginner tips</a>, then learn one technique at a time.</p></div><div class="techs"><a class="tech" href="/sudoku/techniques/naked-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Naked single</h3><p>A cell whose peers already use eight different digits.</p></a><a class="tech" href="/sudoku/techniques/hidden-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Hidden single</h3><p>A digit that fits in only one cell of a row, column or box.</p></a><a class="tech" href="/sudoku/techniques/naked-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Naked pairs</h3><p>Two cells, two candidates: clear them from the rest of the house.</p></a><a class="tech" href="/sudoku/techniques/pointing-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Pointing pairs</h3><p>A box's only spots for a digit point along one row or column.</p></a><a class="tech" href="/sudoku/techniques/x-wing.html"><span class="lvl lvl-hard">Advanced</span><h3>X-Wing</h3><p>Two rows, two columns, one digit: a rectangle that clears columns.</p></a></div></div></section>
+<section><div class="wrap"><details class="more"><summary>Privacy policies</summary><ul class="policies"><li><a href="/block-puzzle/privacy-policy.html">Block Puzzle</a></li><li><a href="/bunny-steps/privacy-policy.html">Bunny Steps</a></li><li><a href="/caro/privacy-policy.html">Caro</a></li><li><a href="/color-link/privacy-policy.html">Color Link</a></li><li><a href="/gomoku/privacy-policy.html">Gomoku</a></li><li><a href="/island-bridges/privacy-policy.html">Island Bridges</a></li><li><a href="/kakuro/privacy-policy.html">Kakuro</a></li><li><a href="/lamp-logic/privacy-policy.html">Lamp Logic</a></li><li><a href="/logic-puzzles/privacy-policy.html">Logic Puzzles</a></li><li><a href="/loop-line/privacy-policy.html">Loop Line</a></li><li><a href="/mine-logic/privacy-policy.html">Mine Logic</a></li><li><a href="/number-cross/privacy-policy.html">Number Cross</a></li><li><a href="/park-out/privacy-policy.html">Park Out</a></li><li><a href="/pixel-logic/privacy-policy.html">Pixel Logic</a></li><li><a href="/racing-lines/privacy-policy.html">Racing Lines</a></li><li><a href="/sky-hop/privacy-policy.html">Sky Hop</a></li><li><a href="/star-place/privacy-policy.html">Star Place</a></li><li><a href="/sudoku/privacy-policy.html">Sudoku</a></li><li><a href="/tangle-out/privacy-policy.html">Tangle Out</a></li><li><a href="/tents-camp/privacy-policy.html">Tents Camp</a></li><li><a href="/tile-trio/privacy-policy.html">Tile Trio</a></li><li><a href="/water-sort/privacy-policy.html">Water Sort</a></li><li><a href="/xiangqi/privacy-policy.html">Xiangqi</a></li><li><a href="/youtube-tools/privacy-policy.html">NamTH Video Tools</a></li></ul></details></div></section>
 </main>
 
 <footer>
@@ -211,7 +123,8 @@
       <a href="/sudoku/">Sudoku</a>
       <a href="/sky-hop/">Sky Hop</a>
       <a href="/sudoku/how-to-play.html">How to play Sudoku</a>
-      <a href="mailto:hoainamit91@gmail.com">hoainamit91@gmail.com</a>
+      <a href="/sudoku/techniques/">Sudoku techniques</a>
+      <a href="mailto:hoainamit91@gmail.com">Contact</a>
     </nav>
   </div>
 </footer>

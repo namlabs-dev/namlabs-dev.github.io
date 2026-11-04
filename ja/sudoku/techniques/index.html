@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ナンプレの解き方・テクニック集（初級〜上級） | namlabs</title>
+<meta name="description" content="ほとんどのナンプレが解けるテクニックを例題つきで解説：裸のシングル、隠れたシングル、裸のペア、ポインティングペア、X-Wing。">
+<link rel="canonical" href="https://namlabs.dev/ja/sudoku/techniques/">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="ナンプレの解き方・テクニック集（初級〜上級） | namlabs">
+<meta property="og:description" content="ほとんどのナンプレが解けるテクニックを例題つきで解説：裸のシングル、隠れたシングル、裸のペア、ポインティングペア、X-Wing。">
+<meta property="og:url" content="https://namlabs.dev/ja/sudoku/techniques/">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "ナンプレの解き方・テクニック集",
+      "description": "ほとんどのナンプレが解けるテクニックを例題つきで解説：裸のシングル、隠れたシングル、裸のペア、ポインティングペア、X-Wing。",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "ja",
+      "mainEntityOfPage": "https://namlabs.dev/ja/sudoku/techniques/",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/ja/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/ja/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ナンプレの解き方",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/ja/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="メニュー">
+      <a href="/ja/#games">ゲーム</a>
+      <a class="hide-sm" href="/ja/sudoku/techniques/">ナンプレ攻略</a>
+      <span class="langs"><a href="/sudoku/techniques/" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/" hreflang="ja" lang="ja" aria-current="page" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="パンくずリスト"><a href="/ja/">namlabs</a> › <a href="/ja/sudoku/">Sudoku</a> › <span>ナンプレの解き方</span></nav>
+    <h1 class="rise">ナンプレの解き方・テクニック集</h1>
+    <p class="lead rise d1">ナンプレはどの問題も論理だけで解けます。この5つのテクニックを順に覚えれば、はじめてのやさしい問題からエキスパートの盤面まで解けるようになります。</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<p>各ガイドでは実際の盤面でひとつの手を紹介します。マスは行と列で呼びます。<strong>R5C5</strong> は左上から数えて5行目・5列目のマスです。図の色付きの部分は注目するハウス、枠で囲んだマスはその手で使うマス、小さな数字は候補数字です。斜線で消された候補は、その手で除外できる候補です。</p>
+<p>ルールがはじめての方は、先に<a href="/ja/sudoku/how-to-play.html">ナンプレの遊び方</a>をどうぞ。</p><h2>テクニック一覧</h2><div class="techs"><a class="tech" href="/ja/sudoku/techniques/naked-single.html"><span class="lvl lvl-easy">初級</span><h3>裸のシングル</h3><p>関係マスに8種類の数字がそろったマス。</p></a><a class="tech" href="/ja/sudoku/techniques/hidden-single.html"><span class="lvl lvl-easy">初級</span><h3>隠れたシングル</h3><p>行・列・ブロックの中で1マスにしか入らない数字。</p></a><a class="tech" href="/ja/sudoku/techniques/naked-pairs.html"><span class="lvl lvl-medium">中級</span><h3>裸のペア</h3><p>2マスに同じ2つの候補。ハウスのほかのマスから消せます。</p></a><a class="tech" href="/ja/sudoku/techniques/pointing-pairs.html"><span class="lvl lvl-medium">中級</span><h3>ポインティングペア</h3><p>ブロック内の候補が一直線に並んだら、その線から消せる。</p></a><a class="tech" href="/ja/sudoku/techniques/x-wing.html"><span class="lvl lvl-hard">上級</span><h3>X-Wing</h3><p>2行・2列・1つの数字。長方形で2つの列から候補を消す。</p></a></div>
+
+
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>スマホで練習しよう</h2><p>無料アプリ「Sudoku」のヒントは、いま使えるテクニックをマスを光らせて教えてくれます。オフラインでも遊べます。</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=ja"><svg><use href="#play"/></svg><span><small>入手する</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/ja/sudoku/">Sudoku</a>
+      <a href="/ja/sky-hop/">Sky Hop</a>
+      <a href="/ja/sudoku/how-to-play.html">ナンプレの遊び方</a>
+      <a href="/ja/sudoku/techniques/">ナンプレの解き方</a>
+      <a href="mailto:hoainamit91@gmail.com">お問い合わせ</a>
+      <a href="/sudoku/privacy-policy.html">プライバシーポリシー</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

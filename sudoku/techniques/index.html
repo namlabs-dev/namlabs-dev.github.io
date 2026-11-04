@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sudoku Solving Techniques, From Beginner to Advanced | namlabs</title>
+<meta name="description" content="Learn the Sudoku techniques that solve almost every puzzle: naked and hidden singles, naked pairs, pointing pairs and X-Wing, each with a worked example.">
+<link rel="canonical" href="https://namlabs.dev/sudoku/techniques/">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Sudoku Solving Techniques, From Beginner to Advanced | namlabs">
+<meta property="og:description" content="Learn the Sudoku techniques that solve almost every puzzle: naked and hidden singles, naked pairs, pointing pairs and X-Wing, each with a worked example.">
+<meta property="og:url" content="https://namlabs.dev/sudoku/techniques/">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Sudoku solving techniques",
+      "description": "Learn the Sudoku techniques that solve almost every puzzle: naked and hidden singles, naked pairs, pointing pairs and X-Wing, each with a worked example.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://namlabs.dev/sudoku/techniques/",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sudoku techniques",
+          "item": "https://namlabs.dev/sudoku/techniques/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/#games">Games</a>
+      <a class="hide-sm" href="/sudoku/techniques/">Sudoku guide</a>
+      <span class="langs"><a href="/sudoku/techniques/" hreflang="en" lang="en" aria-current="page" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">namlabs</a> › <a href="/sudoku/">Sudoku</a> › <span>Sudoku techniques</span></nav>
+    <h1 class="rise">Sudoku solving techniques</h1>
+    <p class="lead rise d1">Every Sudoku can be solved by logic. These five techniques, learned in this order, take you from your first easy puzzle to expert grids.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<p>Each guide shows one move on a real grid. We name cells by row and column: <strong>R5C5</strong> is row 5, column 5, counting from the top left. In the diagrams, the shaded area is the house we are looking at, the ringed cells are the ones the move is about, and the small digits are candidates. A crossed-out candidate is one the move removes.</p>
+<p>If the rules are new to you, read <a href="/sudoku/how-to-play.html">how to play Sudoku</a> first.</p><h2>All techniques</h2><div class="techs"><a class="tech" href="/sudoku/techniques/naked-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Naked single</h3><p>A cell whose peers already use eight different digits.</p></a><a class="tech" href="/sudoku/techniques/hidden-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Hidden single</h3><p>A digit that fits in only one cell of a row, column or box.</p></a><a class="tech" href="/sudoku/techniques/naked-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Naked pairs</h3><p>Two cells, two candidates: clear them from the rest of the house.</p></a><a class="tech" href="/sudoku/techniques/pointing-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Pointing pairs</h3><p>A box's only spots for a digit point along one row or column.</p></a><a class="tech" href="/sudoku/techniques/x-wing.html"><span class="lvl lvl-hard">Advanced</span><h3>X-Wing</h3><p>Two rows, two columns, one digit: a rectangle that clears columns.</p></a></div>
+
+
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Practise on your phone</h2><p>Our free Sudoku app has hints that point out the technique you can use next, with the cells highlighted. It plays offline.</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><svg><use href="#play"/></svg><span><small>Get it on</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/sudoku/">Sudoku</a>
+      <a href="/sky-hop/">Sky Hop</a>
+      <a href="/sudoku/how-to-play.html">How to play Sudoku</a>
+      <a href="/sudoku/techniques/">Sudoku techniques</a>
+      <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a href="/sudoku/privacy-policy.html">Privacy policy</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

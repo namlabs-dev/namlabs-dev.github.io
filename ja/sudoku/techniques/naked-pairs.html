@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>裸のペア（Naked Pair）：ナンプレの候補を減らすテクニック | namlabs</title>
+<meta name="description" content="裸のペアは、同じハウスの2マスが同じ2つの候補だけを持つ形。候補を消して次の手を見つける方法を例題で解説します。">
+<link rel="canonical" href="https://namlabs.dev/ja/sudoku/techniques/naked-pairs.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/naked-pairs.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/naked-pairs.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/naked-pairs.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/naked-pairs.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="裸のペア（Naked Pair）：ナンプレの候補を減らすテクニック | namlabs">
+<meta property="og:description" content="裸のペアは、同じハウスの2マスが同じ2つの候補だけを持つ形。候補を消して次の手を見つける方法を例題で解説します。">
+<meta property="og:url" content="https://namlabs.dev/ja/sudoku/techniques/naked-pairs.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "裸のペア（Naked Pair）",
+      "description": "裸のペアは、同じハウスの2マスが同じ2つの候補だけを持つ形。候補を消して次の手を見つける方法を例題で解説します。",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "ja",
+      "mainEntityOfPage": "https://namlabs.dev/ja/sudoku/techniques/naked-pairs.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/ja/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/ja/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ナンプレの解き方",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "裸のペア",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/naked-pairs.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/ja/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="メニュー">
+      <a href="/ja/#games">ゲーム</a>
+      <a class="hide-sm" href="/ja/sudoku/techniques/">ナンプレ攻略</a>
+      <span class="langs"><a href="/sudoku/techniques/naked-pairs.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/naked-pairs.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/naked-pairs.html" hreflang="ja" lang="ja" aria-current="page" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="パンくずリスト"><a href="/ja/">namlabs</a> › <a href="/ja/sudoku/">Sudoku</a> › <a href="/ja/sudoku/techniques/">ナンプレの解き方</a> › <span>裸のペア</span></nav>
+    <h1 class="rise">裸のペア（Naked Pair）</h1>
+    <p class="lead rise d1">行・列・ブロックの2マスが同じ2つの候補だけを持っていたら、その2つの数字は売約済み。ハウスのほかのマスからは消せます。</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>裸のペアとは</h2>
+<p>同じハウスの2マスが、どちらも3か8にしかならないとします。片方が3、もう片方が8。どちらがどちらかはまだわかりませんが、いずれにしてもハウスのほかのマスは3にも8にもなれません。この2つの候補をハウスのほかのマスから消すと、シングルが現れることがよくあります。</p>
+
+<h2>例題</h2>
+<figure class="fig"><div class="board" role="img" aria-label="ナンプレの盤面。1行目の R1C1 と R1C2 は3か8にしかならないので、R1C5 と R1C7 から3と8を消します。"><div class="area key"><span class="cands"><i></i><i></i><i class="k">3</i><i></i><i></i><i></i><i></i><i class="k">8</i><i></i></span></div><div class="area key"><span class="cands"><i></i><i></i><i class="k">3</i><i></i><i></i><i></i><i></i><i class="k">8</i><i></i></span></div><div class="area br">1</div><div class="area">2</div><div class="area"><span class="cands"><i></i><i></i><i class="x">3</i><i></i><i></i><i>6</i><i></i><i class="x">8</i><i></i></span></div><div class="area br">4</div><div class="area"><span class="cands"><i></i><i></i><i class="x">3</i><i></i><i></i><i>6</i><i></i><i class="x">8</i><i>9</i></span></div><div class="area">5</div><div class="area">7</div><div>6</div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb">9</div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb">9</div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>R1C1 と R1C2 が3と8を持つので、1行目のほかのマスには入らない。</figcaption></figure>
+<p>1行目に足りないのは3、6、8、9です。R1C1 と R1C2 はどちらも R2C1 の6と R3C2 の9が見えるので、入るのは <strong>3か8</strong> だけ。これが裸のペアです。</p>
+<p>つまり1行目のほかの空きマスから3と8を消せます。R1C5 は {3, 6, 8} から <strong>6</strong> だけになり、裸のシングルに。R1C7 は {3, 6, 8, 9} から {6, 9} になり、R1C5 が埋まれば9に決まります。</p>
+
+<h2>裸のペアの見つけ方</h2>
+<ol>
+<li>空きが4〜5マスのハウスに候補をメモします。</li>
+<li>候補がちょうど2つで、しかも同じ2つの数字のマスを2つ探します。</li>
+<li>その2つの数字を、ハウスのほかのマスから消します。</li>
+<li>ペアが同じブロックにもあれば、ブロックのほかのマスからも消せます。</li>
+</ol>
+
+<h2>裸のトリプル</h2>
+<p>3マスと3つの数字でも同じ考え方が使えます。ハウスの3マスの候補が {2, 5, 7} の中にしかなければ、それぞれのマスが {2, 5}、{5, 7}、{2, 7} のように2つしか持っていなくても、その3つの数字はこの3マスに入ります。</p>
+
+<div class="note"><strong>コツ：</strong>裸のペアは、メモが完全で最新のときにしか見えません。候補の書き忘れがあると偽のペアができるので、消す前に確かめましょう。</div>
+
+<h2>どんなときに使う？</h2>
+<p>裸のペアは<a href="/ja/sudoku/techniques/naked-single.html">シングル</a>の次に覚える、メモが必要な最初のテクニックです。次は、ハウスをまたいで候補を消す<a href="/ja/sudoku/techniques/pointing-pairs.html">ポインティングペア</a>を覚えましょう。</p>
+
+<nav class="pager"><a class="prev" href="/ja/sudoku/techniques/hidden-single.html"><small>前へ</small>隠れたシングル</a><a class="next" href="/ja/sudoku/techniques/pointing-pairs.html"><small>次へ</small>ポインティングペア</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>スマホで練習しよう</h2><p>無料アプリ「Sudoku」のヒントは、いま使えるテクニックをマスを光らせて教えてくれます。オフラインでも遊べます。</p>
+  <div class="btn-row"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=ja"><svg><use href="#play"/></svg><span><small>入手する</small>Google Play</span></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/ja/sudoku/">Sudoku</a>
+      <a href="/ja/sky-hop/">Sky Hop</a>
+      <a href="/ja/sudoku/how-to-play.html">ナンプレの遊び方</a>
+      <a href="/ja/sudoku/techniques/">ナンプレの解き方</a>
+      <a href="mailto:hoainamit91@gmail.com">お問い合わせ</a>
+      <a href="/sudoku/privacy-policy.html">プライバシーポリシー</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
