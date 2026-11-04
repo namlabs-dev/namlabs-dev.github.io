@@ -336,3 +336,12 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 .cand1.k { color: var(--brand); }
 .cand1.x { color: #e11d48; text-decoration: line-through 2.5px; }
 @media (prefers-color-scheme: dark) { .cand1.x { color: #fb7185; } }
+
+/* Store game pages */
+.checks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.checks li { position: relative; padding: 16px 18px 16px 46px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+.checks li::before { content: "✓"; position: absolute; left: 18px; top: 15px; color: #10b981; font-weight: 800; }
+.sec-head p + p { margin-top: 8px; }
+.btn-soon { cursor: default; opacity: .85; }
+.btn-soon:hover { transform: none; border-color: var(--line); }
+.game-actions .btn-ghost:only-child { flex: 1; justify-content: center; }

@@ -2,8 +2,10 @@
 
     python3 _src/build.py
 
-Writes the home page, the Sudoku and Sky Hop pages, the Sudoku guide and the
-technique articles for every language, then refreshes sitemap.xml. The
+Writes the home page, the Sudoku and Sky Hop pages, a page for each game in
+stores.GAMES (text read from the game repo's Play listing; set NAMLABS_REPOS if
+the repos aren't in /home/namth/Development), the Sudoku guide and the technique
+articles for every language, then refreshes sitemap.xml. The
 privacy policies and other hand-written pages are left alone.
 """
 import datetime
@@ -15,6 +17,7 @@ from diagrams import DIAGRAMS
 import en
 import ja
 import vi
+from stores import GAMES, listing
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://namlabs.dev'
@@ -191,17 +194,18 @@ POLICIES = [('block-puzzle', 'Block Puzzle'), ('bunny-steps', 'Bunny Steps'), ('
 def game_card(lang, slug, app, name, colors, c, soon=False):
     t = TEXT[lang]
     art = ''.join(f'<img src="{shot(slug, lang, n)}" alt="" loading="lazy" width="540" height="960">' for n in (2, 1, 3))
-    actions = '' if soon else (
-        f'<div class="game-actions"><a class="btn btn-play" href="{play(app, lang)}"><svg><use href="#play"/></svg>'
-        f'Google Play</a><a class="btn btn-ghost" href="{href(lang, slug + "/")}">{t["details"]}</a></div>')
+    store = '' if soon else (f'<a class="btn btn-play" href="{play(app, lang)}"><svg><use href="#play"/></svg>'
+                             'Google Play</a>')
+    actions = f'<div class="game-actions">{store}<a class="btn btn-ghost" href="{href(lang, slug + "/")}">{t["details"]}</a></div>'
     badge = f'<span class="badge-soon">{t["soon"]}</span>' if soon else ''
     tags = ''.join(f'<span class="tag">{x}</span>' for x in c['tags'])
+    tags = f'<div class="tags">{tags}</div>' if tags else ''
     return f'''<article class="game" style="--c1:{colors[0]};--c2:{colors[1]}">{badge}
   <div class="game-art" aria-hidden="true">{art}</div>
   <div class="game-body">
     <div class="game-title"><img src="/img/{slug}/icon-128.webp" alt="{t["icon_alt"].format(name)}" width="60" height="60"><div><h3>{name}</h3><p>{c["sub"]}</p></div></div>
     <p>{c["p"]}</p>
-    <div class="tags">{tags}</div>
+    {tags}
     {actions}
   </div>
 </article>'''
@@ -211,7 +215,10 @@ def home(lang):
     t, h = TEXT[lang], TEXT[lang]['home']
     cards = (game_card(lang, 'sudoku', 'sudoku', 'Sudoku', ('#8a2be2', '#6366f1'), h['sudoku'])
              + game_card(lang, 'sky-hop', 'sky_hop', 'Sky Hop', ('#2e2a84', '#c2477a'), h['sky_hop'])
-             + game_card(lang, 'logic-puzzles', '', 'Logic Puzzles', ('#f97316', '#ef4444'), h['logic'], soon=True))
+             + game_card(lang, 'logic-puzzles', '', 'Logic Puzzles', ('#f97316', '#ef4444'), h['logic'], soon=True)
+             + ''.join(game_card(lang, slug, app, name, colors,
+                                 {'sub': t['game_meta'], 'p': esc(listing(app, lang)['short']), 'tags': []}, soon=not live)
+                       for slug, app, name, colors, live in GAMES if slug != 'logic-puzzles'))
     policies = ''.join(f'<li><a href="/{s}/privacy-policy.html">{n}</a></li>' for s, n in POLICIES)
     body = f'''<section class="hero"><div class="wrap">
   <div>
@@ -315,6 +322,61 @@ def sky_hop(lang):
          data=app_ld(lang, 'sky-hop', 'sky_hop', 'Sky Hop', 'Arcade', g['desc']))
 
 
+def soon_btn(t):
+    return f'<span class="btn btn-ghost btn-soon">{t["soon_btn"]}</span>'
+
+
+def listing_section(i, head, paras, bullets):
+    """One heading of a Play description: rules become numbered steps, "Name — what it is"
+    bullets become tiles and anything else a ticked list."""
+    lead = ''.join(f'<p>{p}</p>' for p in paras)
+    if bullets and all('—' in x for x in bullets):
+        inner = '<div class="tiles">' + ''.join(
+            '<div class="tile"><h3>{}</h3><p>{}</p></div>'.format(*re.split(r'\s*—\s*', x, maxsplit=1))
+            for x in bullets) + '</div>'
+    elif bullets and i == 0:
+        inner = '<div class="steps">' + ''.join(f'<div class="step"><p>{x}</p></div>' for x in bullets) + '</div>'
+    elif bullets:
+        inner = '<ul class="checks">' + ''.join(f'<li>{x}</li>' for x in bullets) + '</ul>'
+    else:
+        inner = ''
+    return f'<section><div class="wrap"><div class="sec-head"><h2>{head}</h2>{lead}</div>{inner}</div></section>'
+
+
+def store_game(lang, slug, app, name, colors, live):
+    """A game page made from the game's Play listing in [lang]."""
+    t, raw = TEXT[lang], listing(app, lang)
+    g = {k: esc(raw[k]) for k in ('title', 'short', 'outro')}
+    intro = [esc(p) for p in raw['intro']]
+    button = btn_play(app, lang, t) if live else soon_btn(t)
+    more = ''.join(f'<p class="lead rise d2">{p}</p>' for p in intro[1:])
+    n_shots = len(list((ROOT / 'img' / slug / ('' if lang == 'en' else lang)).glob('shot-*.webp')))
+    alts = [t['shot_alt'].format(name, i) for i in range(1, n_shots + 1)]
+    body = '\n'.join([
+        f'''<section class="hero"><div class="wrap">
+  <div>
+    <div class="app-head rise"><img src="/img/{slug}/icon-256.webp" alt="{t["icon_alt"].format(name)}" width="84" height="84"><div class="meta"><b>namlabs</b><br>{t["game_meta"]}</div></div>
+    <h1 class="rise d1">{g["title"]}</h1>
+    <p class="lead rise d2">{intro[0]}</p>{more}
+    <div class="btn-row rise d2">{button}</div>
+  </div>
+  {fan(lang, [(slug, n) for n in (2, 1, 3)])}
+</div></section>''',
+        section(t['see_it'], shots(slug, lang, alts), t['swipe']),
+        *(listing_section(i, esc(h), [esc(p) for p in ps], [esc(x) for x in bs])
+          for i, (h, ps, bs) in enumerate(raw['sections'])),
+        f'''<section><div class="wrap"><div class="cta">
+  <img class="app-icon" src="/img/{slug}/icon-256.webp" alt="" width="76" height="76">
+  <h2>{name}</h2><p>{g["outro"] if live and g["outro"] else g["short"]}</p>
+  <div class="btn-row">{button}</div>
+</div></div></section>'''])
+    data = app_ld(lang, slug, app, name, 'Puzzle', raw['short'])
+    if not live:
+        del data['installUrl']
+    page(lang, slug + '/', title=t['game_title'].format(raw['title']), desc=raw['short'], body=body, data=data,
+         style=f'--game:{colors[0]};--game-2:{colors[1]}', policy=slug, preload=shot(slug, lang, 1))
+
+
 # ── Guides ────────────────────────────────────────────────────────────────
 
 def figures(lang, html):
@@ -411,11 +473,14 @@ def sitemap():
                     + '</urlset>\n', encoding='utf-8')
 
 
-for lang in TEXT:
-    home(lang)
-    sudoku(lang)
-    sky_hop(lang)
-    how_to_play(lang)
-    techniques(lang)
-sitemap()
-print(f'{len(PAGES)} pages')
+if __name__ == '__main__':
+    for lang in TEXT:
+        home(lang)
+        sudoku(lang)
+        sky_hop(lang)
+        for game in GAMES:
+            store_game(lang, *game)
+        how_to_play(lang)
+        techniques(lang)
+    sitemap()
+    print(f'{len(PAGES)} pages')
