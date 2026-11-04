@@ -16,6 +16,8 @@ T = {
     'game_meta': 'Puzzle · Free · Offline',
     'soon_btn': 'Coming soon to Google Play',
     'shot_alt': '{} screenshot {}',
+    'gp_badge_alt': 'Get it on Google Play',
+    'gp_tm': 'Google Play and the Google Play logo are trademarks of Google LLC.',
     'privacy_policy': 'Privacy policy',
     'all_techniques': 'All techniques',
     'privacy_policies': 'Privacy policies',

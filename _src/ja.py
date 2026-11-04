@@ -17,6 +17,8 @@ T = {
     'game_meta': 'パズル · 無料 · オフライン',
     'soon_btn': 'Google Play で近日公開',
     'shot_alt': '{} のスクリーンショット {}',
+    'gp_badge_alt': 'Google Play で手に入れよう',
+    'gp_tm': 'Google Play および Google Play ロゴは Google LLC の商標です。',
     'privacy_policy': 'プライバシーポリシー',
     'all_techniques': 'テクニック一覧',
     'privacy_policies': 'プライバシーポリシー',

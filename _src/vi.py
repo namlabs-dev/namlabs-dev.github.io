@@ -16,6 +16,8 @@ T = {
     'game_meta': 'Giải đố · Miễn phí · Offline',
     'soon_btn': 'Sắp có trên Google Play',
     'shot_alt': 'Ảnh màn hình {} {}',
+    'gp_badge_alt': 'Tải nội dung trên Google Play',
+    'gp_tm': 'Google Play và biểu trưng Google Play là thương hiệu của Google LLC.',
     'privacy_policy': 'Chính sách quyền riêng tư',
     'all_techniques': 'Tất cả kỹ thuật',
     'privacy_policies': 'Chính sách quyền riêng tư',

@@ -60,9 +60,16 @@ def ld(data):
             + '\n</script>')
 
 
-def btn_play(app, lang, t, small=None):
-    return (f'<a class="btn btn-play" href="{play(app, lang)}"><svg><use href="#play"/></svg>'
-            f'<span><small>{small or t["get_on"]}</small>Google Play</span></a>')
+def play_badge(lang):
+    """Google's own localized "Get it on Google Play" badge, used as their guidelines ask."""
+    code = {'en': 'en_us/badges/static/images/badges/en'}.get(lang, f'{lang}/badges/static/images/badges/{lang}')
+    return f'https://play.google.com/intl/{code}_badge_web_generic.png'
+
+
+def btn_play(app, lang, t, cls='play-badge'):
+    # en's PNG has transparent padding on every side; vi and ja only above and below.
+    return (f'<a class="{cls} {"pad" if lang == "en" else "tight"}" href="{play(app, lang)}"><img src="{play_badge(lang)}" '
+            f'alt="{t["gp_badge_alt"]}" width="646" height="250"></a>')
 
 
 def page(lang, path, *, title, desc, body, data, og='website', style='', preload=None, policy=None):
@@ -101,8 +108,9 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
 <meta name="twitter:card" content="summary_large_image">
 {ld(data)}
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://play.google.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800{"&family=M+PLUS+Rounded+1c:wght@400;700;800" if lang == "ja" else ""}&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 {pre}</head>
 <body{body_attr}>
@@ -132,6 +140,7 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
       <a href="{href(lang, "sudoku/techniques/")}">{t["techniques"]}</a>
       <a href="mailto:hoainamit91@gmail.com">{t["contact"]}</a>{policy_link}
     </nav>
+    <small class="tm">{t["gp_tm"]}</small>
   </div>
 </footer>
 </body>
@@ -193,17 +202,16 @@ POLICIES = [('block-puzzle', 'Block Puzzle'), ('bunny-steps', 'Bunny Steps'), ('
 
 def game_card(lang, slug, app, name, colors, c, soon=False):
     t = TEXT[lang]
-    art = ''.join(f'<img src="{shot(slug, lang, n)}" alt="" loading="lazy" width="540" height="960">' for n in (2, 1, 3))
-    store = '' if soon else (f'<a class="btn btn-play" href="{play(app, lang)}"><svg><use href="#play"/></svg>'
-                             'Google Play</a>')
+    art = ''.join(f'<img src="{shot(slug, lang, n)}" alt="" loading="lazy" width="540" height="960">' for n in (1, 2, 3))
+    store = '' if soon else btn_play(app, lang, t, 'play-badge sm')
     actions = f'<div class="game-actions">{store}<a class="btn btn-ghost" href="{href(lang, slug + "/")}">{t["details"]}</a></div>'
     badge = f'<span class="badge-soon">{t["soon"]}</span>' if soon else ''
     tags = ''.join(f'<span class="tag">{x}</span>' for x in c['tags'])
     tags = f'<div class="tags">{tags}</div>' if tags else ''
-    return f'''<article class="game" style="--c1:{colors[0]};--c2:{colors[1]}">{badge}
+    return f'''<article class="game" style="--c1:{colors[0]};--c2:{colors[1]}">
   <div class="game-art" aria-hidden="true">{art}</div>
   <div class="game-body">
-    <div class="game-title"><img src="/img/{slug}/icon-128.webp" alt="{t["icon_alt"].format(name)}" width="60" height="60"><div><h3>{name}</h3><p>{c["sub"]}</p></div></div>
+    <div class="game-title"><img src="/img/{slug}/icon-128.webp" alt="{t["icon_alt"].format(name)}" width="60" height="60"><div><div class="name-row"><h3>{name}</h3>{badge}</div><p>{c["sub"]}</p></div></div>
     <p>{c["p"]}</p>
     {tags}
     {actions}
