@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.namlabs.dev" }],
+      "destination": "https://namlabs.dev/:path*",
+      "permanent": true
+    }
+  ]
+}

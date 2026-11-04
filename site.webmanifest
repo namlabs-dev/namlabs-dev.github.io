@@ -1,0 +1,11 @@
+{
+  "name": "namlabs",
+  "short_name": "namlabs",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#7c3aed",
+  "background_color": "#f8f7fc",
+  "display": "browser"
+}
