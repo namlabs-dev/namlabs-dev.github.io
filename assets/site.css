@@ -355,3 +355,86 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 .btn-soon { cursor: default; opacity: .85; }
 .btn-soon:hover { transform: none; border-color: var(--line); }
 .game-actions .btn-ghost:only-child { flex: 1; justify-content: center; }
+
+/* ── Motion (assets/fx.js adds .fx; nothing here runs for reduced motion or print) ── */
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* Hero glow drifts; puzzle bits float up behind the text. */
+  .hero::before { animation: drift 16s ease-in-out infinite alternate; }
+  @keyframes drift {
+    50% { transform: translate3d(3%, 2%, 0) scale(1.06); }
+    to { transform: translate3d(-3%, 4%, 0) scale(1.02); }
+  }
+  .bits { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+  .bits i {
+    position: absolute; width: var(--s); height: var(--s); opacity: .4;
+    animation: bit var(--t) ease-in-out infinite;
+  }
+  .bits .sq { border-radius: 4px; background: var(--game); transform: rotate(18deg); }
+  .bits .dot { border-radius: 50%; background: var(--accent); }
+  .bits .ring { border-radius: 50%; border: 3px solid var(--game-2); }
+  .bits .plus { background: linear-gradient(var(--game) 0 0) center / 100% 30% no-repeat, linear-gradient(var(--game) 0 0) center / 30% 100% no-repeat; }
+  .bits .alt { background-color: var(--game-2); opacity: .28; }
+  .bits .plus.alt, .bits .ring.alt { background-color: transparent; }
+  @keyframes bit {
+    0%, 100% { translate: 0 0; rotate: 0deg; }
+    50% { translate: 0 -26px; rotate: 40deg; }
+  }
+
+  /* Headline gradient shimmers; the "free on Play" dot pulses. */
+  .grad { background-size: 200% 100%; background-position: 100% 0; animation: shimmer 3s ease-in-out 2 alternate; }
+  @keyframes shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
+  .eyebrow i { animation: pulse 2s ease-out 4; }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 4px rgba(16, 185, 129, .18), 0 0 0 0 rgba(16, 185, 129, .5); }
+    100% { box-shadow: 0 0 0 4px rgba(16, 185, 129, .18), 0 0 0 12px rgba(16, 185, 129, 0); }
+  }
+
+  /* Screenshots and app icons bob gently. `translate` stacks on each image's own transform. */
+  .fan { translate: 0 var(--py, 0); }
+  .fan img { animation: bob 5s ease-in-out infinite; }
+  .fan img:nth-child(2) { animation-delay: -1.6s; }
+  .fan img:nth-child(3) { animation-delay: -3.2s; }
+  .app-head img, .cta img.app-icon { animation: bob 4s ease-in-out infinite; }
+  @keyframes bob { 50% { translate: 0 -10px; } }
+
+  /* Cards: glow in the game's colours, screenshots fan up on hover. */
+  .game::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c1) 70%, transparent);
+    opacity: 0; transition: opacity .25s ease;
+  }
+  .game:hover::after { opacity: 1; }
+  /* Screenshots run 12px past the art box so lifting them never shows a gap. */
+  .game-art { overflow: hidden; }
+  .game-art img { margin-bottom: -12px; transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+  .game:hover .game-art img { transform: translateY(-6px); }
+  .game:hover .game-art img:nth-child(2) { transform: translateY(-10px); transition-delay: .04s; }
+  .game:hover .game-art img:nth-child(3) { transition-delay: .08s; }
+  .game-title img { transition: transform .3s cubic-bezier(.3, 1.6, .5, 1); }
+  .game:hover .game-title img { transform: rotate(-8deg) scale(1.08); }
+
+  /* Buttons and badges spring a little. */
+  .play-badge { transition: transform .2s cubic-bezier(.3, 1.6, .5, 1), filter .2s ease; }
+  .play-badge:hover { transform: translateY(-2px) scale(1.03); filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .3)); }
+  .btn:active, .play-badge:active { transform: scale(.96); }
+  .btn-soon:active { transform: none; }
+
+  /* The closing band's gradient slowly flows. */
+  .cta { background-size: 200% 200%; }
+  .cta.flowing { animation: flow 10s ease-in-out infinite alternate; }
+  @keyframes flow { to { background-position: 100% 100%; } }
+
+  .tile .ico { transition: transform .3s cubic-bezier(.3, 1.6, .5, 1); }
+  .tile:hover .ico { transform: rotate(-10deg) scale(1.12); }
+
+  /* Scroll reveal. */
+  .fx .reveal { opacity: 0; transform: translateY(28px) scale(.98); }
+  .fx .reveal.in {
+    opacity: 1; transform: none;
+    transition: opacity .6s ease var(--d, 0s), transform .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0s);
+  }
+  .fx .game.reveal.in .game-art img { animation: pop .6s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--d, 0s) + .15s); }
+  .fx .game.reveal.in .game-art img:nth-child(2) { animation-delay: calc(var(--d, 0s) + .25s); }
+  .fx .game.reveal.in .game-art img:nth-child(3) { animation-delay: calc(var(--d, 0s) + .35s); }
+  @keyframes pop { from { opacity: 0; translate: 0 30px; } }
+}

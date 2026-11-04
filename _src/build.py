@@ -112,6 +112,7 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800{"&family=M+PLUS+Rounded+1c:wght@400;700;800" if lang == "ja" else ""}&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/fx.js" defer></script>
 {pre}</head>
 <body{body_attr}>
 {PLAY_ICON}
