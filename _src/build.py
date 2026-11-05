@@ -94,6 +94,8 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
 {alts}<meta name="robots" content="index, follow">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#7c3aed">
@@ -251,8 +253,10 @@ def home(lang):
 <section><div class="wrap"><details class="more"><summary>{t["privacy_policies"]}</summary><ul class="policies">{policies}</ul></details></div></section>'''
     data = {'@graph': [
         {'@type': 'Organization', '@id': f'{SITE}/#org', 'name': 'namlabs', 'url': f'{SITE}/',
-         'logo': f'{SITE}/icon-512.png', 'email': 'hoainamit91@gmail.com'},
-        {'@type': 'WebSite', '@id': f'{SITE}{href(lang)}#site', 'name': 'namlabs', 'url': SITE + href(lang),
+         'logo': f'{SITE}/icon-512.png', 'email': 'hoainamit91@gmail.com',
+         'sameAs': ['https://play.google.com/store/apps/developer?id=namlabs']},
+        {'@type': 'WebSite', '@id': f'{SITE}{href(lang)}#site', 'name': 'namlabs', 'alternateName': 'namlabs.dev',
+         'url': SITE + href(lang),
          'inLanguage': lang, 'publisher': {'@id': f'{SITE}/#org'}}]}
     page(lang, '', title=h['title'], desc=h['desc'], body=body, data=data, preload=shot('sudoku', lang, 1))
 
