@@ -49,7 +49,7 @@
     '.consent .consent-yes{background:#111;color:#fff;border:0}' +
     '.consent .consent-no{background:var(--bg-2,transparent);color:var(--text,inherit);border:1.5px solid var(--line,#d9e6ea)}' +
     '.consent button:focus-visible{outline:3px solid var(--brand,var(--accent,#7c3aed));outline-offset:3px}' +
-    '@media (prefers-color-scheme:dark){.consent .consent-yes{background:#fff;color:#111}}';
+    '@media (prefers-color-scheme:dark){.consent .consent-yes{background:#fff;color:#111;border:1.5px solid #111}}';
 
   // The banner only appears where consent is needed. The time zone is a cheap
   // stand-in for the visitor's region; outside Europe consent is granted anyway.
