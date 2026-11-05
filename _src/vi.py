@@ -31,6 +31,30 @@ T = {
     'next': 'Bài tiếp',
     'levels': {'easy': 'Cơ bản', 'medium': 'Trung cấp', 'hard': 'Nâng cao'},
 
+    'site_privacy': {
+        'link': 'Quyền riêng tư website',
+        'title': 'Quyền riêng tư của website – namlabs',
+        'h1': 'Quyền riêng tư của website',
+        'lead': 'namlabs.dev thu thập gì khi bạn ghé thăm và cách thay đổi lựa chọn của bạn.',
+        'change': 'Thay đổi lựa chọn cookie',
+        'body': (
+            '<p>Chính sách này chỉ áp dụng cho website namlabs.dev. Mỗi game có chính sách quyền riêng tư riêng, có link trên trang của game đó.</p>'
+            '<h2>Google Analytics</h2>'
+            '<p>Chúng tôi dùng Google Analytics để đếm lượt truy cập, xem trang nào được đọc và nút tải nào được bấm. '
+            'Công cụ này ghi lại các trang bạn mở, trang đã dẫn bạn đến, vị trí ước lượng (quốc gia hoặc thành phố), '
+            'loại thiết bị và trình duyệt. Nó không cho chúng tôi biết bạn là ai, và chúng tôi không bao giờ gửi tên hay email của bạn vào đó.</p>'
+            '<p>Google Analytics đặt cookie (<code>_ga</code>, <code>_ga_*</code>) và Google xử lý dữ liệu theo '
+            '<a href="https://policies.google.com/privacy?hl=vi">chính sách quyền riêng tư</a> của Google. Cookie hết hạn sau 13 tháng; dữ liệu được giữ 14 tháng rồi xóa.</p>'
+            '<h2>Lựa chọn của bạn</h2>'
+            '<p>Khách ở Khu vực Kinh tế Châu Âu, Anh và Thụy Sĩ thường sẽ được hỏi trước (chúng tôi đoán khu vực theo múi giờ của bạn). Khi chưa đồng ý thì không có cookie thống kê nào được đặt, nhưng Google vẫn nhận một tín hiệu không dùng cookie cho biết trang đã được xem. '
+            'Bạn có thể đổi lựa chọn bằng nút bên dưới, chặn cookie trong trình duyệt, hoặc cài '
+            '<a href="https://tools.google.com/dlpage/gaoptout?hl=vi">tiện ích chặn Google Analytics</a>.</p>'
+            '<h2>Không quảng cáo, không tài khoản</h2>'
+            '<p>Website không có quảng cáo, không đăng nhập và không có biểu mẫu. Phông chữ tải từ Google Fonts, huy hiệu tải app từ Google Play.</p>'
+            '<h2>Liên hệ</h2>'
+            '<p>Câu hỏi: <a href="mailto:hoainamit91@gmail.com">hoainamit91@gmail.com</a>.</p>'),
+    },
+
     'home': {
         'title': 'namlabs – Game giải đố & luyện trí não cho Android',
         'desc': 'namlabs làm các game giải đố và luyện trí não đơn giản, chơi offline trên Android, gồm Sudoku và Sky Hop.',

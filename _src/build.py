@@ -115,6 +115,7 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800{"&family=M+PLUS+Rounded+1c:wght@400;700;800" if lang == "ja" else ""}&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/fx.js" defer></script>
+<script src="/assets/consent.js"></script>
 {pre}</head>
 <body{body_attr}>
 {PLAY_ICON}
@@ -141,7 +142,8 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
       <a href="{href(lang, "sky-hop/")}">Sky Hop</a>
       <a href="{href(lang, "sudoku/how-to-play.html")}">{t["how_to_play_sudoku"]}</a>
       <a href="{href(lang, "sudoku/techniques/")}">{t["techniques"]}</a>
-      <a href="mailto:hoainamit91@gmail.com">{t["contact"]}</a>{policy_link}
+      <a href="mailto:hoainamit91@gmail.com">{t["contact"]}</a>
+      <a href="{href(lang, "privacy.html")}">{t["site_privacy"]["link"]}</a>{policy_link}
     </nav>
     <small class="tm">{t["gp_tm"]}</small>
   </div>
@@ -444,6 +446,23 @@ def article(lang, path, crumbs, *, title, h1, desc, lead, body, faq=(), after=''
          style='--game:#8a2be2;--game-2:#6366f1', policy='sudoku')
 
 
+def site_privacy(lang):
+    """What the website itself collects; the apps have their own policies."""
+    p = TEXT[lang]["site_privacy"]
+    body = f'''<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <h1 class="rise">{p["h1"]}</h1>
+    <p class="lead rise d1">{p["lead"]}</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+{p["body"]}
+<p><button type="button" class="btn btn-ghost" id="consent-change">{p["change"]}</button></p>
+</article></div></section>'''
+    page(lang, 'privacy.html', title=p['title'], desc=p['lead'], body=body,
+         data={'@type': 'WebPage', 'name': p['title'], 'url': SITE + href(lang, 'privacy.html'), 'publisher': ORG})
+
+
 def how_to_play(lang):
     t, g = TEXT[lang], TEXT[lang]['howto']
     after = f'<h2>{g["next_h"]}</h2><p>{g["next_p"]}</p>{tech_cards(lang)}'
@@ -496,5 +515,6 @@ if __name__ == '__main__':
             store_game(lang, *game)
         how_to_play(lang)
         techniques(lang)
+        site_privacy(lang)
     sitemap()
     print(f'{len(PAGES)} pages')

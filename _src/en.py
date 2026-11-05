@@ -31,6 +31,30 @@ T = {
     'next': 'Next',
     'levels': {'easy': 'Beginner', 'medium': 'Intermediate', 'hard': 'Advanced'},
 
+    'site_privacy': {
+        'link': 'Website privacy',
+        'title': 'Website privacy – namlabs',
+        'h1': 'Website privacy',
+        'lead': 'What namlabs.dev collects when you visit, and how to change your choice.',
+        'change': 'Change cookie choice',
+        'body': (
+            '<p>This policy covers the namlabs.dev website only. Each game has its own privacy policy, linked from its page.</p>'
+            '<h2>Google Analytics</h2>'
+            '<p>We use Google Analytics to count visits and see which pages are read and which store buttons are clicked. '
+            'It records things like the pages you open, the site that sent you, your rough location (country or city), '
+            'device and browser type. It does not tell us who you are, and we never send your name or email to it.</p>'
+            '<p>Google Analytics sets cookies (<code>_ga</code>, <code>_ga_*</code>) and Google processes the data under its '
+            '<a href="https://policies.google.com/privacy">privacy policy</a>. The cookies expire after 13 months, and the data is kept for 14 months, then deleted.</p>'
+            '<h2>Your choice</h2>'
+            '<p>Visitors in the European Economic Area, the UK and Switzerland are asked first in most cases (we guess your region from your time zone). Until you accept, no analytics '
+            'cookies are set, but Google still receives a cookieless signal that a page was viewed. You can change your answer with the button below, block cookies in your browser, or install the '
+            '<a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out add-on</a>.</p>'
+            '<h2>No ads, no accounts</h2>'
+            '<p>The website shows no ads, has no sign-in and no forms. Fonts load from Google Fonts and store badges from Google Play.</p>'
+            '<h2>Contact</h2>'
+            '<p>Questions: <a href="mailto:hoainamit91@gmail.com">hoainamit91@gmail.com</a>.</p>'),
+    },
+
     'home': {
         'title': 'namlabs – Puzzle & Brain Games for Android',
         'desc': 'namlabs makes simple, offline-friendly puzzle and brain-training games for Android, including Sudoku and Sky Hop.',
