@@ -254,7 +254,8 @@ def home(lang):
     data = {'@graph': [
         {'@type': 'Organization', '@id': f'{SITE}/#org', 'name': 'namlabs', 'url': f'{SITE}/',
          'logo': f'{SITE}/icon-512.png', 'email': 'hoainamit91@gmail.com',
-         'sameAs': ['https://play.google.com/store/apps/developer?id=namlabs']},
+         'sameAs': ['https://play.google.com/store/apps/developer?id=namlabs',
+                    'https://www.youtube.com/@namlabsdev']},
         {'@type': 'WebSite', '@id': f'{SITE}{href(lang)}#site', 'name': 'namlabs', 'alternateName': 'namlabs.dev',
          'url': SITE + href(lang),
          'inLanguage': lang, 'publisher': {'@id': f'{SITE}/#org'}}]}
