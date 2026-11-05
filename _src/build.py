@@ -112,8 +112,8 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#7c3aed">
-<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="{og}">
 <meta property="og:site_name" content="namlabs">
 <meta property="og:locale" content="{t["locale"]}">
@@ -126,9 +126,8 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://play.google.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800{"&family=M+PLUS+Rounded+1c:wght@400;700;800" if lang == "ja" else ""}&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700{"&family=Noto+Sans+JP:wght@400;500;700" if lang == "ja" else ""}&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
-<script src="/assets/fx.js" defer></script>
 <script src="/assets/consent.js"></script>
 {pre}</head>
 <body{body_attr}>
@@ -175,7 +174,7 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
 
 def tiles(items):
     return '<div class="tiles">' + ''.join(
-        f'<div class="tile"><div class="ico">{i}</div><h3>{h}</h3><p>{p}</p></div>' for i, h, p in items) + '</div>'
+        f'<div class="tile"><h3>{h}</h3><p>{p}</p></div>' for _, h, p in items) + '</div>'
 
 
 def steps(items):

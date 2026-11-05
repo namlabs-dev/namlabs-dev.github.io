@@ -41,15 +41,14 @@
   var CSS =
     '.consent{position:fixed;z-index:50;left:16px;right:16px;bottom:max(16px,env(safe-area-inset-bottom));margin:0 auto;max-width:560px;' +
     'display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;padding:16px 18px;box-sizing:border-box;' +
-    'background:var(--card,var(--bg,#fff));color:var(--text,#13232b);border:1px solid var(--line,#d9e6ea);border-radius:18px;' +
+    'background:var(--card,#111118);color:var(--text,#ededf2);border:1px solid var(--line,#22222d);border-radius:14px;' +
     'box-shadow:var(--shadow,0 12px 32px -12px rgba(0,0,0,.35));font:inherit}' +
     '.consent p{flex:1 1 100%;margin:0;font-size:14px;line-height:1.5}' +
-    '.consent a{color:var(--brand,var(--accent,#7c3aed))}' +
-    '.consent button{padding:9px 18px;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;line-height:1.2;cursor:pointer}' +
-    '.consent .consent-yes{background:#111;color:#fff;border:0}' +
-    '.consent .consent-no{background:var(--bg-2,transparent);color:var(--text,inherit);border:1.5px solid var(--line,#d9e6ea)}' +
-    '.consent button:focus-visible{outline:3px solid var(--brand,var(--accent,#7c3aed));outline-offset:3px}' +
-    '@media (prefers-color-scheme:dark){.consent .consent-yes{background:#fff;color:#111;border:1.5px solid #111}}';
+    '.consent a{color:var(--brand,#a78bfa)}' +
+    '.consent button{padding:9px 16px;border-radius:10px;font-family:inherit;font-size:14px;font-weight:600;line-height:1.2;cursor:pointer}' +
+    '.consent .consent-yes{background:#fff;color:#0a0a0f;border:1px solid #fff}' +
+    '.consent .consent-no{background:transparent;color:var(--text,inherit);border:1px solid var(--line-2,var(--line,#2f2f3c))}' +
+    '.consent button:focus-visible{outline:2px solid var(--brand,var(--accent,#a78bfa));outline-offset:3px}';
 
   // The banner only appears where consent is needed. The time zone is a cheap
   // stand-in for the visitor's region; outside Europe consent is granted anyway.
