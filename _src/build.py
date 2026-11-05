@@ -17,7 +17,7 @@ from diagrams import DIAGRAMS
 import en
 import ja
 import vi
-from stores import GAMES, listing
+from stores import GAMES, IOS, IOS_LIVE, listing
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://namlabs.dev'
@@ -70,6 +70,20 @@ def btn_play(app, lang, t, cls='play-badge'):
     # en's PNG has transparent padding on every side; vi and ja only above and below.
     return (f'<a class="{cls} {"pad" if lang == "en" else "tight"}" href="{play(app, lang)}"><img src="{play_badge(lang)}" '
             f'alt="{t["gp_badge_alt"]}" width="646" height="250"></a>')
+
+
+def btn_ios(slug, lang, t, cls='store-badge'):
+    """Apple's own localized "Download on the App Store" badge (img/badges), used unmodified."""
+    return (f'<a class="{cls}" href="https://apps.apple.com/app/id{IOS[slug]}"><img src="/img/badges/app-store-{lang}.svg" '
+            f'alt="{t["as_badge_alt"]}" width="{108 if lang == "ja" else 120}" height="40"></a>')
+
+
+def stores(slug, app, lang, t, play_live=True, small=False):
+    """Store badges for a game: Google Play when it's public there, the App Store once Apple has released it."""
+    out = btn_play(app, lang, t, 'play-badge sm' if small else 'play-badge') if play_live else ''
+    if slug in IOS_LIVE:
+        out += btn_ios(slug, lang, t, 'store-badge sm' if small else 'store-badge')
+    return out
 
 
 def page(lang, path, *, title, desc, body, data, og='website', style='', preload=None, policy=None):
@@ -205,11 +219,14 @@ POLICIES = [('block-puzzle', 'Block Puzzle'), ('bunny-steps', 'Bunny Steps'), ('
             ('water-sort', 'Water Sort'), ('xiangqi', 'Xiangqi'), ('youtube-tools', 'NamTH Video Tools')]
 
 
-def game_card(lang, slug, app, name, colors, c, soon=False):
+def game_card(lang, slug, app, name, colors, c, live=True):
     t = TEXT[lang]
+    store = stores(slug, app, lang, t, live, small=True)
+    soon = not store
     art = ''.join(f'<img src="{shot(slug, lang, n)}" alt="" loading="lazy" width="540" height="960">' for n in (1, 2, 3))
-    store = '' if soon else btn_play(app, lang, t, 'play-badge sm')
-    actions = f'<div class="game-actions">{store}<a class="btn btn-ghost" href="{href(lang, slug + "/")}">{t["details"]}</a></div>'
+    store = f'<div class="game-stores">{store}</div>' if store else ''
+    actions = (f'<div class="game-actions">{store}<a class="btn btn-details" href="{href(lang, slug + "/")}">'
+               f'{t["details"]}<span aria-hidden="true">→</span></a></div>')
     badge = f'<span class="badge-soon">{t["soon"]}</span>' if soon else ''
     tags = ''.join(f'<span class="tag">{x}</span>' for x in c['tags'])
     tags = f'<div class="tags">{tags}</div>' if tags else ''
@@ -228,10 +245,10 @@ def home(lang):
     t, h = TEXT[lang], TEXT[lang]['home']
     cards = (game_card(lang, 'sudoku', 'sudoku', 'Sudoku', ('#8a2be2', '#6366f1'), h['sudoku'])
              + game_card(lang, 'sky-hop', 'sky_hop', 'Sky Hop', ('#2e2a84', '#c2477a'), h['sky_hop'])
-             + game_card(lang, 'logic-puzzles', '', 'Logic Puzzles', ('#f97316', '#ef4444'), h['logic'], soon=True)
              + ''.join(game_card(lang, slug, app, name, colors,
-                                 {'sub': t['game_meta'], 'p': esc(listing(app, lang)['short']), 'tags': []}, soon=not live)
-                       for slug, app, name, colors, live in GAMES if slug != 'logic-puzzles'))
+                                 h['logic'] if slug == 'logic-puzzles' else
+                                 {'sub': t['game_meta'], 'p': esc(listing(app, lang)['short']), 'tags': []}, live)
+                       for slug, app, name, colors, live in GAMES))
     policies = ''.join(f'<li><a href="/{s}/privacy-policy.html">{n}</a></li>' for s, n in POLICIES)
     body = f'''<section class="hero"><div class="wrap">
   <div>
@@ -266,12 +283,15 @@ def home(lang):
 
 # ── Game pages ────────────────────────────────────────────────────────────
 
-def app_ld(lang, slug, app, name, genre, desc):
-    return {'@type': 'MobileApplication', 'name': name, 'operatingSystem': 'Android',
+def app_ld(lang, slug, app, name, genre, desc, play_live=True):
+    installs = ([PLAY + app] if play_live else []) + ([f'https://apps.apple.com/app/id{IOS[slug]}'] if slug in IOS_LIVE else [])
+    data = {'@type': 'MobileApplication', 'name': name, 'operatingSystem': 'Android, iOS' if slug in IOS_LIVE else 'Android',
             'applicationCategory': 'GameApplication', 'genre': genre, 'description': desc,
             'inLanguage': lang, 'url': SITE + href(lang, slug + '/'), 'image': f'{SITE}/img/{slug}/icon-256.webp',
-            'installUrl': PLAY + app, 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD'},
-            'publisher': ORG}
+            'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD'}, 'publisher': ORG}
+    if installs:
+        data['installUrl'] = installs[0] if len(installs) == 1 else installs
+    return data
 
 
 def game_hero(lang, slug, app, name, g, fan_shots, extra_btn=''):
@@ -281,7 +301,7 @@ def game_hero(lang, slug, app, name, g, fan_shots, extra_btn=''):
     <div class="app-head rise"><img src="/img/{slug}/icon-256.webp" alt="{t["icon_alt"].format(name)}" width="84" height="84"><div class="meta"><b>namlabs</b><br>{g["meta"]}</div></div>
     <h1 class="rise d1">{g["h1"]}</h1>
     <p class="lead rise d2">{g["lead"]}</p>
-    <div class="btn-row rise d2">{btn_play(app, lang, t)}{extra_btn}</div>
+    <div class="btn-row rise d2">{stores(slug, app, lang, t)}{extra_btn}</div>
     {facts(g["facts"])}
   </div>
   {fan(lang, [(slug, n) for n in fan_shots])}
@@ -299,7 +319,7 @@ def cta(lang, slug, app, g):
     return f'''<section><div class="wrap"><div class="cta">
   <img class="app-icon" src="/img/{slug}/icon-256.webp" alt="" width="76" height="76">
   <h2>{g["cta_h"]}</h2><p>{g["cta_p"]}</p>
-  <div class="btn-row">{btn_play(app, lang, t)}</div>
+  <div class="btn-row">{stores(slug, app, lang, t)}</div>
 </div></div></section>'''
 
 
@@ -364,7 +384,8 @@ def store_game(lang, slug, app, name, colors, live):
     t, raw = TEXT[lang], listing(app, lang)
     g = {k: esc(raw[k]) for k in ('title', 'short', 'outro')}
     intro = [esc(p) for p in raw['intro']]
-    button = btn_play(app, lang, t) if live else soon_btn(t)
+    button = stores(slug, app, lang, t, live) or soon_btn(t)
+    public = live or slug in IOS_LIVE
     more = ''.join(f'<p class="lead rise d2">{p}</p>' for p in intro[1:])
     n_shots = len(list((ROOT / 'img' / slug / ('' if lang == 'en' else lang)).glob('shot-*.webp')))
     alts = [t['shot_alt'].format(name, i) for i in range(1, n_shots + 1)]
@@ -383,12 +404,10 @@ def store_game(lang, slug, app, name, colors, live):
           for i, (h, ps, bs) in enumerate(raw['sections'])),
         f'''<section><div class="wrap"><div class="cta">
   <img class="app-icon" src="/img/{slug}/icon-256.webp" alt="" width="76" height="76">
-  <h2>{name}</h2><p>{g["outro"] if live and g["outro"] else g["short"]}</p>
+  <h2>{name}</h2><p>{g["outro"] if public and g["outro"] else g["short"]}</p>
   <div class="btn-row">{button}</div>
 </div></div></section>'''])
-    data = app_ld(lang, slug, app, name, 'Puzzle', raw['short'])
-    if not live:
-        del data['installUrl']
+    data = app_ld(lang, slug, app, name, 'Puzzle', raw['short'], play_live=live)
     page(lang, slug + '/', title=t['game_title'].format(raw['title']), desc=raw['short'], body=body, data=data,
          style=f'--game:{colors[0]};--game-2:{colors[1]}', policy=slug, preload=shot(slug, lang, 1))
 

@@ -19,6 +19,20 @@ GAMES = [
     ('tile-trio', 'tile_trio', 'Tile Trio', ('#0e7490', '#f97316'), False),
 ]
 
+# App Store Connect app IDs (apps.apple.com/app/id<ID>), for every game on iOS.
+IOS = {
+    'sudoku': '6830968577',
+    'sky-hop': '6831042919',
+    'logic-puzzles': '6831071671',
+    'water-sort': '6831084908',
+    'park-out': '6831085346',
+    'tangle-out': '6831104151',
+    'tile-trio': '6831104685',
+}
+# Games Apple has approved and released; the App Store badge shows only for these.
+# Run `python3 _src/check_stores.py` to see which games are public on each store.
+IOS_LIVE = set()
+
 
 def _from_md(app, lang):
     """Title, short and full description of one language in store/listing.md."""
