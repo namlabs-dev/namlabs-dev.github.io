@@ -41,7 +41,7 @@
   var CSS =
     '.consent{position:fixed;z-index:50;left:16px;right:16px;bottom:max(16px,env(safe-area-inset-bottom));margin:0 auto;max-width:560px;' +
     'display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;padding:16px 18px;box-sizing:border-box;' +
-    'background:var(--card,#fff);color:var(--text,#13232b);border:1px solid var(--line,#d9e6ea);border-radius:18px;' +
+    'background:var(--card,var(--bg,#fff));color:var(--text,#13232b);border:1px solid var(--line,#d9e6ea);border-radius:18px;' +
     'box-shadow:var(--shadow,0 12px 32px -12px rgba(0,0,0,.35));font:inherit}' +
     '.consent p{flex:1 1 100%;margin:0;font-size:14px;line-height:1.5}' +
     '.consent a{color:var(--brand,var(--accent,#7c3aed))}' +
