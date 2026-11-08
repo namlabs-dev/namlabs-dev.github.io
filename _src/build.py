@@ -155,6 +155,9 @@ def page(lang, path, *, title, desc, body, data, og='website', style='', preload
       <a href="{href(lang, "sky-hop/")}">Sky Hop</a>
       <a href="{href(lang, "sudoku/how-to-play.html")}">{t["how_to_play_sudoku"]}</a>
       <a href="{href(lang, "sudoku/techniques/")}">{t["techniques"]}</a>
+      <a href="https://www.youtube.com/@namlabsdev" rel="me">YouTube</a>
+      <a href="https://www.tiktok.com/@namlabsdev" rel="me">TikTok</a>
+      <a href="https://www.facebook.com/namlabsdev" rel="me">Facebook</a>
       <a href="mailto:hoainamit91@gmail.com">{t["contact"]}</a>
       <a href="{href(lang, "privacy.html")}">{t["site_privacy"]["link"]}</a>{policy_link}
     </nav>
@@ -273,7 +276,9 @@ def home(lang):
         {'@type': 'Organization', '@id': f'{SITE}/#org', 'name': 'namlabs', 'url': f'{SITE}/',
          'logo': f'{SITE}/icon-512.png', 'email': 'hoainamit91@gmail.com',
          'sameAs': ['https://play.google.com/store/apps/developer?id=namlabs',
-                    'https://www.youtube.com/@namlabsdev']},
+                    'https://www.youtube.com/@namlabsdev',
+                    'https://www.tiktok.com/@namlabsdev',
+                    'https://www.facebook.com/namlabsdev']},
         {'@type': 'WebSite', '@id': f'{SITE}{href(lang)}#site', 'name': 'namlabs', 'alternateName': 'namlabs.dev',
          'url': SITE + href(lang),
          'inLanguage': lang, 'publisher': {'@id': f'{SITE}/#org'}}]}
