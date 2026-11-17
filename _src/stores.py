@@ -7,16 +7,16 @@ import os
 import pathlib
 import re
 
-REPOS = pathlib.Path(os.environ.get('NAMLABS_REPOS', '/home/namth/Development'))
+REPOS = pathlib.Path(os.environ.get('NAMLABS_REPOS', '/home/namth/Development/apps'))
 PLAY_LANG = {'en': 'en-US', 'vi': 'vi-VN', 'ja': 'ja-JP'}
 
 # slug, Play package suffix, short name, card colours, released on Play?
 GAMES = [
     ('logic-puzzles', 'logic_puzzles', 'Logic Puzzles', ('#f97316', '#ef4444'), False),
-    ('park-out', 'park_out', 'Park Out', ('#f59e0b', '#475569'), False),
+    ('park-out', 'park_out', 'Night Parking', ('#f59e0b', '#475569'), True),
     ('water-sort', 'water_sort', 'Water Sort', ('#4f46e5', '#14b8a6'), False),
     ('tangle-out', 'tangle_out', 'Tangle Out', ('#ec4899', '#8b5cf6'), False),
-    ('tile-trio', 'tile_trio', 'Tile Trio', ('#0e7490', '#f97316'), False),
+    ('tile-trio', 'tile_trio', 'Word Trio', ('#0e7490', '#f97316'), True),
 ]
 
 # App Store Connect app IDs (apps.apple.com/app/id<ID>), for every game on iOS.
@@ -39,7 +39,7 @@ def _from_md(app, lang):
     md = (REPOS / app / 'store/listing.md').read_text(encoding='utf-8')
     part = re.split(r'^## ', md, flags=re.M)
     block = next(p for p in part if f'({PLAY_LANG[lang]})' in p.splitlines()[0])
-    fields = re.findall(r'^\*\*(.+?)\*\*\n(.*?)(?=^\*\*|\Z)', block, flags=re.M | re.S)
+    fields = re.findall(r'^\*\*(.+?)\*\*[^\n]*\n(.*?)(?=^\*\*|\Z)', block, flags=re.M | re.S)
     title, short, full = (v.strip() for _, v in fields[:3])
     return title, short, full
 

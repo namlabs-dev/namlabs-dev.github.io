@@ -16,6 +16,7 @@ import re
 from diagrams import DIAGRAMS
 import en
 import ja
+import tech_more
 import vi
 from stores import GAMES, IOS, IOS_LIVE, listing
 
@@ -23,8 +24,10 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://namlabs.dev'
 TODAY = datetime.date.today().isoformat()
 TEXT = {'en': en.T, 'vi': vi.T, 'ja': ja.T}
+tech_more.merge(TEXT)
 PLAY = 'https://play.google.com/store/apps/details?id=com.namlabs.'
-TECHS = ('naked-single', 'hidden-single', 'naked-pairs', 'pointing-pairs', 'x-wing')
+TECHS = ('naked-single', 'hidden-single', 'naked-pairs', 'pointing-pairs', 'box-line-reduction',
+         'hidden-pair', 'naked-triple', 'x-wing')
 ORG = {'@id': f'{SITE}/#org', '@type': 'Organization', 'name': 'namlabs', 'url': f'{SITE}/'}
 PLAY_ICON = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" '
              'viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 '
@@ -215,9 +218,9 @@ POLICIES = [('block-puzzle', 'Block Puzzle'), ('bunny-steps', 'Bunny Steps'), ('
             ('color-link', 'Color Link'), ('gomoku', 'Gomoku'), ('island-bridges', 'Island Bridges'),
             ('kakuro', 'Kakuro'), ('lamp-logic', 'Lamp Logic'), ('logic-puzzles', 'Logic Puzzles'),
             ('loop-line', 'Loop Line'), ('mine-logic', 'Mine Logic'), ('number-cross', 'Number Cross'),
-            ('park-out', 'Park Out'), ('pixel-logic', 'Pixel Logic'), ('racing-lines', 'Racing Lines'),
+            ('park-out', 'Night Parking'), ('pixel-logic', 'Pixel Logic'), ('racing-lines', 'Racing Lines'),
             ('sky-hop', 'Sky Hop'), ('star-place', 'Star Place'), ('sudoku', 'Sudoku'),
-            ('tangle-out', 'Tangle Out'), ('tents-camp', 'Tents Camp'), ('tile-trio', 'Tile Trio'),
+            ('tangle-out', 'Tangle Out'), ('tents-camp', 'Tents Camp'), ('tile-trio', 'Word Trio'),
             ('water-sort', 'Water Sort'), ('xiangqi', 'Xiangqi'), ('youtube-tools', 'NamTH Video Tools')]
 
 
