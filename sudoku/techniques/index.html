@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sudoku Solving Techniques, From Beginner to Advanced | namlabs</title>
-<meta name="description" content="Learn the Sudoku techniques that solve almost every puzzle: naked and hidden singles, naked pairs, pointing pairs and X-Wing, each with a worked example.">
+<meta name="description" content="Learn the Sudoku techniques that solve almost every puzzle: singles, naked and hidden pairs, pointing pairs, box-line reduction, naked triples and X-Wing, each with a worked example.">
 <link rel="canonical" href="https://namlabs.dev/sudoku/techniques/">
 <link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/">
 <link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/">
@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="namlabs">
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="Sudoku Solving Techniques, From Beginner to Advanced | namlabs">
-<meta property="og:description" content="Learn the Sudoku techniques that solve almost every puzzle: naked and hidden singles, naked pairs, pointing pairs and X-Wing, each with a worked example.">
+<meta property="og:description" content="Learn the Sudoku techniques that solve almost every puzzle: singles, naked and hidden pairs, pointing pairs, box-line reduction, naked triples and X-Wing, each with a worked example.">
 <meta property="og:url" content="https://namlabs.dev/sudoku/techniques/">
 <meta property="og:image" content="https://namlabs.dev/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -34,10 +34,10 @@
     {
       "@type": "Article",
       "headline": "Sudoku solving techniques",
-      "description": "Learn the Sudoku techniques that solve almost every puzzle: naked and hidden singles, naked pairs, pointing pairs and X-Wing, each with a worked example.",
+      "description": "Learn the Sudoku techniques that solve almost every puzzle: singles, naked and hidden pairs, pointing pairs, box-line reduction, naked triples and X-Wing, each with a worked example.",
       "image": "https://namlabs.dev/og-image.png",
-      "datePublished": "2026-11-05",
-      "dateModified": "2026-11-05",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
       "inLanguage": "en",
       "mainEntityOfPage": "https://namlabs.dev/sudoku/techniques/",
       "author": {
@@ -108,12 +108,12 @@
   <div class="guide">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">namlabs</a> › <a href="/sudoku/">Sudoku</a> › <span>Sudoku techniques</span></nav>
     <h1 class="rise">Sudoku solving techniques</h1>
-    <p class="lead rise d1">Every Sudoku can be solved by logic. These five techniques, learned in this order, take you from your first easy puzzle to expert grids.</p>
+    <p class="lead rise d1">Every Sudoku can be solved by logic. These eight techniques, learned in this order, take you from your first easy puzzle to expert grids.</p>
   </div>
 </div></section>
 <section class="guide-body"><div class="wrap"><article class="guide prose">
 <p>Each guide shows one move on a real grid. We name cells by row and column: <strong>R5C5</strong> is row 5, column 5, counting from the top left. In the diagrams, the shaded area is the house we are looking at, the ringed cells are the ones the move is about, and the small digits are candidates. A crossed-out candidate is one the move removes.</p>
-<p>If the rules are new to you, read <a href="/sudoku/how-to-play.html">how to play Sudoku</a> first.</p><h2>All techniques</h2><div class="techs"><a class="tech" href="/sudoku/techniques/naked-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Naked single</h3><p>A cell whose peers already use eight different digits.</p></a><a class="tech" href="/sudoku/techniques/hidden-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Hidden single</h3><p>A digit that fits in only one cell of a row, column or box.</p></a><a class="tech" href="/sudoku/techniques/naked-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Naked pairs</h3><p>Two cells, two candidates: clear them from the rest of the house.</p></a><a class="tech" href="/sudoku/techniques/pointing-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Pointing pairs</h3><p>A box's only spots for a digit point along one row or column.</p></a><a class="tech" href="/sudoku/techniques/x-wing.html"><span class="lvl lvl-hard">Advanced</span><h3>X-Wing</h3><p>Two rows, two columns, one digit: a rectangle that clears columns.</p></a></div>
+<p>If the rules are new to you, read <a href="/sudoku/how-to-play.html">how to play Sudoku</a> first.</p><h2>All techniques</h2><div class="techs"><a class="tech" href="/sudoku/techniques/naked-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Naked single</h3><p>A cell whose peers already use eight different digits.</p></a><a class="tech" href="/sudoku/techniques/hidden-single.html"><span class="lvl lvl-easy">Beginner</span><h3>Hidden single</h3><p>A digit that fits in only one cell of a row, column or box.</p></a><a class="tech" href="/sudoku/techniques/naked-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Naked pairs</h3><p>Two cells, two candidates: clear them from the rest of the house.</p></a><a class="tech" href="/sudoku/techniques/pointing-pairs.html"><span class="lvl lvl-medium">Intermediate</span><h3>Pointing pairs</h3><p>A box's only spots for a digit point along one row or column.</p></a><a class="tech" href="/sudoku/techniques/box-line-reduction.html"><span class="lvl lvl-medium">Intermediate</span><h3>Box-line reduction</h3><p>A row's only spots for a digit sit in one box: clear the rest of the box.</p></a><a class="tech" href="/sudoku/techniques/hidden-pair.html"><span class="lvl lvl-medium">Intermediate</span><h3>Hidden pair</h3><p>Two digits that fit in only two cells: those cells belong to them.</p></a><a class="tech" href="/sudoku/techniques/naked-triple.html"><span class="lvl lvl-hard">Advanced</span><h3>Naked triple</h3><p>Three cells share three digits: clear them from the rest of the house.</p></a><a class="tech" href="/sudoku/techniques/x-wing.html"><span class="lvl lvl-hard">Advanced</span><h3>X-Wing</h3><p>Two rows, two columns, one digit: a rectangle that clears columns.</p></a></div>
 
 
 <div class="cta guide-cta">

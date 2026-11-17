@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>隠れたペア（Hidden Pair）：見つけ方と例題 | namlabs</title>
+<meta name="description" content="隠れたペアは、同じハウスの同じ2マスにしか入らない2つの数字のこと。ナンプレでの見つけ方と、ほかの候補の消し方を解説します。">
+<link rel="canonical" href="https://namlabs.dev/ja/sudoku/techniques/hidden-pair.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/hidden-pair.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/hidden-pair.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/hidden-pair.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/hidden-pair.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="隠れたペア（Hidden Pair）：見つけ方と例題 | namlabs">
+<meta property="og:description" content="隠れたペアは、同じハウスの同じ2マスにしか入らない2つの数字のこと。ナンプレでの見つけ方と、ほかの候補の消し方を解説します。">
+<meta property="og:url" content="https://namlabs.dev/ja/sudoku/techniques/hidden-pair.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "隠れたペア（Hidden Pair）",
+      "description": "隠れたペアは、同じハウスの同じ2マスにしか入らない2つの数字のこと。ナンプレでの見つけ方と、ほかの候補の消し方を解説します。",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "inLanguage": "ja",
+      "mainEntityOfPage": "https://namlabs.dev/ja/sudoku/techniques/hidden-pair.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/ja/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/ja/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ナンプレの解き方",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "隠れたペア",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/hidden-pair.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://play.google.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/consent.js"></script>
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/ja/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="メニュー">
+      <a href="/ja/#games">ゲーム</a>
+      <a class="hide-sm" href="/ja/sudoku/techniques/">ナンプレ攻略</a>
+      <span class="langs"><a href="/sudoku/techniques/hidden-pair.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/hidden-pair.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/hidden-pair.html" hreflang="ja" lang="ja" aria-current="page" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="パンくずリスト"><a href="/ja/">namlabs</a> › <a href="/ja/sudoku/">Sudoku</a> › <a href="/ja/sudoku/techniques/">ナンプレの解き方</a> › <span>隠れたペア</span></nav>
+    <h1 class="rise">隠れたペア（Hidden Pair）</h1>
+    <p class="lead rise d1">裸のペアは、2マスが同じ2つの候補を持つので見つけやすい形です。隠れたペアは、2つの数字がほかの候補に紛れているタイプです。</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>隠れたペアとは</h2>
+<p>行・列・ブロックで、2つの数字が入る場所を調べます。2つとも、ハウスの中でまったく同じ2マスにしか入らないなら、その2マスはその2つの数字で決まりです。2マスにあるほかの候補はすべて消せます。</p>
+<p>2マスには余分な候補があって混み合って見えますが、それらは入れません。だから「隠れた」ペアと呼びます。</p>
+
+<h2>例題</h2>
+<figure class="fig"><div class="board" role="img" aria-label="ナンプレの盤面。1行目で5と6が入るのは R1C1 と R1C9 だけなので、この2マスからほかの候補をすべて消します。"><div class="area key"><span class="cands"><i class="x">1</i><i></i><i></i><i></i><i class="k">5</i><i class="k">6</i><i></i><i class="x">8</i><i></i></span></div><div class="area">9</div><div class="area br">7</div><div class="area"></div><div class="area"></div><div class="area br"></div><div class="area">2</div><div class="area">3</div><div class="area key"><span class="cands"><i class="x">1</i><i></i><i></i><i class="x">4</i><i class="k">5</i><i class="k">6</i><i></i><i class="x">8</i><i></i></span></div><div></div><div></div><div class="br"></div><div></div><div>6</div><div class="br"></div><div></div><div></div><div></div><div class="bb">4</div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb">5</div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div>4</div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb">9</div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div>1</div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>5と6は R1C1 と R1C9 にしか入らないので、2マスには5と6だけが残る。</figcaption></figure>
+<p>1行目で、5が入るのは <strong>R1C1 か R1C9</strong> だけ。6も同じ2マスにしか入りません。つまり片方が5、もう片方が6です。</p>
+<p>だから R1C1 と R1C9 はほかの数字になれません。R1C1 から1と8を、R1C9 から1・4・8を消します。2マスとも {5, 6} だけになります。</p>
+
+<h2>隠れたペアの見つけ方</h2>
+<ol>
+<li>空きの多いハウスを選び、候補を書き込みます。</li>
+<li>数字ごとに、入れるマスの数を数えます。ちょうど2マスの数字に印をつけます。</li>
+<li>2つの数字が同じ2マスを共有していれば、隠れたペアです。</li>
+<li>その2マスから、ほかの候補をすべて消します。</li>
+</ol>
+
+<div class="note"><strong>コツ：</strong>隠れたペアと裸のペアは、同じ考え方の表と裏です。ハウスの残りのマスがペアやトリプルになっているなら、そちらを探すほうが早いこともあります。</div>
+
+<h2>どんなときに使う？</h2>
+<p><a href="/ja/sudoku/techniques/naked-pairs.html">裸のペア</a>を覚えたら、次はこれ。そのあとは3マスに広げた<a href="/ja/sudoku/techniques/naked-triple.html">裸のトリプル</a>へ進みましょう。</p>
+
+<nav class="pager"><a class="prev" href="/ja/sudoku/techniques/box-line-reduction.html"><small>前へ</small>ボックス・ライン・リダクション</a><a class="next" href="/ja/sudoku/techniques/naked-triple.html"><small>次へ</small>裸のトリプル</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>スマホで練習しよう</h2><p>無料アプリ「Sudoku」のヒントは、いま使えるテクニックをマスを光らせて教えてくれます。オフラインでも遊べます。</p>
+  <div class="btn-row"><a class="play-badge tight" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=ja"><img src="https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Play で手に入れよう" width="646" height="250"></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/ja/sudoku/">Sudoku</a>
+      <a href="/ja/sky-hop/">Sky Hop</a>
+      <a href="/ja/sudoku/how-to-play.html">ナンプレの遊び方</a>
+      <a href="/ja/sudoku/techniques/">ナンプレの解き方</a>
+      <a href="mailto:hoainamit91@gmail.com">お問い合わせ</a>
+      <a href="/ja/privacy.html">サイトのプライバシー</a>
+      <a href="/sudoku/privacy-policy.html">プライバシーポリシー</a>
+    </nav>
+    <small class="tm">Google Play および Google Play ロゴは Google LLC の商標です。 Apple、Apple ロゴ、App Store は Apple Inc. の商標です。</small>
+  </div>
+</footer>
+</body>
+</html>

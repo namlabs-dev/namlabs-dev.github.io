@@ -66,6 +66,42 @@ def x_wing(label):
                   marks=corners + gone, only=7, strike={n: (7,) for n in gone})
 
 
+def box_line(label):
+    givens = {'R1C4': 1, 'R1C5': 2, 'R1C6': 3, 'R1C7': 5, 'R1C8': 6, 'R1C9': 7, 'R5C3': 4}
+    b = Board(givens)
+    assert b.spots(4, house_row(1)) == {'R1C1', 'R1C2'}
+    inside = ['R2C1', 'R2C2', 'R3C1', 'R3C2']
+    assert b.spots(4, inside) == set(inside)
+    return b.html(label, area=house_row(1), key=['R1C1', 'R1C2'], src=['R5C3'],
+                  marks=['R1C1', 'R1C2'] + inside, only=4, strike={n: (4,) for n in inside})
+
+
+_HIDDEN = {'R9C2': 1, 'R1C8': 3, 'R5C7': 4, 'R3C6': 5, 'R1C2': 9, 'R1C3': 7, 'R3C1': 4, 'R1C7': 2,
+           'R2C5': 6, 'R6C4': 9}
+
+
+def hidden_pair(label):
+    b = Board(_HIDDEN)
+    pair = ['R1C1', 'R1C9']
+    assert b.spots(5, house_row(1)) == b.spots(6, house_row(1)) == set(pair)
+    gone = {n: tuple(sorted(b.cands(n) - {5, 6})) for n in pair}
+    return b.html(label, area=house_row(1), key=pair, marks=pair, strike=gone)
+
+
+_TRIPLE = {'R3C6': 2, 'R9C1': 8, 'R2C8': 8, 'R3C5': 6, 'R1C3': 8, 'R5C6': 9, 'R1C2': 4, 'R6C6': 8,
+           'R8C4': 7, 'R5C5': 3, 'R1C1': 5, 'R8C6': 4, 'R4C9': 5, 'R5C7': 2, 'R2C5': 1, 'R9C9': 7}
+
+
+def naked_triple(label):
+    b = Board(_TRIPLE)
+    trio = ['R1C4', 'R1C5', 'R1C6']
+    others = ['R1C7', 'R1C8', 'R1C9']
+    assert [b.cands(n) for n in trio] == [{3, 9}, {7, 9}, {3, 7}]
+    strike = {n: tuple(sorted(b.cands(n) & {3, 7, 9})) for n in others}
+    assert all(strike.values())
+    return b.html(label, area=house_row(1), key=trio, marks=trio + others, strike=strike)
+
+
 DIAGRAMS = {
     'last-cell': last_cell,
     'naked-single': naked_single,
@@ -73,4 +109,7 @@ DIAGRAMS = {
     'naked-pair': naked_pair,
     'pointing-pair': pointing_pair,
     'x-wing': x_wing,
+    'box-line': box_line,
+    'hidden-pair': hidden_pair,
+    'naked-triple': naked_triple,
 }

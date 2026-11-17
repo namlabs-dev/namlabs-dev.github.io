@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hidden Pairs in Sudoku: How to Spot Them, With Example | namlabs</title>
+<meta name="description" content="A hidden pair is two digits that can only go in the same two cells of a house. Learn how to find hidden pairs in Sudoku and clear the other candidates.">
+<link rel="canonical" href="https://namlabs.dev/sudoku/techniques/hidden-pair.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/hidden-pair.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/hidden-pair.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/hidden-pair.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/hidden-pair.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Hidden Pairs in Sudoku: How to Spot Them, With Example | namlabs">
+<meta property="og:description" content="A hidden pair is two digits that can only go in the same two cells of a house. Learn how to find hidden pairs in Sudoku and clear the other candidates.">
+<meta property="og:url" content="https://namlabs.dev/sudoku/techniques/hidden-pair.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Hidden pair",
+      "description": "A hidden pair is two digits that can only go in the same two cells of a house. Learn how to find hidden pairs in Sudoku and clear the other candidates.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://namlabs.dev/sudoku/techniques/hidden-pair.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sudoku techniques",
+          "item": "https://namlabs.dev/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Hidden pair",
+          "item": "https://namlabs.dev/sudoku/techniques/hidden-pair.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://play.google.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/consent.js"></script>
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/#games">Games</a>
+      <a class="hide-sm" href="/sudoku/techniques/">Sudoku guide</a>
+      <span class="langs"><a href="/sudoku/techniques/hidden-pair.html" hreflang="en" lang="en" aria-current="page" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/hidden-pair.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/hidden-pair.html" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">namlabs</a> › <a href="/sudoku/">Sudoku</a> › <a href="/sudoku/techniques/">Sudoku techniques</a> › <span>Hidden pair</span></nav>
+    <h1 class="rise">Hidden pair</h1>
+    <p class="lead rise d1">A naked pair is easy to see because two cells show the same two candidates. A hidden pair is the sneaky version: the two digits hide among other candidates.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>What is a hidden pair?</h2>
+<p>Pick a row, column or box and look at where two digits can go. If both digits fit in exactly the same two cells, and nowhere else in the house, those two cells must hold those two digits. So every other candidate in those two cells can be erased.</p>
+<p>The cells look crowded, with extra candidates, but those extras are impossible. That is why the pair is "hidden".</p>
+
+<h2>Example</h2>
+<figure class="fig"><div class="board" role="img" aria-label="Sudoku grid. In row 1, the digits 5 and 6 can only go in R1C1 and R1C9, so every other candidate is removed from those two cells."><div class="area key"><span class="cands"><i class="x">1</i><i></i><i></i><i></i><i class="k">5</i><i class="k">6</i><i></i><i class="x">8</i><i></i></span></div><div class="area">9</div><div class="area br">7</div><div class="area"></div><div class="area"></div><div class="area br"></div><div class="area">2</div><div class="area">3</div><div class="area key"><span class="cands"><i class="x">1</i><i></i><i></i><i class="x">4</i><i class="k">5</i><i class="k">6</i><i></i><i class="x">8</i><i></i></span></div><div></div><div></div><div class="br"></div><div></div><div>6</div><div class="br"></div><div></div><div></div><div></div><div class="bb">4</div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb">5</div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div>4</div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb">9</div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div>1</div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>5 and 6 fit only in R1C1 and R1C9, so those cells keep only 5 and 6.</figcaption></figure>
+<p>In row 1, the digit 5 can only go in <strong>R1C1 or R1C9</strong>. The digit 6 fits in the same two cells and nowhere else in the row. So one of these cells is 5 and the other is 6.</p>
+<p>That means R1C1 and R1C9 cannot be anything else. Erase 1 and 8 from R1C1, and 1, 4 and 8 from R1C9. Both cells are now plain {5, 6}.</p>
+
+<h2>How to find hidden pairs</h2>
+<ol>
+<li>Pick a house with several empty cells and write the candidates.</li>
+<li>For each digit, count the cells where it fits. Note the digits with exactly two spots.</li>
+<li>If two digits share the very same two cells, you have a hidden pair.</li>
+<li>Erase every other candidate from those two cells.</li>
+</ol>
+
+<div class="note"><strong>Tip:</strong> a hidden pair and a naked pair are two sides of one idea. If the leftover cells of the house make a pair or triple on their own, it can be quicker to find that instead.</div>
+
+<h2>Where it fits</h2>
+<p>If you already know <a href="/sudoku/techniques/naked-pairs.html">naked pairs</a>, this is the natural next step. After it, learn <a href="/sudoku/techniques/naked-triple.html">naked triples</a>, which extend the idea to three cells.</p>
+
+<nav class="pager"><a class="prev" href="/sudoku/techniques/box-line-reduction.html"><small>Previous</small>Box-line reduction</a><a class="next" href="/sudoku/techniques/naked-triple.html"><small>Next</small>Naked triple</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Practise on your phone</h2><p>Our free Sudoku app has hints that point out the technique you can use next, with the cells highlighted. It plays offline.</p>
+  <div class="btn-row"><a class="play-badge pad" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" width="646" height="250"></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/sudoku/">Sudoku</a>
+      <a href="/sky-hop/">Sky Hop</a>
+      <a href="/sudoku/how-to-play.html">How to play Sudoku</a>
+      <a href="/sudoku/techniques/">Sudoku techniques</a>
+      <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a href="/privacy.html">Website privacy</a>
+      <a href="/sudoku/privacy-policy.html">Privacy policy</a>
+    </nav>
+    <small class="tm">Google Play and the Google Play logo are trademarks of Google LLC. Apple, the Apple logo and App Store are trademarks of Apple Inc.</small>
+  </div>
+</footer>
+</body>
+</html>

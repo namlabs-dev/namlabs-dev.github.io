@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Box-Line Reduction in Sudoku: Explained With an Example | namlabs</title>
+<meta name="description" content="Box-line reduction: when a digit in a Sudoku row or column can only go inside one box, erase it from the rest of that box. Explained step by step.">
+<link rel="canonical" href="https://namlabs.dev/sudoku/techniques/box-line-reduction.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/box-line-reduction.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/box-line-reduction.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/box-line-reduction.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/box-line-reduction.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Box-Line Reduction in Sudoku: Explained With an Example | namlabs">
+<meta property="og:description" content="Box-line reduction: when a digit in a Sudoku row or column can only go inside one box, erase it from the rest of that box. Explained step by step.">
+<meta property="og:url" content="https://namlabs.dev/sudoku/techniques/box-line-reduction.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Box-line reduction",
+      "description": "Box-line reduction: when a digit in a Sudoku row or column can only go inside one box, erase it from the rest of that box. Explained step by step.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://namlabs.dev/sudoku/techniques/box-line-reduction.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sudoku techniques",
+          "item": "https://namlabs.dev/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Box-line reduction",
+          "item": "https://namlabs.dev/sudoku/techniques/box-line-reduction.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://play.google.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/consent.js"></script>
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/#games">Games</a>
+      <a class="hide-sm" href="/sudoku/techniques/">Sudoku guide</a>
+      <span class="langs"><a href="/sudoku/techniques/box-line-reduction.html" hreflang="en" lang="en" aria-current="page" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/box-line-reduction.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/box-line-reduction.html" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">namlabs</a> › <a href="/sudoku/">Sudoku</a> › <a href="/sudoku/techniques/">Sudoku techniques</a> › <span>Box-line reduction</span></nav>
+    <h1 class="rise">Box-line reduction</h1>
+    <p class="lead rise d1">The mirror image of pointing pairs. If a row can only hold a digit inside one box, that box keeps its copy in that row, and the rest of the box can drop it.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>What is box-line reduction?</h2>
+<p>Every row needs each digit once. Suppose that in one row, a digit can only go in cells that all lie inside the same box. Then the row's copy of the digit will be in that box, and that is the box's copy as well. So the digit cannot appear anywhere else in the box, which means you can erase it from the box's other two rows.</p>
+<p><a href="/sudoku/techniques/pointing-pairs.html">Pointing pairs</a> work from the box towards the line. Box-line reduction works from the line towards the box. Same idea, opposite direction.</p>
+
+<h2>Example</h2>
+<figure class="fig"><div class="board" role="img" aria-label="Sudoku grid. In row 1, 4 can only go in R1C1 or R1C2, both in the top-left box, so 4 is removed from R2C1, R2C2, R3C1 and R3C2."><div class="area key"><span class="cand1 k">4</span></div><div class="area key"><span class="cand1 k">4</span></div><div class="area br"></div><div class="area">1</div><div class="area">2</div><div class="area br">3</div><div class="area">5</div><div class="area">6</div><div class="area">7</div><div><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"><span class="cand1 x">4</span></div><div class="bb"><span class="cand1 x">4</span></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="src br">4</div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>Row 1's 4 is in the top-left box, so the box's other cells drop 4.</figcaption></figure>
+<p>Look at digit 4 in row 1. The right side of the row is already filled, and the 4 in R5C3 rules out R1C3. That leaves <strong>R1C1 and R1C2</strong>, both inside the top-left box.</p>
+<p>So the 4 of row 1 is in that box, and the box already has its 4. Erase 4 from the box's other cells: R2C1, R2C2, R3C1 and R3C2. (R2C3 and R3C3 were already out because of the 4 in column 3.)</p>
+
+<h2>How to find it</h2>
+<ol>
+<li>Pick a row (or column) and a digit it does not have yet.</li>
+<li>List the cells in that row where the digit can still go.</li>
+<li>If they all sit in one box, erase the digit from the other cells of that box.</li>
+</ol>
+
+<div class="note"><strong>Tip:</strong> if you found pointing pairs but the board is still stuck, flip the view: look along rows and columns instead of inside boxes.</div>
+
+<h2>Where it fits</h2>
+<p>Use it together with <a href="/sudoku/techniques/pointing-pairs.html">pointing pairs</a>, and before the bigger patterns. When a digit's spots form a tidy rectangle across two lines, try <a href="/sudoku/techniques/x-wing.html">X-Wing</a>.</p>
+
+<nav class="pager"><a class="prev" href="/sudoku/techniques/pointing-pairs.html"><small>Previous</small>Pointing pairs</a><a class="next" href="/sudoku/techniques/hidden-pair.html"><small>Next</small>Hidden pair</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Practise on your phone</h2><p>Our free Sudoku app has hints that point out the technique you can use next, with the cells highlighted. It plays offline.</p>
+  <div class="btn-row"><a class="play-badge pad" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" width="646" height="250"></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/sudoku/">Sudoku</a>
+      <a href="/sky-hop/">Sky Hop</a>
+      <a href="/sudoku/how-to-play.html">How to play Sudoku</a>
+      <a href="/sudoku/techniques/">Sudoku techniques</a>
+      <a href="mailto:hoainamit91@gmail.com">Contact</a>
+      <a href="/privacy.html">Website privacy</a>
+      <a href="/sudoku/privacy-policy.html">Privacy policy</a>
+    </nav>
+    <small class="tm">Google Play and the Google Play logo are trademarks of Google LLC. Apple, the Apple logo and App Store are trademarks of Apple Inc.</small>
+  </div>
+</footer>
+</body>
+</html>

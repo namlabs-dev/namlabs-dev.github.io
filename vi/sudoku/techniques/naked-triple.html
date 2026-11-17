@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bộ ba lộ (Naked Triple) trong Sudoku: quy tắc và ví dụ | namlabs</title>
+<meta name="description" content="Bộ ba lộ là ba ô trong một nhà có ứng viên chỉ thuộc cùng ba số. Học cách tìm bộ ba lộ trong Sudoku, kèm ví dụ.">
+<link rel="canonical" href="https://namlabs.dev/vi/sudoku/techniques/naked-triple.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/naked-triple.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/naked-triple.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/naked-triple.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/naked-triple.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Bộ ba lộ (Naked Triple) trong Sudoku: quy tắc và ví dụ | namlabs">
+<meta property="og:description" content="Bộ ba lộ là ba ô trong một nhà có ứng viên chỉ thuộc cùng ba số. Học cách tìm bộ ba lộ trong Sudoku, kèm ví dụ.">
+<meta property="og:url" content="https://namlabs.dev/vi/sudoku/techniques/naked-triple.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Bộ ba lộ (Naked Triple)",
+      "description": "Bộ ba lộ là ba ô trong một nhà có ứng viên chỉ thuộc cùng ba số. Học cách tìm bộ ba lộ trong Sudoku, kèm ví dụ.",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "inLanguage": "vi",
+      "mainEntityOfPage": "https://namlabs.dev/vi/sudoku/techniques/naked-triple.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/vi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Kỹ thuật giải Sudoku",
+          "item": "https://namlabs.dev/vi/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Bộ ba lộ",
+          "item": "https://namlabs.dev/vi/sudoku/techniques/naked-triple.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://play.google.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/consent.js"></script>
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/vi/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="Menu">
+      <a href="/vi/#games">Trò chơi</a>
+      <a class="hide-sm" href="/vi/sudoku/techniques/">Hướng dẫn Sudoku</a>
+      <span class="langs"><a href="/sudoku/techniques/naked-triple.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/naked-triple.html" hreflang="vi" lang="vi" aria-current="page" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/naked-triple.html" hreflang="ja" lang="ja" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="Đường dẫn"><a href="/vi/">namlabs</a> › <a href="/vi/sudoku/">Sudoku</a> › <a href="/vi/sudoku/techniques/">Kỹ thuật giải Sudoku</a> › <span>Bộ ba lộ</span></nav>
+    <h1 class="rise">Bộ ba lộ (Naked Triple)</h1>
+    <p class="lead rise d1">Ba ô, ba số. Nếu ứng viên của ba ô trong một nhà chỉ dùng cùng ba số, ba số đó đã hết chỗ, và phần còn lại của nhà có thể bỏ chúng.</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>Bộ ba lộ là gì?</h2>
+<p>Đó là <a href="/vi/sudoku/techniques/naked-pairs.html">cặp lộ</a> thêm một ô. Giả sử ba ô trong một hàng chỉ có thể là 3, 7 và 9. Một ô là 3, một ô là 7, một ô là 9. Không ô nào khác trong hàng đó có thể là các số này.</p>
+<p>Mỗi ô không cần đủ cả ba ứng viên. Các tổ hợp như {3, 9}, {7, 9} và {3, 7} đều được, miễn là cả ba ô cộng lại chỉ dùng ba số.</p>
+
+<h2>Ví dụ</h2>
+<figure class="fig"><div class="board" role="img" aria-label="Bảng Sudoku. Ba ô ở hàng 1 có ứng viên {3, 9}, {7, 9} và {3, 7}, nên 3, 7 và 9 bị xóa khỏi phần còn lại của hàng."><div class="area">5</div><div class="area">4</div><div class="area br">8</div><div class="area key"><span class="cands"><i></i><i></i><i class="k">3</i><i></i><i></i><i></i><i></i><i></i><i class="k">9</i></span></div><div class="area key"><span class="cands"><i></i><i></i><i></i><i></i><i></i><i></i><i class="k">7</i><i></i><i class="k">9</i></span></div><div class="area key br"><span class="cands"><i></i><i></i><i class="k">3</i><i></i><i></i><i></i><i class="k">7</i><i></i><i></i></span></div><div class="area"><span class="cands"><i>1</i><i></i><i class="x">3</i><i></i><i></i><i>6</i><i class="x">7</i><i></i><i class="x">9</i></span></div><div class="area"><span class="cands"><i>1</i><i>2</i><i class="x">3</i><i></i><i></i><i>6</i><i class="x">7</i><i></i><i class="x">9</i></span></div><div class="area"><span class="cands"><i>1</i><i>2</i><i class="x">3</i><i></i><i></i><i>6</i><i></i><i></i><i class="x">9</i></span></div><div></div><div></div><div class="br"></div><div></div><div>1</div><div class="br"></div><div></div><div>8</div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb">6</div><div class="br bb">2</div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div>5</div><div></div><div></div><div class="br"></div><div></div><div>3</div><div class="br">9</div><div>2</div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb">8</div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div>7</div><div></div><div class="br">4</div><div></div><div></div><div></div><div>8</div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div>7</div></div><figcaption>Ba ô chỉ dùng 3, 7 và 9, nên phần còn lại của hàng 1 không thể có chúng.</figcaption></figure>
+<p>Hàng 1 có ba ô với ứng viên <strong>{3, 9}, {7, 9} và {3, 7}</strong>. Gộp lại chỉ có ba số 3, 7 và 9, nên ba số này thuộc về ba ô đó.</p>
+<p>Hãy xóa 3, 7 và 9 khỏi phần còn lại của hàng 1. H1C7 từ {1, 3, 6, 7, 9} còn {1, 6}. H1C8 và H1C9 còn {1, 2, 6}, đưa bạn đến gần nước đi tiếp theo.</p>
+
+<h2>Cách tìm bộ ba lộ</h2>
+<ol>
+<li>Ghi ứng viên trong một nhà còn từ năm ô trống trở lên.</li>
+<li>Tìm các ô có hai hoặc ba ứng viên.</li>
+<li>Chọn ba ô mà ứng viên gộp lại chỉ có ba số khác nhau.</li>
+<li>Xóa ba số đó khỏi mọi ô khác trong nhà.</li>
+</ol>
+
+<div class="note"><strong>Mẹo:</strong> hãy kiểm tra ba ô thật sự chỉ dùng tổng cộng ba số. Nếu có số thứ tư xuất hiện ở bất kỳ ô nào, đó không phải bộ ba.</div>
+
+<h2>Khi nào dùng</h2>
+<p>Bộ ba lộ hiếm hơn cặp, nhưng xuất hiện ở đề khó khi cặp và <a href="/vi/sudoku/techniques/pointing-pairs.html">cặp chỉ hướng</a> đã hết. Sau bài này, hãy thử <a href="/vi/sudoku/techniques/x-wing.html">X-Wing</a>.</p>
+
+<nav class="pager"><a class="prev" href="/vi/sudoku/techniques/hidden-pair.html"><small>Bài trước</small>Cặp ẩn</a><a class="next" href="/vi/sudoku/techniques/x-wing.html"><small>Bài tiếp</small>X-Wing</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>Luyện tập trên điện thoại</h2><p>Ứng dụng Sudoku miễn phí của chúng tôi có gợi ý chỉ ra kỹ thuật dùng được ngay lúc đó, kèm các ô được tô sáng. Chơi được khi không có mạng.</p>
+  <div class="btn-row"><a class="play-badge tight" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=vi"><img src="https://play.google.com/intl/vi/badges/static/images/badges/vi_badge_web_generic.png" alt="Tải nội dung trên Google Play" width="646" height="250"></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/vi/sudoku/">Sudoku</a>
+      <a href="/vi/sky-hop/">Sky Hop</a>
+      <a href="/vi/sudoku/how-to-play.html">Cách chơi Sudoku</a>
+      <a href="/vi/sudoku/techniques/">Kỹ thuật giải Sudoku</a>
+      <a href="mailto:hoainamit91@gmail.com">Liên hệ</a>
+      <a href="/vi/privacy.html">Quyền riêng tư website</a>
+      <a href="/sudoku/privacy-policy.html">Chính sách quyền riêng tư</a>
+    </nav>
+    <small class="tm">Google Play và biểu trưng Google Play là thương hiệu của Google LLC. Apple, biểu trưng Apple và App Store là thương hiệu của Apple Inc.</small>
+  </div>
+</footer>
+</body>
+</html>

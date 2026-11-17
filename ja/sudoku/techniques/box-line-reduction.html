@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ボックス・ライン・リダクション：ナンプレの候補を減らす技 | namlabs</title>
+<meta name="description" content="行や列でその数字が入る場所が1つのブロックの中だけなら、ブロックのほかのマスから消せます。例題つきで解説します。">
+<link rel="canonical" href="https://namlabs.dev/ja/sudoku/techniques/box-line-reduction.html">
+<link rel="alternate" hreflang="en" href="https://namlabs.dev/sudoku/techniques/box-line-reduction.html">
+<link rel="alternate" hreflang="vi" href="https://namlabs.dev/vi/sudoku/techniques/box-line-reduction.html">
+<link rel="alternate" hreflang="ja" href="https://namlabs.dev/ja/sudoku/techniques/box-line-reduction.html">
+<link rel="alternate" hreflang="x-default" href="https://namlabs.dev/sudoku/techniques/box-line-reduction.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="namlabs">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="ボックス・ライン・リダクション：ナンプレの候補を減らす技 | namlabs">
+<meta property="og:description" content="行や列でその数字が入る場所が1つのブロックの中だけなら、ブロックのほかのマスから消せます。例題つきで解説します。">
+<meta property="og:url" content="https://namlabs.dev/ja/sudoku/techniques/box-line-reduction.html">
+<meta property="og:image" content="https://namlabs.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "ボックス・ライン・リダクション",
+      "description": "行や列でその数字が入る場所が1つのブロックの中だけなら、ブロックのほかのマスから消せます。例題つきで解説します。",
+      "image": "https://namlabs.dev/og-image.png",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "inLanguage": "ja",
+      "mainEntityOfPage": "https://namlabs.dev/ja/sudoku/techniques/box-line-reduction.html",
+      "author": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/"
+      },
+      "publisher": {
+        "@id": "https://namlabs.dev/#org",
+        "@type": "Organization",
+        "name": "namlabs",
+        "url": "https://namlabs.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://namlabs.dev/icon-512.png"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "namlabs",
+          "item": "https://namlabs.dev/ja/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sudoku",
+          "item": "https://namlabs.dev/ja/sudoku/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ナンプレの解き方",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "ボックス・ライン・リダクション",
+          "item": "https://namlabs.dev/ja/sudoku/techniques/box-line-reduction.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://play.google.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/consent.js"></script>
+</head>
+<body style="--game:#8a2be2;--game-2:#6366f1">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2.8v18.4c0 .9 1 1.4 1.7.9l15.5-9.2a1 1 0 0 0 0-1.8L5.7 1.9C5 1.4 4 1.9 4 2.8Z"/></symbol></svg>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/ja/"><img src="/icon-192.png" alt="" width="32" height="32">namlabs</a>
+    <nav class="nav-links" aria-label="メニュー">
+      <a href="/ja/#games">ゲーム</a>
+      <a class="hide-sm" href="/ja/sudoku/techniques/">ナンプレ攻略</a>
+      <span class="langs"><a href="/sudoku/techniques/box-line-reduction.html" hreflang="en" lang="en" aria-label="English" title="English">EN</a><a href="/vi/sudoku/techniques/box-line-reduction.html" hreflang="vi" lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt">VI</a><a href="/ja/sudoku/techniques/box-line-reduction.html" hreflang="ja" lang="ja" aria-current="page" aria-label="日本語" title="日本語">JA</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero hero-guide"><div class="wrap">
+  <div class="guide">
+    <nav class="crumbs" aria-label="パンくずリスト"><a href="/ja/">namlabs</a> › <a href="/ja/sudoku/">Sudoku</a> › <a href="/ja/sudoku/techniques/">ナンプレの解き方</a> › <span>ボックス・ライン・リダクション</span></nav>
+    <h1 class="rise">ボックス・ライン・リダクション</h1>
+    <p class="lead rise d1">ポインティングペアの逆の考え方です。行の中でその数字が入る場所が1つのブロックにしかなければ、そのブロックの残りのマスからは消せます。</p>
+  </div>
+</div></section>
+<section class="guide-body"><div class="wrap"><article class="guide prose">
+<h2>ボックス・ライン・リダクションとは</h2>
+<p>どの行にも各数字は1つ入ります。ある行で、その数字が入れるマスがすべて同じブロックの中にあるとします。すると、その行の数字はこのブロックの中にあり、それがそのままブロックの数字になります。ブロックのほかのマスには入れないので、ほかの2行から消せます。</p>
+<p><a href="/ja/sudoku/techniques/pointing-pairs.html">ポインティングペア</a>はブロックからラインへ、これはラインからブロックへ。同じ考え方の逆向きです。</p>
+
+<h2>例題</h2>
+<figure class="fig"><div class="board" role="img" aria-label="ナンプレの盤面。1行目で4が入るのは、どちらも左上のブロックにある R1C1 か R1C2 だけなので、R2C1・R2C2・R3C1・R3C2 から4を消します。"><div class="area key"><span class="cand1 k">4</span></div><div class="area key"><span class="cand1 k">4</span></div><div class="area br"></div><div class="area">1</div><div class="area">2</div><div class="area br">3</div><div class="area">5</div><div class="area">6</div><div class="area">7</div><div><span class="cand1 x">4</span></div><div><span class="cand1 x">4</span></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"><span class="cand1 x">4</span></div><div class="bb"><span class="cand1 x">4</span></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="src br">4</div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="br bb"></div><div class="bb"></div><div class="bb"></div><div class="bb"></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div><div></div><div></div><div class="br"></div><div></div><div></div><div class="br"></div><div></div><div></div><div></div></div><figcaption>1行目の4は左上のブロックにあるので、ブロックのほかのマスから4が消える。</figcaption></figure>
+<p>1行目の4に注目します。行の右側はもう埋まっていて、R5C3 の4が R1C3 を除外します。残るのは、どちらも左上のブロックにある <strong>R1C1 と R1C2</strong> です。</p>
+<p>つまり1行目の4はこのブロックの中にあります。ブロックのほかのマス R2C1、R2C2、R3C1、R3C2 から4を消せます。（R2C3 と R3C3 は3列目の4で、すでに除外されています。）</p>
+
+<h2>見つけ方</h2>
+<ol>
+<li>行（または列）と、まだ入っていない数字を選びます。</li>
+<li>その行でまだその数字が入るマスを書き出します。</li>
+<li>すべてが1つのブロックにあれば、そのブロックのほかのマスから消します。</li>
+</ol>
+
+<div class="note"><strong>コツ：</strong>ポインティングペアを探しても詰まったら、見方を変えてみましょう。ブロックの中ではなく、行と列に沿って探します。</div>
+
+<h2>どんなときに使う？</h2>
+<p><a href="/ja/sudoku/techniques/pointing-pairs.html">ポインティングペア</a>とセットで使い、大きなパターンの前に試します。数字の入る場所が2本のラインにまたがる長方形になったら、<a href="/ja/sudoku/techniques/x-wing.html">X-Wing</a>を探しましょう。</p>
+
+<nav class="pager"><a class="prev" href="/ja/sudoku/techniques/pointing-pairs.html"><small>前へ</small>ポインティングペア</a><a class="next" href="/ja/sudoku/techniques/hidden-pair.html"><small>次へ</small>隠れたペア</a></nav>
+<div class="cta guide-cta">
+  <img class="app-icon" src="/img/sudoku/icon-256.webp" alt="" width="76" height="76">
+  <h2>スマホで練習しよう</h2><p>無料アプリ「Sudoku」のヒントは、いま使えるテクニックをマスを光らせて教えてくれます。オフラインでも遊べます。</p>
+  <div class="btn-row"><a class="play-badge tight" href="https://play.google.com/store/apps/details?id=com.namlabs.sudoku&amp;hl=ja"><img src="https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png" alt="Google Play で手に入れよう" width="646" height="250"></a></div>
+</div>
+</article></div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 namlabs</span>
+    <nav>
+      <a href="/ja/sudoku/">Sudoku</a>
+      <a href="/ja/sky-hop/">Sky Hop</a>
+      <a href="/ja/sudoku/how-to-play.html">ナンプレの遊び方</a>
+      <a href="/ja/sudoku/techniques/">ナンプレの解き方</a>
+      <a href="mailto:hoainamit91@gmail.com">お問い合わせ</a>
+      <a href="/ja/privacy.html">サイトのプライバシー</a>
+      <a href="/sudoku/privacy-policy.html">プライバシーポリシー</a>
+    </nav>
+    <small class="tm">Google Play および Google Play ロゴは Google LLC の商標です。 Apple、Apple ロゴ、App Store は Apple Inc. の商標です。</small>
+  </div>
+</footer>
+</body>
+</html>
