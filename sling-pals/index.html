@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#3a2a5a">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Chim Bắn – Bắn súng cao su 30 màn | namlabs</title>
 <meta name="description" content="Chim Bắn: game bắn chim bằng súng cao su, 30 màn, chơi miễn phí ngay trên trình duyệt. Của namlabs.">
@@ -31,11 +32,31 @@ canvas{display:block;width:100%;height:100%}
 .lv{height:70px;border-radius:16px;border:3px solid #2a1408;background:var(--card);color:var(--ink);font-weight:900;font-size:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.4)}
 .lv small{font-size:12px;color:#ffb300;letter-spacing:1px;text-shadow:0 1px 0 #2a1408;height:14px}
 .lv.lock{background:#8d7a8f;color:#4b3a4d;cursor:default}
+
+html,body{overscroll-behavior:none}
+#hud{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+#menu{touch-action:pan-y}
+#rot{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;background:#2b1b5a;color:#fff3dc;font-weight:900;font-size:22px;text-align:center;z-index:9;padding:24px;gap:14px}
+#rot i{font-style:normal;font-size:64px;display:block;animation:rt 1.6s ease-in-out infinite}
+@keyframes rt{0%,100%{transform:rotate(0)}50%{transform:rotate(-90deg)}}
+@media (orientation:portrait){#rot{display:flex}}
+@media (pointer:coarse){.btn,.pill{padding:9px 18px;font-size:16px}}
+@media (max-height:520px){
+  #hud{padding-top:max(6px,env(safe-area-inset-top));padding-bottom:6px}
+  #menu{justify-content:flex-start;padding:10px 16px}
+  #menu h1{font-size:24px}#menu p{margin-bottom:8px}
+  #grid{grid-template-columns:repeat(10,52px);gap:8px}
+  .lv{height:50px;font-size:17px;border-radius:12px}.lv small{font-size:10px;height:11px}
+  .card{padding:14px 22px}.card h2{font-size:22px}.stars{font-size:32px;margin:2px 0 8px}
+  #hint{font-size:14px;bottom:max(8px,env(safe-area-inset-bottom))}
+}
+@media (max-width:700px) and (max-height:520px){#grid{grid-template-columns:repeat(6,52px)}}
 </style>
 </head>
 <body>
 <div id="hud"><div class="row"><div class="pill btn" id="lvl">Màn 1</div><div class="pill" id="score">0</div><button class="btn" id="restart">Chơi lại</button></div></div>
 <div id="hint">Kéo chim ra sau rồi thả để bắn</div>
+<div id="rot"><i>📱</i>Xoay ngang điện thoại để chơi</div>
 <div id="menu"><h1>Chim Bắn</h1><p>Chọn màn chơi</p><div id="grid"></div></div>
 <div id="modal"><div class="card"><h2 id="mt"></h2><div class="stars" id="ms"></div><div id="mx"></div>
 <button class="btn" id="again">Thử lại</button><button class="btn" id="next" style="background:var(--ok)">Màn tiếp</button></div></div>
@@ -368,7 +389,9 @@ document.getElementById('lvl').onclick=openMenu;
 const ray=new THREE.Raycaster(),zplane=new THREE.Plane(new THREE.Vector3(0,0,1),0),ndc=new THREE.Vector2(),hit=new THREE.Vector3();
 let dragging=false,dragPos=ANCHOR.clone(),flying=null;
 function pointerWorld(e){const r=renderer.domElement.getBoundingClientRect();ndc.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);ray.setFromCamera(ndc,cam);return ray.ray.intersectPlane(zplane,hit)?hit.clone():null;}
+let fsTried=false;
 addEventListener('pointerdown',e=>{
+  if(!fsTried&&e.pointerType==='touch'){fsTried=true;try{const d=document.documentElement;(d.requestFullscreen?d.requestFullscreen():Promise.reject()).then(()=>screen.orientation&&screen.orientation.lock&&screen.orientation.lock('landscape')).catch(()=>{});}catch(_){}}
   if(e.target.closest&&e.target.closest('.btn,.card'))return;
   if(state==='aim'&&current){const p=pointerWorld(e);if(p&&p.distanceTo(ANCHOR)<3.4){dragging=true;dragPos.copy(ANCHOR);document.getElementById('hint').style.opacity=0;}}
   else if(state==='fly'&&flying&&!usedAbility)ability();
@@ -377,8 +400,9 @@ addEventListener('pointermove',e=>{if(!dragging)return;const p=pointerWorld(e);i
 addEventListener('pointerup',()=>{
   if(!dragging)return;dragging=false;const d=ANCHOR.clone().sub(dragPos);
   if(d.length()<.5){dragPos.copy(ANCHOR);return;}
-  flying=launchBody(current.type,current.mesh,dragPos,d.multiplyScalar(POWER));state='fly';flightT=0;usedAbility=false;dots.forEach(x=>x.visible=false);dragPos.copy(ANCHOR);
+  clearSpent();flying=launchBody(current.type,current.mesh,dragPos,d.multiplyScalar(POWER));current.launched=true;state='fly';flightT=0;usedAbility=false;dots.forEach(x=>x.visible=false);dragPos.copy(ANCHOR);
 });
+function clearSpent(){for(const t of things)if(t.bird&&!t.dead){t.dead=true;world.removeBody(t.body);scene.remove(t.mesh);}things=things.filter(t=>!t.dead);}
 function ability(){
   usedAbility=true;const t=flying,v=t.body.velocity;
   if(t.type==='speed'){v.x*=1.9;v.y*=1.9;burst(t.mesh.position,'#ffe27a',8);}
@@ -422,9 +446,12 @@ function update(dt){
   if(state==='fly'){
     flightT+=dt;const live=things.filter(t=>t.bird&&!t.dead),lead=flying&&!flying.dead?flying:live[0];
     if(lead)camTarget=Math.max(2.5,Math.min(lead.mesh.position.x-6,11));
-    const moving=live.some(t=>t.body.velocity.length()>.8&&t.body.position.y>-8);
-    if(flightT>1.2&&(!moving||flightT>9)){state='settle';restT=0;}
-  } else if(state==='aim')camTarget=2.5;
+    const moving=live.some(t=>t.body.velocity.length()>1.5&&t.body.position.y>-8);
+    if((flightT>1.2&&!moving)||flightT>3){
+      if(birdsQ.length&&pigsLeft>0){nextBird();}   // chim kế lên ná ngay, vật lý cũ vẫn chạy tiếp
+      else{state='settle';restT=0;}
+    }
+  } else if(state==='aim'){camTarget=2.5;if(pigsLeft<=0&&!dragging){state='settle';restT=0;}}
   else if(state==='settle'){
     restT+=dt;const busy=things.some(t=>!t.dead&&t.body.velocity.length()>.6&&t.body.position.y>-8);
     if(restT>6||(restT>1.5&&!busy)){
@@ -445,13 +472,13 @@ function update(dt){
 }
 function frame(){update(Math.min(clock.getDelta(),.05));renderer.render(scene,cam);requestAnimationFrame(frame);}
 function endLevel(win){
-  state='over';const left=birdsQ.length;
+  state='over';const left=birdsQ.length+(current&&!current.launched?1:0);
   if(win){const bonus=left*10000;score+=bonus;updHud();const stars=left>=2?3:left>=1?2:1;SAVE.stars[levelIdx]=Math.max(SAVE.stars[levelIdx]||0,stars);persist();
     modal('Thắng rồi! 🎉',stars,'Điểm: '+score.toLocaleString('vi-VN')+(bonus?' (thưởng chim còn: '+bonus.toLocaleString('vi-VN')+')':''),true);}
   else modal('Chưa được, thử lại nhé',0,'Còn '+pigsLeft+' heo xanh chưa bị hạ',false);
 }
 function fireAt(dx,dy){dragPos.set(ANCHOR.x-dx,ANCHOR.y-dy,0);const d=ANCHOR.clone().sub(dragPos);
-  flying=launchBody(current.type,current.mesh,dragPos,d.multiplyScalar(POWER));state='fly';flightT=0;usedAbility=false;dragPos.copy(ANCHOR);}
+  clearSpent();flying=launchBody(current.type,current.mesh,dragPos,d.multiplyScalar(POWER));current.launched=true;state='fly';flightT=0;usedAbility=false;dragPos.copy(ANCHOR);}
 function sim(sec){for(let i=0;i<sec*60;i++){update(1/60);if(state==='over')break;}}
 loadLevel(Math.min(unlocked(),LEVEL_COUNT-1));if(!location.search.includes('nomenu'))openMenu();
 
