@@ -12,10 +12,10 @@ PLAY_LANG = {'en': 'en-US', 'vi': 'vi-VN', 'ja': 'ja-JP'}
 
 # slug, Play package suffix, short name, card colours, released on Play?
 GAMES = [
-    ('logic-puzzles', 'logic_puzzles', 'Logic Puzzles', ('#f97316', '#ef4444'), False),
+    ('logic-puzzles', 'logic_puzzles', 'Logic Puzzles', ('#f97316', '#ef4444'), True),
     ('park-out', 'park_out', 'Night Parking', ('#f59e0b', '#475569'), True),
-    ('water-sort', 'water_sort', 'Water Sort', ('#4f46e5', '#14b8a6'), False),
-    ('tangle-out', 'tangle_out', 'Tangle Out', ('#ec4899', '#8b5cf6'), False),
+    ('water-sort', 'water_sort', 'Water Sort', ('#4f46e5', '#14b8a6'), True),
+    ('tangle-out', 'tangle_out', 'Tangle Out', ('#ec4899', '#8b5cf6'), True),
     ('tile-trio', 'tile_trio', 'Word Trio', ('#0e7490', '#f97316'), True),
 ]
 
@@ -31,7 +31,7 @@ IOS = {
 }
 # Games Apple has approved and released; the App Store badge shows only for these.
 # Run `python3 _src/check_stores.py` to see which games are public on each store.
-IOS_LIVE = set()
+IOS_LIVE = {'sky-hop'}
 
 
 def _from_md(app, lang):

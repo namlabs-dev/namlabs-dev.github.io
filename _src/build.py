@@ -214,14 +214,9 @@ def tech_cards(lang):
 
 # ── Home ──────────────────────────────────────────────────────────────────
 
-POLICIES = [('block-puzzle', 'Block Puzzle'), ('bunny-steps', 'Bunny Steps'), ('caro', 'Caro'),
-            ('color-link', 'Color Link'), ('gomoku', 'Gomoku'), ('island-bridges', 'Island Bridges'),
-            ('kakuro', 'Kakuro'), ('lamp-logic', 'Lamp Logic'), ('logic-puzzles', 'Logic Puzzles'),
-            ('loop-line', 'Loop Line'), ('mine-logic', 'Mine Logic'), ('number-cross', 'Number Cross'),
-            ('park-out', 'Night Parking'), ('pixel-logic', 'Pixel Logic'), ('racing-lines', 'Racing Lines'),
-            ('sky-hop', 'Sky Hop'), ('star-place', 'Star Place'), ('sudoku', 'Sudoku'),
-            ('tangle-out', 'Tangle Out'), ('tents-camp', 'Tents Camp'), ('tile-trio', 'Word Trio'),
-            ('water-sort', 'Water Sort'), ('xiangqi', 'Xiangqi'), ('youtube-tools', 'NamTH Video Tools')]
+POLICIES = [('logic-puzzles', 'Logic Puzzles'), ('park-out', 'Night Parking'), ('sky-hop', 'Sky Hop'),
+            ('sudoku', 'Sudoku'), ('tangle-out', 'Tangle Out'), ('tile-trio', 'Word Trio'),
+            ('water-sort', 'Water Sort'), ('youtube-tools', 'NamTH Video Tools')]
 
 
 def game_card(lang, slug, app, name, colors, c, live=True):
