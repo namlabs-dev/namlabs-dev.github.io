@@ -1,16 +1,16 @@
 <!doctype html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#3a2a5a">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Chim Bắn – Bắn súng cao su 30 màn | namlabs</title>
-<meta name="description" content="Chim Bắn: game bắn chim bằng súng cao su, 30 màn, chơi miễn phí ngay trên trình duyệt. Của namlabs.">
+<title>Sling Pals – Free Slingshot Game, 30 Levels | namlabs</title>
+<meta name="description" content="Sling Pals: a free slingshot bird game with 30 levels. Play instantly in your browser. By namlabs.">
 <link rel="canonical" href="https://namlabs.dev/sling-pals/">
 <meta name="robots" content="index, follow">
-<meta property="og:type" content="website"><meta property="og:site_name" content="namlabs"><meta property="og:locale" content="vi_VN">
-<meta property="og:title" content="Chim Bắn – Bắn súng cao su 30 màn | namlabs">
-<meta property="og:description" content="Chim Bắn: game bắn chim bằng súng cao su, 30 màn, chơi miễn phí ngay trên trình duyệt.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="namlabs"><meta property="og:locale" content="en_US">
+<meta property="og:title" content="Sling Pals – Free Slingshot Game, 30 Levels | namlabs">
+<meta property="og:description" content="Sling Pals: a free slingshot bird game with 30 levels. Play instantly in your browser.">
 <meta property="og:url" content="https://namlabs.dev/sling-pals/"><meta property="og:image" content="https://namlabs.dev/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -70,16 +70,55 @@ html,body{overscroll-behavior:none}
 @keyframes cardin{0%{transform:scale(.5) translateY(30px);opacity:0}100%{transform:none;opacity:1}}
 #modal.show .stars{animation:starin .7s .25s cubic-bezier(.2,1.8,.4,1) both}
 @keyframes starin{0%{transform:scale(0) rotate(-40deg)}100%{transform:none}}
+
+.pill{display:flex;align-items:center;gap:8px}
+.pill svg{flex:none}
+.btn.sq{width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center}
+#birdico{height:26px;margin-left:2px}
+#birdn{font-weight:900}
+#menu{background:linear-gradient(#2c2466f2,#6b2f6fee 55%,#c0553fe8);justify-content:flex-start;padding:max(12px,env(safe-area-inset-top)) 18px 18px}
+.mtop{display:flex;align-items:center;gap:14px;width:100%;max-width:720px;margin:0 0 14px}
+.mtop h1{flex:1;margin:0;text-align:center;font-size:30px;letter-spacing:1px}
+#grid{grid-template-columns:repeat(5,minmax(64px,1fr));width:100%;max-width:720px}
+.lv{background:linear-gradient(#fff6e2,#ffdca0);box-shadow:0 4px 0 rgba(0,0,0,.35);transition:transform .12s}
+.lv:active{transform:translateY(2px)}
+.lv .n{font-size:22px}
+.lv small{display:flex;gap:2px;height:16px;align-items:center}
+.lv small svg{width:15px;height:15px}
+.lv.lock{background:#8d7a8f;box-shadow:none}
+#title{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 120%,#ffb54a55,transparent 60%),linear-gradient(#1d1650d9,#7a2f78b3 60%,#e0663dad);overflow:hidden}
+#title.show{display:flex}
+.sunrays{position:absolute;left:50%;top:60%;width:240vmax;height:240vmax;margin:-120vmax 0 0 -120vmax;background:repeating-conic-gradient(from 0deg,#ffd27a22 0 8deg,transparent 8deg 20deg);animation:spin 60s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tcard{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px}
+.logo{display:flex;flex-direction:column;align-items:center;line-height:.9;font-weight:900;font-size:clamp(46px,13vh,92px);letter-spacing:3px;color:#ffd23a;-webkit-text-stroke:5px #2a1408;paint-order:stroke fill;text-shadow:0 6px 0 #2a1408,0 10px 22px #0008;transform:rotate(-3deg)}
+.logo .l2{color:#ff6a3d;font-size:1.08em;margin-top:-2px}
+.tag{margin:2px 0 0;color:#fff3dc;font-weight:800;font-size:clamp(14px,3.6vh,20px);text-shadow:0 2px 0 #2a1408}
+.hero{display:flex;align-items:flex-end;justify-content:center;gap:clamp(4px,1.6vh,14px);margin:4px 0}
+.hero img{height:clamp(54px,15vh,96px);filter:drop-shadow(0 5px 0 #0005);animation:hop 1.3s ease-in-out infinite}
+.hero img:nth-child(2){animation-delay:.18s}.hero img:nth-child(3){animation-delay:.36s}.hero img:nth-child(4){animation-delay:.54s}.hero img:nth-child(5){animation-delay:.72s;height:clamp(58px,16vh,102px)}
+@keyframes hop{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+.play{pointer-events:auto;display:flex;align-items:center;gap:10px;background:linear-gradient(#52e08f,#27b867);color:#fff;border:4px solid #2a1408;border-radius:999px;padding:10px 38px 10px 28px;font-weight:900;font-size:clamp(22px,5.5vh,30px);letter-spacing:2px;box-shadow:0 6px 0 #2a1408,0 10px 24px #0006;cursor:pointer;text-shadow:0 2px 0 #1a6a3c;animation:pulse 1.6s ease-in-out infinite}
+.play:active{transform:translateY(3px);box-shadow:0 3px 0 #2a1408}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.tstat{margin-top:4px;color:#ffe9b8;font-weight:800;font-size:15px;text-shadow:0 2px 0 #2a1408;min-height:20px}
+#modal{background:rgba(30,10,40,.55)}
+.card{background:linear-gradient(#fff9ea,#ffe3b3)}
+.card .btn{margin:4px 3px}
+@media (max-height:520px){#grid{grid-template-columns:repeat(10,minmax(48px,1fr))}.mtop{margin-bottom:8px}.mtop h1{font-size:22px}.lv .n{font-size:17px}.lv small svg{width:11px;height:11px}.tcard{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:4px 28px;max-width:92vw}.logo{font-size:clamp(38px,15vh,60px)}}
+@media (max-height:520px) and (max-width:700px){#grid{grid-template-columns:repeat(6,minmax(48px,1fr))}}
+body:has(#title.show) #hud,body:has(#title.show) #hint,body:has(#menu.show) #hud,body:has(#menu.show) #hint{visibility:hidden}
 </style>
 </head>
 <body>
-<div id="hud"><div class="row"><div class="pill btn" id="lvl">Màn 1</div><div class="pill" id="score">0</div><div style="display:flex;gap:8px"><button class="btn" id="snd">🔊</button><button class="btn" id="restart">Chơi lại</button></div></div></div>
-<div id="hint">Kéo chim ra sau rồi thả để bắn</div>
+<div id="hud"><div class="row"><div class="pill btn" id="lvl"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span id="lvtxt">Level 1</span></div><div class="pill" id="score"><span id="scv">0</span><img id="birdico" alt=""><b id="birdn">0</b></div><div style="display:flex;gap:8px"><button class="btn sq" id="snd" aria-label="Sound"><svg id="snd-on" viewBox="0 0 24 24" width="22" height="22"><path d="M3 9v6h4l5 4V5L7 9z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 010 7M18 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><svg id="snd-off" viewBox="0 0 24 24" width="22" height="22" style="display:none"><path d="M3 9v6h4l5 4V5L7 9z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button><button class="btn sq" id="restart" aria-label="Restart"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M20 12a8 8 0 11-2.6-5.9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M20.5 3v6h-6z" fill="currentColor"/></svg></button></div></div></div>
+<div id="hint">Pull the bird back, then release to fire</div>
 <div id="flash"></div>
-<div id="rot"><i>📱</i>Xoay ngang điện thoại để chơi</div>
-<div id="menu"><h1>Chim Bắn</h1><p>Chọn màn chơi</p><div id="grid"></div></div>
+<div id="rot"><svg viewBox="0 0 64 64" width="84" height="84"><rect x="20" y="6" width="24" height="52" rx="6" fill="none" stroke="#fff3dc" stroke-width="4"/><circle cx="32" cy="51" r="2.5" fill="#fff3dc"/></svg>Rotate your phone to play</div>
+<div id="title"><div class="sunrays"></div><div class="tcard"><div class="logo"><span>SLING</span><span class="l2">PALS</span></div><p class="tag">Knock down every pig!</p><div class="hero" id="hero"></div><button class="play" id="playbtn"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M7 4l14 8-14 8z" fill="currentColor"/></svg>PLAY</button><div class="tstat" id="tstat"></div></div></div>
+<div id="menu"><div class="mtop"><button class="btn sq" id="mback" aria-label="Back"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1>Select Level</h1><div class="pill" id="mstars"></div></div><div id="grid"></div></div>
 <div id="modal"><div class="card"><h2 id="mt"></h2><div class="stars" id="ms"></div><div id="mx"></div>
-<button class="btn" id="again">Thử lại</button><button class="btn" id="next" style="background:var(--ok)">Màn tiếp</button></div></div>
+<button class="btn" id="again">Try again</button><button class="btn" id="next" style="background:var(--ok)">Next level</button><button class="btn" id="mlist" style="background:#6a4bd6">Levels</button></div></div>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","cannon-es":"https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js"}}</script>
 <script type="module">
@@ -87,7 +126,7 @@ import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 
 // ================= cấu hình =================
-const G = 18, POWER = 8.5, MAXDRAG = 3.2;
+let LEVEL_END=30;const G = 18, POWER = 8.5, MAXDRAG = 3.2;
 const ANCHOR = new THREE.Vector3(-10, 2.6, 0);
 const INK = '#2a1408';
 const MAT = { wood:{hp:24,dens:1.0,deb:'#d9954f'}, glass:{hp:9,dens:.7,deb:'#c6efff'}, stone:{hp:80,dens:2.2,deb:'#a7adb8'} };
@@ -213,7 +252,7 @@ function drawBird(type){
   if(type==='split'){x.fillStyle='#fff';[[-.1,.55],[.2,.65],[-.38,.62]].forEach(([a,b])=>{x.beginPath();x.arc(cx+R*a,cy+R*b,6,0,7);x.fill();});}
   if(type==='bomb'){ink(x,7);x.strokeStyle='#6b4a22';x.beginPath();x.moveTo(cx+4,cy-R);x.quadraticCurveTo(cx+22,cy-R-26,cx+42,cy-R-14);x.stroke();
     x.fillStyle=rad(x,cx+44,cy-R-14,1,14,[[0,'#fff'],[.4,'#ffd54a'],[1,'#ff6a00']]);x.beginPath();x.arc(cx+44,cy-R-14,12,0,7);x.fill();}
-  return {t:tex(c),cx,cy,R};
+  return {t:tex(c),c,cx,cy,R};
 }
 function drawPig(){
   const c=mk(256,256), x=c.getContext('2d'), cx=128,cy=140,R=86;
@@ -234,7 +273,7 @@ function drawPig(){
   x.beginPath();x.ellipse(cx,cy+30,46,32,0,0,7);x.fillStyle=lin(x,0,cy,0,cy+62,[[0,'#c6f79a'],[1,'#8ad850']]);x.fill();ink(x,7);x.stroke();
   x.fillStyle='#2f6a16';[-17,17].forEach(o=>{x.beginPath();x.ellipse(cx+o,cy+28,8,12,0,0,7);x.fill();});
   x.fillStyle='rgba(255,255,255,.5)';x.beginPath();x.ellipse(cx-18,cy+14,12,4,-.2,0,7);x.fill();
-  return {t:tex(c),cx,cy,R};
+  return {t:tex(c),c,cx,cy,R};
 }
 // ================= khối công trình (vẽ theo đúng kích thước) =================
 const blockCache={};
@@ -409,7 +448,7 @@ function sfx(n,a){const now=performance.now();if(now-(sfxLast[n]||0)<(n==='thud'
     case'win':[523,659,784,1046,1318].forEach((f,i)=>tone(f,f,.28,'triangle',.17,i*.11));break;
     case'lose':[392,330,262].forEach((f,i)=>tone(f,f*.97,.3,'triangle',.16,i*.2));break;
   }}
-const sndBtn=document.getElementById('snd');function sndLabel(){sndBtn.textContent=muted?'🔇':'🔊';}sndLabel();
+const sndBtn=document.getElementById('snd');function sndLabel(){document.getElementById('snd-on').style.display=muted?'none':'';document.getElementById('snd-off').style.display=muted?'':'none';}sndLabel();
 sndBtn.onclick=()=>{audioOn();muted=!muted;try{localStorage.setItem('sp_mute',muted?'1':'0');}catch(_){}sndLabel();};
 
 // ================= hiệu ứng: rung màn hình, điểm bay, bụi, vệt chim, slow-mo =================
@@ -437,18 +476,20 @@ function clearAll(){
   for(const b of birdsQ)scene.remove(b.mesh);birdsQ=[];if(current&&current.mesh)scene.remove(current.mesh);current=null;pigsLeft=0;
 }
 function loadLevel(i){
-  clearAll();levelIdx=i;state='aim';usedAbility=false;score=0;closeModal();
-  const L=LEVELS_ALL[i];for(const b of L.blocks)makeBlock(...b);for(const p of L.pigs)makePig(...p);
+  clearAll();levelIdx=i;state='aim';usedAbility=false;score=0;closeModal();zoom=zoomTarget=1;
+  const L=LEVELS_ALL[i];LEVEL_END=Math.max(...L.blocks.map(b=>b[1]+b[3]/2),...L.pigs.map(p=>p[0]))+6;for(const b of L.blocks)makeBlock(...b);for(const p of L.pigs)makePig(...p);
   L.birds.forEach((type,k)=>{const mesh=makeBirdMesh(type);birdsQ.push({type,mesh});});
-  nextBird();updHud();const h=document.getElementById('hint');h.style.opacity=1;h.textContent='Kéo chim ra sau rồi thả để bắn';
+  nextBird();updHud();const h=document.getElementById('hint');h.style.opacity=1;h.textContent='Pull the bird back, then release to fire';
 }
 function nextBird(){
   current=birdsQ.shift()||null;usedAbility=false;
   if(current){current.mesh.position.copy(ANCHOR);current.mesh.rotation.set(0,0,0);state='aim';}
   birdsQ.forEach((b,k)=>{b.mesh.position.set(ANCHOR.x-2-k*1.3,BIRD[b.type].r,0);b.mesh.rotation.set(0,0,0);});
 }
-function updHud(){document.getElementById('lvl').textContent='Màn '+(levelIdx+1);document.getElementById('score').textContent=score.toLocaleString('vi-VN')+' · 🐦 '+(birdsQ.length+(current?1:0));}
-function modal(title,stars,extra,win){document.getElementById('mt').textContent=title;document.getElementById('ms').textContent='★'.repeat(stars)+'☆'.repeat(3-stars);
+function updHud(){document.getElementById('lvtxt').textContent='Level '+(levelIdx+1);document.getElementById('scv').textContent=score.toLocaleString('en-US');document.getElementById('birdn').textContent='×'+(birdsQ.length+(current?1:0));}
+const starSvg=on=>'<svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18l-6.5 4 1.7-7.4-5.7-5 7.5-.7z" fill="'+(on?'#ffc21a':'#b9a58a')+'" stroke="#2a1408" stroke-width="2" stroke-linejoin="round"/></svg>';
+const starsHtml=n=>[0,1,2].map(i=>starSvg(i<n)).join('');
+function modal(title,stars,extra,win){document.getElementById('mt').textContent=title;document.getElementById('ms').innerHTML=starsHtml(stars);document.getElementById('ms').style.display='flex';
   document.getElementById('mx').textContent=extra;document.getElementById('next').style.display=win&&levelIdx<LEVEL_COUNT-1?'':'none';document.getElementById('modal').classList.add('show');}
 function closeModal(){document.getElementById('modal').classList.remove('show');}
 document.getElementById('restart').onclick=()=>loadLevel(levelIdx);
@@ -460,13 +501,26 @@ document.getElementById('next').onclick=()=>loadLevel(levelIdx+1);
 let SAVE={stars:[]};try{SAVE=JSON.parse(localStorage.getItem('sp_save')||'{"stars":[]}')}catch(e){}
 function persist(){try{localStorage.setItem('sp_save',JSON.stringify(SAVE))}catch(e){}}
 const unlocked=()=>{let n=0;while(n<LEVEL_COUNT-1&&(SAVE.stars[n]||0)>0)n++;return n;};
+const LOCK='<svg viewBox="0 0 24 24" width="24" height="24"><rect x="5" y="11" width="14" height="10" rx="2.5" fill="#4b3a4d"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="#4b3a4d" stroke-width="2.6"/></svg>';
+function totalStars(){let t=0;for(let i=0;i<LEVEL_COUNT;i++)t+=SAVE.stars[i]||0;return t;}
 function openMenu(){
+  document.getElementById('title').classList.remove('show');
   const g=document.getElementById('grid');g.innerHTML='';const u=unlocked();
   for(let i=0;i<LEVEL_COUNT;i++){const b=document.createElement('div'),st=SAVE.stars[i]||0;
-    b.className='lv'+(i>u?' lock':'');b.innerHTML=(i>u?'🔒':(i+1))+'<small>'+(i>u?'':'★'.repeat(st)+'☆'.repeat(3-st))+'</small>';
+    b.className='lv'+(i>u?' lock':'');b.innerHTML=(i>u?LOCK:'<span class="n">'+(i+1)+'</span>')+'<small>'+(i>u?'':starsHtml(st))+'</small>';
     if(i<=u)b.onclick=()=>{document.getElementById('menu').classList.remove('show');loadLevel(i);};g.appendChild(b);}
+  document.getElementById('mstars').innerHTML=starSvg(true).replace('<svg','<svg width="18" height="18"')+' <b>'+totalStars()+' / '+LEVEL_COUNT*3+'</b>';
   document.getElementById('menu').classList.add('show');
 }
+function openTitle(){
+  document.getElementById('menu').classList.remove('show');closeModal();
+  const h=document.getElementById('hero');if(!h.children.length){for(const t of['red','speed','split','bomb']){const i=new Image();i.src=drawBird(t).c.toDataURL();h.appendChild(i);}const p=new Image();p.src=pigArt.c.toDataURL();h.appendChild(p);}
+  document.getElementById('tstat').textContent=totalStars()?('★ '+totalStars()+' / '+LEVEL_COUNT*3+' stars collected'):'30 levels · free to play';
+  document.getElementById('title').classList.add('show');
+}
+document.getElementById('playbtn').onclick=()=>{audioOn();openMenu();};
+document.getElementById('mback').onclick=openTitle;
+document.getElementById('mlist').onclick=openMenu;
 document.getElementById('lvl').onclick=openMenu;
 
 // ================= điều khiển =================
@@ -477,7 +531,7 @@ let fsTried=false;
 addEventListener('pointerdown',e=>{
   audioOn();
   if(!fsTried&&e.pointerType==='touch'){fsTried=true;try{const d=document.documentElement;(d.requestFullscreen?d.requestFullscreen():Promise.reject()).then(()=>screen.orientation&&screen.orientation.lock&&screen.orientation.lock('landscape')).catch(()=>{});}catch(_){}}
-  if(e.target.closest&&e.target.closest('.btn,.card'))return;
+  if(e.target.closest&&e.target.closest('.btn,.card,.play,#menu,#title'))return;
   if(state==='aim'&&current){const p=pointerWorld(e);if(p&&p.distanceTo(ANCHOR)<3.4){dragging=true;dragPos.copy(ANCHOR);document.getElementById('hint').style.opacity=0;}}
   else if(state==='fly'&&flying&&!usedAbility)ability();
 });
@@ -500,11 +554,11 @@ function ability(){
 }
 
 // ================= vòng lặp =================
-const clock=new THREE.Clock();let camX=2.5,camTarget=2.5;
+const clock=new THREE.Clock();let baseW=30,camX=2.5,camTarget=2.5,zoom=1,zoomTarget=1;
 function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h);cam.userData.aspect=w/h;}
 addEventListener('resize',resize);resize();
 function fitCamera(){
-  const a=cam.userData.aspect;let H=14,W=H*a;if(W<30){W=30;H=W/a;}
+  const a=cam.userData.aspect;let H=14,W=H*a;if(W<30){W=30;H=W/a;}H*=zoom;W*=zoom;baseW=W/zoom;
   cam.left=-W/2;cam.right=W/2;cam.top=H/2;cam.bottom=-H/2;cam.position.x=camX+(shake?(Math.random()-.5)*shake:0);cam.position.y=H/2-2.6+(shake?(Math.random()-.5)*shake:0);cam.updateProjectionMatrix();
   sky.position.set(camX,cam.position.y,0);sun.position.set(camX*.97+2,cam.position.y+H*.12,0);
   for(const m of mtn){m.position.x=camX*(1-m.userData.f);}
@@ -519,7 +573,7 @@ function update(dt){
     t.mesh.position.set(t.body.position.x,t.body.position.y,0);
     if(t.bird&&state!=='over'&&t.body.velocity.length()>3&&t.body.position.y>t.r+.15){const a=Math.atan2(t.body.velocity.y,t.body.velocity.x);t.body.quaternion.setFromEuler(0,0,a);}
     t.mesh.quaternion.set(t.body.quaternion.x,t.body.quaternion.y,t.body.quaternion.z,t.body.quaternion.w);
-    if(t.bird&&t.body.position.y<-8)t.dead=true;
+    if(t.bird&&(t.body.position.y<-8||t.body.position.x>LEVEL_END+30))t.dead=true;
   }
   if(current&&state==='aim'){
     const bp=dragging?dragPos:ANCHOR;current.mesh.position.set(bp.x,bp.y,0);
@@ -532,15 +586,18 @@ function update(dt){
   shake=Math.max(0,shake-dt*1.6);
   if(state==='fly'){
     flightT+=dt;const live=things.filter(t=>t.bird&&!t.dead),lead=flying&&!flying.dead?flying:live[0];
-    if(lead)camTarget=Math.max(2.5,Math.min(lead.mesh.position.x-6,11));
+    if(lead){const lx=lead.mesh.position.x,ly=lead.mesh.position.y;
+      camTarget=Math.max(2.5,Math.min(lx-baseW*.18,LEVEL_END-baseW*.25));
+      // zoom out so the bird never leaves the screen
+      zoomTarget=Math.min(1.9,Math.max(1,(lx-camTarget+5)/(baseW*.5),(ly+2.6+3)/14));}
     const moving=live.some(t=>t.body.velocity.length()>1.5&&t.body.position.y>-8);
     if((flightT>1.2&&!moving)||flightT>3){
       if(birdsQ.length&&pigsLeft>0){nextBird();}   // chim kế lên ná ngay, vật lý cũ vẫn chạy tiếp
       else{state='settle';restT=0;}
     }
-  } else if(state==='aim'){camTarget=2.5;if(pigsLeft<=0&&!dragging){state='settle';restT=0;}}
+  } else if(state==='aim'){camTarget=2.5;zoomTarget=1;if(pigsLeft<=0&&!dragging){state='settle';restT=0;}}
   else if(state==='settle'){
-    restT+=dt;const busy=things.some(t=>!t.dead&&t.body.velocity.length()>.6&&t.body.position.y>-8);
+    zoomTarget=1;restT+=dt;const busy=things.some(t=>!t.dead&&t.body.velocity.length()>.6&&t.body.position.y>-8);
     if(restT>6||(restT>1.5&&!busy)){
       for(const t of things)if(t.bird){t.dead=true;world.removeBody(t.body);scene.remove(t.mesh);}
       things=things.filter(t=>!t.dead);flying=null;
@@ -549,7 +606,7 @@ function update(dt){
   }
   things=things.filter(t=>!t.dead);
   if(state==='fly'&&pigsLeft<=0){state='settle';restT=0;}
-  camX+=(camTarget-camX)*Math.min(1,dt*3);
+  camX+=(camTarget-camX)*Math.min(1,dt*3);zoom+=(zoomTarget-zoom)*Math.min(1,dt*2.5);
   setBands();fitCamera();
   for(const c of clouds)c.position.x=c.userData.x0+camX*(1-c.userData.f)+(performance.now()/1000)*.25;
   for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.life-=dt;
@@ -561,13 +618,13 @@ function frame(){let dt=Math.min(clock.getDelta(),.05);if(slow>0){slow-=dt;dt*=.
 function endLevel(win){
   state='over';const left=birdsQ.length+(current&&!current.launched?1:0);
   if(win){const bonus=left*10000;score+=bonus;updHud();const stars=left>=2?3:left>=1?2:1;SAVE.stars[levelIdx]=Math.max(SAVE.stars[levelIdx]||0,stars);persist();
-    sfx('win');confetti();modal('Thắng rồi! 🎉',stars,'Điểm: '+score.toLocaleString('vi-VN')+(bonus?' (thưởng chim còn: '+bonus.toLocaleString('vi-VN')+')':''),true);}
-  else{sfx('lose');modal('Chưa được, thử lại nhé',0,'Còn '+pigsLeft+' heo xanh chưa bị hạ',false);}
+    sfx('win');confetti();modal('Level cleared!',stars,'Score: '+score.toLocaleString('en-US')+(bonus?' (bonus for spare birds: '+bonus.toLocaleString('en-US')+')':''),true);}
+  else{sfx('lose');modal('Not quite, try again!',0,pigsLeft+(pigsLeft>1?' pigs':' pig')+' still standing',false);}
 }
 function fireAt(dx,dy){dragPos.set(ANCHOR.x-dx,ANCHOR.y-dy,0);const d=ANCHOR.clone().sub(dragPos);
   clearSpent();flying=launchBody(current.type,current.mesh,dragPos,d.multiplyScalar(POWER));current.launched=true;state='fly';flightT=0;usedAbility=false;dragPos.copy(ANCHOR);}
 function sim(sec){for(let i=0;i<sec*60;i++){update(1/60);if(state==='over')break;}}
-loadLevel(Math.min(unlocked(),LEVEL_COUNT-1));if(!location.search.includes('nomenu'))openMenu();
+loadLevel(Math.min(unlocked(),LEVEL_COUNT-1));{const bi=document.getElementById('birdico');bi.src=drawBird('red').c.toDataURL();}if(!location.search.includes('nomenu'))openTitle();
 
 // ---- bộ kiểm tra: chọn tham lam cú bắn tốt nhất cho từng chim để chắc màn thắng được ----
 function runShot(dx,dy,tap){
