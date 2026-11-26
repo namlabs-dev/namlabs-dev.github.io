@@ -129,7 +129,7 @@ import * as CANNON from 'cannon-es';
 let LEVEL_END=30;const G = 18, POWER = 8.5, MAXDRAG = 3.2;
 const ANCHOR = new THREE.Vector3(-10, 2.6, 0);
 const INK = '#2a1408';
-const MAT = { wood:{hp:24,dens:1.0,deb:'#d9954f'}, glass:{hp:9,dens:.7,deb:'#c6efff'}, stone:{hp:80,dens:2.2,deb:'#a7adb8'} };
+const MAT = { wood:{hp:24,dens:1.0,deb:'#d9954f'}, glass:{hp:9,dens:.7,deb:'#c6efff'}, stone:{hp:80,dens:2.2,deb:'#a7adb8'}, tnt:{hp:5,dens:.8,deb:'#e8412c'}, rock:{hp:1e12,dens:3,deb:'#8a7a6a'} };
 const LEVELS = [
  { birds:['red','red','red'],
    blocks:[['wood',13,0,.5,2.6],['wood',16,0,.5,2.6],['wood',14.5,2.6,4,.5],['glass',14.5,3.1,.5,1.4]],
@@ -150,10 +150,10 @@ const LEVELS = [
 function rng(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 // 8 kiểu công trình khác nhau; mỗi kiểu trả về {blocks,pigs,w}. Khối: [chất liệu,x giữa,y đáy,rộng,cao]
 const ARCH={
-  tower(x,r,d,pick){const fl=1+Math.floor(r()*(1+d*3)),B=[],P=[];
+  tower(x,r,d,pick){const fl=1+Math.floor(r()*(1+d*2)),B=[],P=[];
     for(let f=0;f<fl;f++){const y=f*2.5;B.push([pick(),x-1.4,y,.5,2],[pick(),x+1.4,y,.5,2],[r()<.7?'wood':pick(),x,y+2,3.6,.5]);if(f<fl-1&&r()<.45)P.push([x,y]);}
     P.push([x,fl*2.5]);if(r()<.5)P.push([x,0]);return{blocks:B,pigs:P,w:3.6};},
-  pyramid(x,r,d,pick){const R=2+Math.floor(r()*(1+d*2.2)),s=1.3,B=[],P=[];
+  pyramid(x,r,d,pick){const R=2+Math.floor(r()*(1+d*1.5)),s=1.3,B=[],P=[];
     for(let k=0;k<R;k++){const n=R+1-k;for(let j=0;j<n;j++)B.push([pick(),x+(j-(n-1)/2)*s,k*s,s,s]);}
     P.push([x,R*s]);P.push([x+(R+1)*s/2+1.1,0]);if(R>=3&&r()<.6)P.push([x-(R+1)*s/2-1.1,0]);return{blocks:B,pigs:P,w:(R+1)*s+2.4};},
   fortress(x,r,d,pick){const B=[['stone',x,0,.9,4+(r()<.4?.8:0)],[pick(),x+3,0,.5,2],[pick(),x+6,0,.5,2],[r()<.6?'wood':'glass',x+4.5,2,3.8,.5]],P=[[x+4.5,0],[x+4.5,2.5]];
@@ -162,30 +162,35 @@ const ARCH={
     if(d<.3)P.pop();return{blocks:B,pigs:P,w:6.9};},
   stairs(x,r,d,pick){const B=[],P=[],n=4;for(let k=0;k<n;k++){const h=1+k*1.1;B.push([pick(),x+k*1.7,0,1.6,h]);if(k===1||k===3||(k===2&&r()<.5))P.push([x+k*1.7,h]);}
     return{blocks:B,pigs:P,w:n*1.7};},
-  spire(x,r,d,pick){const H=3+Math.floor(r()*(2+d*3)),B=[],P=[];for(let k=0;k<H;k++)B.push([pick(),x,k*1.4,1.4,1.4]);P.push([x,H*1.4]);
+  spire(x,r,d,pick){const H=3+Math.floor(r()*(1+d*1.5)),B=[],P=[];for(let k=0;k<H;k++)B.push([pick(),x,k*1.4,1.4,1.4]);P.push([x,H*1.4]);
     const hut=r()<.6;if(hut){B.push(['wood',x+3.2,0,.5,2],['wood',x+5.6,0,.5,2],[pick(),x+4.4,2,3,.5]);P.push([x+4.4,0]);}
     return{blocks:B,pigs:P,w:hut?6.4:1.6};},
+  wall(x,r,d,pick){const h=3+Math.floor(r()*2)*.8;return{blocks:[['rock',x,0,1.6,h],['wood',x+4.2,0,.5,2],['wood',x+6.6,0,.5,2],[pick(),x+5.4,2,3,.5]],pigs:[[x+5.4,0],[x+5.4,2.5]],w:7.4};},
+  tntHouse(x,r,d,pick){return{blocks:[['tnt',x-.65,0,1.1,1.1],['tnt',x+.65,0,1.1,1.1],['wood',x,1.1,3.2,.45],['glass',x-1.3,1.55,.4,1.4],['glass',x+1.3,1.55,.4,1.4],[pick(),x,2.95,3.2,.45]],pigs:[[x,1.55],[x+3.2,0]],w:4.6};},
+  boulder(x,r,d,pick){return{blocks:[['wood',x,0,.5,3.2],['wood',x+2.6,0,.5,3.2],['wood',x+1.3,3.2,3.5,.5],['ball',x+1.3,3.7,.8]],pigs:[[x+1.3,0],[x+4.3,0]],w:5};},
+  cave(x,r,d,pick){return{blocks:[['stone',x,0,.7,2.4],['stone',x+3.2,0,.7,2.4],['stone',x+1.6,2.4,4.2,.7],['glass',x+1.6,3.1,.4,1.2]],pigs:[[x+1.6,0],[x+1.6,3.1]],w:4.6};},
+  hill(x,r,d,pick){return{blocks:[['rock',x,0,3.6,1.5],['wood',x+3.0,0,.5,2],['wood',x+4.5,0,.5,2],[pick(),x+3.75,2,2.4,.4]],pigs:[[x,1.5],[x+3.75,0]],w:5.6};},
   platform(x,r,d,pick){const h=3.5+Math.floor(r()*3);return{blocks:[['stone',x,0,1.1,h],[pick(),x,h,3.6,.5],['glass',x-1.6,h+.5,.4,1.2],['glass',x+1.6,h+.5,.4,1.2]],pigs:[[x,h+.5],[x+3,0],...(d>.4?[[x-3,0]]:[])],w:6};},
   domino(x,r,d,pick){const B=[],P=[];for(let k=0;k<5;k++)B.push([pick(),x+k*1,0,.5,2.8]);
     B.push(['wood',x+5.4,0,.5,2],['wood',x+8.2,0,.5,2],[pick(),x+6.8,2,3.4,.5]);P.push([x+6.8,0],[x+6.8,2.5]);return{blocks:B,pigs:P,w:8.6};},
 };
-const ARCH_ORDER=['tower','pyramid','fortress','bridge','stairs','spire','platform','domino'];
+const RECIPE={3:['tower'],4:['pyramid'],5:['wall'],6:['bridge','tntHouse'],7:['hill','tower'],8:['boulder'],9:['fortress','stairs'],10:['cave'],11:['spire','wall'],12:['tntHouse','pyramid'],13:['platform','boulder'],14:['hill','cave'],15:['domino','tntHouse'],16:['wall','bridge'],17:['boulder','tower'],18:['cave','stairs','tntHouse'],19:['pyramid','hill','spire'],20:['fortress','wall'],21:['tntHouse','platform','boulder'],22:['cave','domino'],23:['wall','tower','tntHouse'],24:['bridge','boulder','hill'],25:['pyramid','cave'],26:['spire','tntHouse','wall'],27:['platform','cave','boulder'],28:['fortress','tntHouse','hill'],29:['wall','cave','pyramid']};
 function genLevel(i){
-  const r=rng(i*7919+101),d=i/29,k=i-3;
+  const r=rng(i*7919+101),d=i/29;
   const pool=i<5?['wood','wood','glass']:i<12?['wood','glass','stone']:['wood','stone','stone','glass'];
   const pick=()=>pool[Math.floor(r()*pool.length)];
-  const f0=(k*3)%8,names=[ARCH_ORDER[f0]];
-  if(i>=6)names.push(ARCH_ORDER[(f0+1+(k%7))%8]);
-  if(i>=20){const t=ARCH_ORDER[(f0+2+(k%5)+(k>>3))%8];if(!names.includes(t))names.push(t);}
-  const blocks=[],pigs=[];let x=11+r();
+  const names=RECIPE[i]||['tower'],blocks=[],pigs=[],used=[];let x=11+r();
   for(const nm of names){
-    const w=ARCH[nm](x,r,d,pick);if(x+w.w>25.5&&pigs.length)break;
-    blocks.push(...w.blocks);pigs.push(...w.pigs);x+=w.w+1.6+r()*.8;
+    const w=ARCH[nm](x,r,d,pick);if(x+w.w>29&&pigs.length)break;
+    blocks.push(...w.blocks);pigs.push(...w.pigs);used.push(nm);x+=w.w+1.4+r()*.8;
   }
-  const n=Math.max(3,Math.min(7,Math.ceil(pigs.length*.9)+2)),types=['red'];
+  // armoured pigs: helmets from level 10, a king from level 15
+  let helm=0;if(i>=10)pigs.forEach((p,k)=>{if(k%3===1){p[2]='helmet';helm++;}});
+  if(i>=15&&i%2===1){const t=pigs.reduce((a,p,k)=>p[1]>=pigs[a][1]?k:a,0);pigs[t][2]='king';}
+  const n=Math.max(3,Math.min(8,Math.ceil(pigs.length*.9)+2+(helm>1?1:0))),types=['red'];
   if(i>=3)types.push('speed');if(i>=6)types.push('split');if(i>=9)types.push('bomb');
   const birds=['red'];for(let q=1;q<n;q++)birds.push(types[Math.floor(r()*types.length)]);
-  return{birds,blocks,pigs,names};
+  return{birds,blocks,pigs,names:used};
 }
 const HAND=LEVELS.slice(0,3);
 const LEVEL_COUNT=30;
@@ -294,6 +299,16 @@ function blockTex(type,w,h,cracked){
     x.fillStyle='rgba(255,255,255,.45)';x.fillRect(b,b,W-2*b,2.5);
     x.strokeStyle='#3f4552';x.lineWidth=b*.8;x.strokeRect(b*.4,b*.4,W-b*.8,H-b*.8);
     x.strokeStyle='rgba(50,55,66,.85)';x.lineWidth=2.5;x.beginPath();x.moveTo(W*.3,b);x.lineTo(W*.4,H*.35);x.lineTo(W*.28,H*.6);x.stroke();
+  } else if(type==='tnt'){
+    x.fillStyle=lin(x,0,0,0,H,[[0,'#ff6a4a'],[1,'#b8281a']]);x.fillRect(0,0,W,H);
+    x.fillStyle='rgba(60,10,5,.45)';x.fillRect(0,H*.22,W,H*.12);x.fillRect(0,H*.66,W,H*.12);
+    x.fillStyle='#fff3dc';x.font='900 '+Math.round(H*.3)+'px system-ui,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('TNT',W/2,H*.5);
+    x.strokeStyle='#3a0d07';x.lineWidth=b*.8;x.strokeRect(b*.4,b*.4,W-b*.8,H-b*.8);
+  } else if(type==='rock'){
+    x.fillStyle=lin(x,0,0,0,H,[[0,'#8d7f73'],[1,'#5f5249']]);x.fillRect(0,0,W,H);
+    x.fillStyle='rgba(40,30,25,.3)';for(let i=0;i<Math.max(8,W*H/700);i++){x.beginPath();x.arc(rnd(0,W),rnd(8,H),rnd(3,10),0,7);x.fill();}
+    x.fillStyle='#6fbf3a';x.fillRect(0,0,W,Math.max(8,H*.12));x.fillStyle='rgba(255,255,255,.25)';x.fillRect(0,0,W,3);
+    x.strokeStyle='#2a1408';x.lineWidth=b*.8;x.strokeRect(b*.4,b*.4,W-b*.8,H-b*.8);
   } else { // glass
     x.fillStyle=lin(x,0,0,W,H,[[0,'rgba(200,240,255,.85)'],[1,'rgba(120,200,240,.7)']]);x.fillRect(0,0,W,H);
     x.fillStyle='rgba(255,255,255,.7)';x.beginPath();x.moveTo(W*.1,H);x.lineTo(W*.4,H);x.lineTo(W*.9,0);x.lineTo(W*.6,0);x.fill();
@@ -377,19 +392,36 @@ const gBody=new CANNON.Body({mass:0,shape:new CANNON.Plane(),material:matD});gBo
 
 let things=[],particles=[],birdsQ=[],current=null,state='aim',levelIdx=0,score=0,pigsLeft=0,usedAbility=false,flightT=0,restT=0;
 const birdArt={},pigArt=drawPig();
+function drawBall(){const c=mk(256,256),x=c.getContext('2d');x.fillStyle=rad(x,128,128,6,120,[[0,'#d5d9e2'],[1,'#6d7380']],96,90);x.beginPath();x.arc(128,128,118,0,7);x.fill();ink(x,9);x.stroke();
+  x.strokeStyle='rgba(40,44,55,.7)';x.lineWidth=6;x.beginPath();x.moveTo(70,60);x.lineTo(110,110);x.lineTo(90,170);x.moveTo(110,110);x.lineTo(180,120);x.stroke();return {t:tex(c)};}
+function drawHelmet(){const c=mk(256,256),x=c.getContext('2d');x.beginPath();x.ellipse(128,118,84,70,0,Math.PI,0);x.closePath();x.fillStyle=lin(x,0,50,0,120,[[0,'#d9dde6'],[1,'#7b8394']]);x.fill();ink(x,8);x.stroke();
+  x.fillStyle='#4a4f60';x.fillRect(48,114,160,16);x.strokeStyle=INK;x.lineWidth=5;x.strokeRect(48,114,160,16);x.fillStyle='rgba(255,255,255,.5)';x.beginPath();x.ellipse(98,76,22,8,-.5,0,7);x.fill();return {t:tex(c)};}
+function drawCrown(){const c=mk(256,256),x=c.getContext('2d');x.beginPath();x.moveTo(70,92);x.lineTo(62,32);x.lineTo(98,62);x.lineTo(128,20);x.lineTo(158,62);x.lineTo(194,32);x.lineTo(186,92);x.closePath();x.fillStyle=lin(x,0,20,0,92,[[0,'#ffe46a'],[1,'#e0a010']]);x.fill();ink(x,8);x.stroke();
+  x.fillStyle='#e8412c';for(const px of[98,128,158]){x.beginPath();x.arc(px,78,7,0,7);x.fill();}return {t:tex(c)};}
+const ballArt=drawBall(),helmArt=drawHelmet(),crownArt=drawCrown();
+
 function lock2D(b){b.linearFactor.set(1,1,0);b.angularFactor.set(0,0,1);}
 
+function makeBall(x,y,r){
+  const grp=new THREE.Group(),s=plane(ballArt.t,r*2,r*2,10);grp.add(s);scene.add(grp);
+  const body=new CANNON.Body({mass:5,shape:new CANNON.Sphere(r),position:new CANNON.Vec3(x,y+r,0),sleepSpeedLimit:.2,sleepTimeLimit:.6});
+  lock2D(body);body.linearDamping=.02;body.angularDamping=.15;world.addBody(body);
+  const t={body,mesh:grp,hp:160,max:160,kind:'stone',mat:MAT.stone,w:r*2,h:r*2};body.userData=t;things.push(t);hookHit(t);return t;
+}
 function makeBlock(type,x,y,w,h){
+  if(type==='ball')return makeBall(x,y,w);
   const m=MAT[type],depth=1.6,grp=new THREE.Group(),sp=plane(blockTex(type,w,h,false),w,h,10);grp.add(sp);scene.add(grp);
-  const body=new CANNON.Body({mass:w*h*depth*m.dens*1.2,shape:new CANNON.Box(new CANNON.Vec3(w/2,h/2,depth/2)),position:new CANNON.Vec3(x,y+h/2,0),sleepSpeedLimit:.2,sleepTimeLimit:.6});
+  const body=new CANNON.Body({mass:type==='rock'?0:w*h*depth*m.dens*1.2,shape:new CANNON.Box(new CANNON.Vec3(w/2,h/2,depth/2)),position:new CANNON.Vec3(x,y+h/2,0),sleepSpeedLimit:.2,sleepTimeLimit:.6});
   lock2D(body);body.linearDamping=.02;body.angularDamping=.08;world.addBody(body);
   const t={body,mesh:grp,sp,hp:m.hp,max:m.hp,kind:type,mat:m,w,h};body.userData=t;things.push(t);hookHit(t);return t;
 }
-function makePig(x,y){
-  const r=.62,grp=new THREE.Group(),k=r/pigArt.R,s=plane(pigArt.t,256*k,256*k,10);s.position.set((128-pigArt.cx)*k,(pigArt.cy-128)*k,0);grp.add(s);scene.add(grp);
-  const body=new CANNON.Body({mass:1.2,shape:new CANNON.Sphere(r),position:new CANNON.Vec3(x,y+r,0),sleepSpeedLimit:.2,sleepTimeLimit:.6});
+function makePig(x,y,kind){
+  const king=kind==='king',helm=kind==='helmet',r=king?.92:.62,grp=new THREE.Group(),k=r/pigArt.R,s=plane(pigArt.t,256*k,256*k,10);s.position.set((128-pigArt.cx)*k,(pigArt.cy-128)*k,0);grp.add(s);
+  if(helm||king){const o=plane((king?crownArt:helmArt).t,256*k,256*k,11);o.position.copy(s.position);grp.add(o);}
+  scene.add(grp);
+  const hp=king?45:helm?26:12,body=new CANNON.Body({mass:king?2.6:1.2,shape:new CANNON.Sphere(r),position:new CANNON.Vec3(x,y+r,0),sleepSpeedLimit:.2,sleepTimeLimit:.6});
   lock2D(body);body.linearDamping=.03;body.angularDamping=.4;world.addBody(body);
-  const t={body,mesh:grp,hp:12,max:12,kind:'pig',pig:true};body.userData=t;things.push(t);pigsLeft++;hookHit(t);return t;
+  const t={body,mesh:grp,hp,max:hp,kind:'pig',pig:true,king};body.userData=t;things.push(t);pigsLeft++;hookHit(t);return t;
 }
 function makeBirdMesh(type){
   const art=birdArt[type]||(birdArt[type]=drawBird(type)),r=BIRD[type].r,k=r/art.R,grp=new THREE.Group();
@@ -415,11 +447,16 @@ function damage(t,d){
   if(t.sp&&!t.cracked&&t.hp<t.max*.5){t.cracked=true;t.sp.material.map=blockTex(t.kind,t.w,t.h,true);}
   if(t.hp<=0)kill(t);
 }
+function explode(pos,R,P,skip){
+  for(const o of things){if(o===skip||o.dead||!o.body||o.body.mass===0)continue;const dx=o.body.position.x-pos.x,dy=o.body.position.y-pos.y,d=Math.hypot(dx,dy);
+    if(d<R){const k=1-d/R;o.body.applyImpulse(new CANNON.Vec3(dx/(d||1)*P*k,dy/(d||1)*P*k+5*k,0));damage(o,80*k);}}
+  sfx('boom');bump(.9);flash();puff(pos,8);burst(pos,'#ff9a3d',14);burst(pos,'#333',6);
+}
 function kill(t){
   if(t.dead)return;t.dead=true;const p=t.mesh.position;
-  if(t.pig){puff(p,10);burst(p,'#8be04e',10);stars(p,8);pigsLeft--;score+=5000;sfx('pig');bump(.4);popup(p,'+5000','big');
+  if(t.pig){puff(p,10);burst(p,'#8be04e',10);stars(p,8);pigsLeft--;score+=t.king?10000:5000;sfx('pig');bump(.4);popup(p,t.king?'+10000':'+5000','big');
     if(pigsLeft<=0){slow=.9;bump(.7);flash();}}
-  else{burst(p,t.mat.deb,12);score+=500;sfx(t.kind==='glass'?'glass':t.kind==='stone'?'stone':'wood',1);popup(p,'+500','sm');bump(.12);}
+  else{if(t.kind==='tnt')explode(p,4.2,24,t);burst(p,t.mat.deb,12);score+=500;sfx(t.kind==='glass'?'glass':t.kind==='stone'?'stone':'wood',1);popup(p,'+500','sm');bump(.12);}
   updHud();setTimeout(()=>{world.removeBody(t.body);scene.remove(t.mesh);},0);
 }
 
@@ -476,8 +513,8 @@ function clearAll(){
   for(const b of birdsQ)scene.remove(b.mesh);birdsQ=[];if(current&&current.mesh)scene.remove(current.mesh);current=null;pigsLeft=0;
 }
 function loadLevel(i){
-  clearAll();levelIdx=i;state='aim';usedAbility=false;score=0;closeModal();zoom=zoomTarget=1;
-  const L=LEVELS_ALL[i];LEVEL_END=Math.max(...L.blocks.map(b=>b[1]+b[3]/2),...L.pigs.map(p=>p[0]))+6;for(const b of L.blocks)makeBlock(...b);for(const p of L.pigs)makePig(...p);
+  clearAll();levelIdx=i;state='aim';usedAbility=false;score=0;closeModal();zoom=zoomTarget=1.0;
+  const L=LEVELS_ALL[i];LEVEL_END=Math.max(...L.blocks.map(b=>b[1]+(b[3]||0)/2),...L.pigs.map(p=>p[0]))+6;for(const b of L.blocks)makeBlock(...b);for(const p of L.pigs)makePig(...p);
   L.birds.forEach((type,k)=>{const mesh=makeBirdMesh(type);birdsQ.push({type,mesh});});
   nextBird();updHud();const h=document.getElementById('hint');h.style.opacity=1;h.textContent='Pull the bird back, then release to fire';
 }
@@ -532,7 +569,7 @@ addEventListener('pointerdown',e=>{
   audioOn();
   if(!fsTried&&e.pointerType==='touch'){fsTried=true;try{const d=document.documentElement;(d.requestFullscreen?d.requestFullscreen():Promise.reject()).then(()=>screen.orientation&&screen.orientation.lock&&screen.orientation.lock('landscape')).catch(()=>{});}catch(_){}}
   if(e.target.closest&&e.target.closest('.btn,.card,.play,#menu,#title'))return;
-  if(state==='aim'&&current){const p=pointerWorld(e);if(p&&p.distanceTo(ANCHOR)<3.4){dragging=true;dragPos.copy(ANCHOR);document.getElementById('hint').style.opacity=0;}}
+  if(state==='aim'&&current){const p=pointerWorld(e);if(p&&p.distanceTo(ANCHOR)<4.4){dragging=true;dragPos.copy(ANCHOR);document.getElementById('hint').style.opacity=0;}}
   else if(state==='fly'&&flying&&!usedAbility)ability();
 });
 addEventListener('pointermove',e=>{if(!dragging)return;const p=pointerWorld(e);if(!p)return;const d=p.sub(ANCHOR);d.z=0;if(d.length()>MAXDRAG)d.setLength(MAXDRAG);if(d.y<-1.8)d.y=-1.8;dragPos.copy(ANCHOR).add(d);});
@@ -567,6 +604,7 @@ function setBands(){
   const bp=(current&&state==='aim')?(dragging?dragPos:ANCHOR):ANCHOR,pull=new THREE.Vector3(bp.x-.15,bp.y-.05,0);
   setBand(bandBack,tipR,pull,.17);setBand(bandFront,tipL,pull,.17);
 }
+function aimCam(){zoomTarget=Math.min(1.6,Math.max(1,(LEVEL_END+2+13)/baseW));camTarget=-13+baseW*zoomTarget/2;}
 function update(dt){
   world.step(1/60,dt,4);
   for(const t of things){
@@ -595,9 +633,9 @@ function update(dt){
       if(birdsQ.length&&pigsLeft>0){nextBird();}   // chim kế lên ná ngay, vật lý cũ vẫn chạy tiếp
       else{state='settle';restT=0;}
     }
-  } else if(state==='aim'){camTarget=2.5;zoomTarget=1;if(pigsLeft<=0&&!dragging){state='settle';restT=0;}}
+  } else if(state==='aim'){aimCam();if(pigsLeft<=0&&!dragging){state='settle';restT=0;}}
   else if(state==='settle'){
-    zoomTarget=1;restT+=dt;const busy=things.some(t=>!t.dead&&t.body.velocity.length()>.6&&t.body.position.y>-8);
+    aimCam();restT+=dt;const busy=things.some(t=>!t.dead&&t.body.velocity.length()>.6&&t.body.position.y>-8);
     if(restT>6||(restT>1.5&&!busy)){
       for(const t of things)if(t.bird){t.dead=true;world.removeBody(t.body);scene.remove(t.mesh);}
       things=things.filter(t=>!t.dead);flying=null;
